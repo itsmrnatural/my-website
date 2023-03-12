@@ -1,5 +1,10 @@
 # My Website
 
+[![Deployment](https://img.shields.io/badge/Vercel-View%20Deployment-black?style=flat-square)](https://my-website-orpin-ten.vercel.app)
+[![GitHub License](https://img.shields.io/github/license/itsmrnatural/my-website?label=License&style=flat-square)](/LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/itsmrnatural/my-website?label=Issues&style=flat-square)](https://github.com/itsmrnatural/my-website/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/itsmrnatural/my-website?label=Pull%20Requests&style=flat-square)](https://github.com/itsmrnatural/my-website/pulls)
+
 Welcome to my personal website! This is a simple and elegant portfolio site that you can use to showcase your work, skills, and interests. The website is built using React and Tailwind CSS, and is fully customizable to suit your needs.
 
 ## Acknowledgements
