@@ -1,22 +1,36 @@
-# Personal-Website
+# My Website
 
-It is a quality portfolio site with a beautiful and simple design that you can personalize for yourself.
+Welcome to my personal website! This is a simple and elegant portfolio site that you can use to showcase your work, skills, and interests. The website is built using React and Tailwind CSS, and is fully customizable to suit your needs.
 
-<hr>
-<h3>
-Discord Developers: https://discord.dev<br>
-Discord Permission: https://bit.ly/3L4RZpi<br>
-Download Visual Studio Code: https://code.visualstudio.com/download<br>
-Download NodeJS V16: https://nodejs.org/<br>
-MongoDB: https://mongodb.com
-</h3>
+## Acknowledgements
 
-<hr>
-Follow Me Social Media<br>
-Twitch Yayınları: https://twitch.com/umutxyp<br>
-Github: https://github.com/umutxyp<br>
-Instagram: https://instagram.com/umutxyp<br>
-Twitter: https://twitter.com/devbayraktar<br>
-Facebook: https://facebook.com/umutxyp<br>
-Pinterest: https://pinterest.com/umutxyp<br>
-TikTok: https://www.tiktok.com/@umutxyp
+Special thanks to [umutxyp](https://github.com/umutxyp) for providing the initial source code and inspiration for this project.
+
+## Features
+
+- Clean and simple design
+- Responsive layout that looks great on all devices
+- Fully customizable with your own content, images, and colors
+- Built using modern web technologies, including React and Tailwind CSS
+
+## Getting Started
+
+To get started with this website, you'll need to have Node.js and npm installed on your computer. Then, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/itsmrnatural/my-website.git`
+2. Install the dependencies: `npm install`
+3. Start the development server: `npm start`
+
+This will launch the website in your default browser and you can start customizing it to your liking.
+
+## Contributing
+
+Contributions are always welcome! If you have any suggestions, bug reports, or pull requests, please submit them to the repository's [issue tracker](/issues) or [pull requests](/pulls) page.
+
+## License
+
+This project is licensed under the [MIT License](/LICENSE.md). Feel free to use, modify, and distribute the code as you see fit.
+
+## Contact
+
+If you have any questions, feedback, or just want to say hi, feel free to reach out to me at [something.mrnatural@gmail.com](mailto:something.mrnatural@gmail.com).
