@@ -1,1 +1,0 @@
-{"c":["webpack"],"r":["pages/projects"],"m":["./node_modules/next/dist/build/polyfills/fetch/index.js","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fprojects&absolutePagePath=%2Fhome%2Frunner%2Fmy-website%2Fpages%2Fprojects.jsx!","./node_modules/swr/dist/index.mjs","./pages/projects.jsx","./public/js/swr.js"]}
