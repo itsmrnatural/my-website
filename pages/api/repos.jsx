@@ -1,19 +1,27 @@
-const fetch = require('isomorphic-unfetch')
+const fetch = require("isomorphic-unfetch");
 
-let key1 = 'ghp_VzcC7gx0GXzOVP1';
-let key2 = '7kIiTmNtBqj2sOC0S0zxD';
+const GITHUB_API_TOKEN = process.env.GITHUB_API_TOKEN;
 
 export default async (req, res) => {
-    let _ = await (await fetch('https://api.github.com/users/umutxyp/repos', {
+  try {
+    const response = await fetch(
+      "https://api.github.com/users/itsmrnatural/repos",
+      {
         headers: {
-            Authorization: 'token '+key1+key2
-        }
-    })).json();
+          Authorization: `Bearer ${GITHUB_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    
-    try {
-        res.send([..._])
-    } catch {
-        res.status(500);
+    if (!response.ok) {
+      throw new Error(`GitHub API returned ${response.status} status code`);
     }
-}
+
+    const repositories = await response.json();
+    res.send([...repositories]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};

@@ -1,5 +1,7 @@
 # Personal-Website
+
 It is a quality portfolio site with a beautiful and simple design that you can personalize for yourself.
+
 <hr>
 <h3>
 Discord Developers: https://discord.dev<br>
