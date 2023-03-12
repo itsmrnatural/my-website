@@ -13,7 +13,8 @@ export default function Home() {
       <div className="py-20">
         <p className="text-3xl text-white font-semibold">My Projects</p>
         <p className="text-xl text-white/50 font-normal mb-5">
-          This page is currently in works but you can see the outline of how projects would look like. :D
+          This page is currently in works but you can see the outline of how
+          projects would look like. :D
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-4 items-center mt-2">
           {repositories &&
