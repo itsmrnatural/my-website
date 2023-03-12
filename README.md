@@ -25,7 +25,7 @@ This will launch the website in your default browser and you can start customizi
 
 ## Contributing
 
-Contributions are always welcome! If you have any suggestions, bug reports, or pull requests, please submit them to the repository's [issue tracker](/issues) or [pull requests](/pulls) page.
+Contributions are always welcome! If you have any suggestions, bug reports, or pull requests, please submit them to the repository's [issue tracker](https://github.com/itsmrnatural/my-website/issues) or [pull requests](https://github.com/itsmrnatural/my-website/pulls) page.
 
 ## License
 
