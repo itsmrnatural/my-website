@@ -34,7 +34,7 @@ export default function Home() {
       <Head>
         <title>Mr. Natural • Projects</title>
       </Head>
-      <div className="py-20">
+      <div className="py-20 px-5">
         <p className="text-3xl text-white font-semibold">My Projects</p>
         <p className="text-xl text-white/50 font-normal mb-5">
           This page is currently in works but you can see the outline of how

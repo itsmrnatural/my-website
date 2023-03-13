@@ -49,10 +49,10 @@ function MyApp({ Component, pageProps }) {
       <Transition
         as={Fragment}
         show={!load ? true : false}
-        enter="transform transition duration-[100ms]"
+        enter="transform duration-[50ms] transition"
         enterFrom="opacity-0"
         enterTo="opacity-80"
-        leave="transform duration-[250ms] transition ease-in-out"
+        leave="transform duration-[100ms] transition ease-in-out"
         leaveFrom="opacity-80"
         leaveTo="opacity-0"
       >

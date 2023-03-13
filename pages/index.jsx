@@ -2,11 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import Tippy from "@tippyjs/react";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
-        <title>Mr. Natural • About Me</title>
+        <title>Mr. Natural • Home</title>
       </Head>
       <div className="bg-neutral-800/10 shadow-xl rounded-lg w-full h-auto mt-6">
         <div className="relative">
@@ -18,11 +18,13 @@ export default function Home() {
                 </p>
               </div>
               <p className="text-white/50 text-md mt-3">
-                Hello there! I'm a passionate student, avid gamer, and part-time
-                developer who loves to code, explore new technologies, and dive
-                deep into the latest games. With 3 years of experience, I have
-                developed a high level of knowledge and skills in these areas.
-                Thanks for stopping by!
+                I'm a student who loves to code and play games. I've been doing
+                this for 3 years and have learned a lot. I enjoy exploring new
+                technologies and playing the latest games. I also like watching
+                movies and web series. Some of my favorites are Interstellar,
+                Avengers: Infinity War, Spider-Man: No Way Home, The
+                Mandalorian, The Last of Us, Andor, and The Inside Job. Thanks
+                for stopping by!
               </p>
             </div>
             <div
@@ -43,4 +45,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

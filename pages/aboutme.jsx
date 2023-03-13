@@ -14,8 +14,8 @@ export default function Home() {
         <title>Mr. Natural • About Me</title>
       </Head>
       <div className="py-20 px-5">
-        <p className="text-3xl text-white font-semibold text-left">About Me</p>
-        <p className="text-xl text-white/50 font-normal text-left mb-5">
+        <p className="text-3xl text-white font-semibold">About Me</p>
+        <p className="text-xl text-white/50 font-normal mb-5">
           Here's a little bit about me.
         </p>
         <div className="max-w-lg w-full mt-5">
