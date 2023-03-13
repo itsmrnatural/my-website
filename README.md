@@ -1,7 +1,7 @@
 # My Website
 
-[![Deployment](https://img.shields.io/badge/Vercel-View%20Deployment-black?style=flat-square)](https://my-website-orpin-ten.vercel.app)
-[![GitHub License](https://img.shields.io/github/license/itsmrnatural/my-website?label=License&style=flat-square)](/LICENSE)
+[![Deployment](https://img.shields.io/badge/Vercel-View%20Deployment-black?style=flat-square)](https://itsmrnatural.vercel.app)
+[![GitHub License](https://img.shields.io/github/license/itsmrnatural/my-website?label=License&style=flat-square)](/LICENSE.md)
 [![GitHub Issues](https://img.shields.io/github/issues/itsmrnatural/my-website?label=Issues&style=flat-square)](https://github.com/itsmrnatural/my-website/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/itsmrnatural/my-website?label=Pull%20Requests&style=flat-square)](https://github.com/itsmrnatural/my-website/pulls)
 
@@ -24,7 +24,7 @@ To get started with this website, you'll need to have Node.js and npm installed 
 
 1. Clone the repository: `git clone https://github.com/itsmrnatural/my-website.git`
 2. Install the dependencies: `npm install`
-3. Start the development server: `npm start`
+3. Start the development server: `next dev`
 
 This will launch the website in your default browser and you can start customizing it to your liking.
 
