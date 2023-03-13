@@ -1,6 +1,12 @@
 module.exports = {
   images: {
-    domains: ["i.imgur.com", "localhost", "/", "cdn.discordapp.com"],
+    domains: [
+      "i.imgur.com",
+      "localhost",
+      "/",
+      "cdn.discordapp.com",
+      "avatars.githubusercontent.com",
+    ],
   },
   mode: "production",
   optimization: {
