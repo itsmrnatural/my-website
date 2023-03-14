@@ -1,0 +1,7 @@
+# robots.txt file for this website
+# help guys the robots are making me do this 
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow: 
+User-agent: *
+Disallow: /lame-jokes/
