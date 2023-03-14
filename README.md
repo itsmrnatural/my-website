@@ -13,10 +13,10 @@ Special thanks to [umutxyp](https://github.com/umutxyp) for providing the initia
 
 ## Features
 
-- Clean and simple design
-- Responsive layout that looks great on all devices
-- Fully customizable with your own content, images, and colors
-- Built using modern web technologies, including React and Tailwind CSS
+-   Clean and simple design
+-   Responsive layout that looks great on all devices
+-   Fully customizable with your own content, images, and colors
+-   Built using modern web technologies, including React and Tailwind CSS
 
 ## Getting Started
 

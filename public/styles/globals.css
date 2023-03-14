@@ -3,158 +3,158 @@
 @tailwind utilities;
 
 html {
-  background: rgb(0, 0, 0);
-  color: #fff;
+    background: rgb(0, 0, 0);
+    color: #fff;
 }
 
 ::-webkit-scrollbar {
-  width: 14px;
-  height: 18px;
-  background: #000000; /* change the background color to black */
-  border-radius: 10px; /* add border radius to make corners rounded */
+    width: 14px;
+    height: 18px;
+    background: #000000; /* change the background color to black */
+    border-radius: 10px; /* add border radius to make corners rounded */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #101010;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 2px;
-  background-clip: padding-box;
-  border-radius: 10px; /* add border radius to make corners rounded */
+    background-color: #101010;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    background-clip: padding-box;
+    border-radius: 10px; /* add border radius to make corners rounded */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #212121;
+    background-color: #212121;
 }
 ::-webkit-scrollbar-thumb:active {
-  background-color: #2e2e2e;
+    background-color: #2e2e2e;
 }
 
 * {
-  font-family: "Karla", sans-serif;
+    font-family: 'Karla', sans-serif;
 }
 
 .overflow-small::-webkit-scrollbar {
-  width: 8px;
-  height: 18px;
-  background: var(--scrollbar-background);
+    width: 8px;
+    height: 18px;
+    background: var(--scrollbar-background);
 }
 
 .squircle {
-  border-radius: 25px / 20px; /* adjust values to your liking */
+    border-radius: 25px / 20px; /* adjust values to your liking */
 }
 
 /* SPIN AVATAR */
 .spin-avatar-dnd {
-  background-color: red;
-  border-radius: 50%;
-  animation: slow-spin 2s linear infinite;
+    background-color: red;
+    border-radius: 50%;
+    animation: slow-spin 2s linear infinite;
 }
 .spin-avatar-online {
-  background-color: green;
-  border-radius: 50%;
-  animation: slow-spin 2s linear infinite;
+    background-color: green;
+    border-radius: 50%;
+    animation: slow-spin 2s linear infinite;
 }
 .spin-avatar-idle {
-  background-color: yellow;
-  border-radius: 50%;
-  animation: slow-spin 2s linear infinite;
+    background-color: yellow;
+    border-radius: 50%;
+    animation: slow-spin 2s linear infinite;
 }
 .spin-avatar-offline {
-  background-color: grey;
-  border-radius: 50%;
-  animation: slow-spin 2s linear infinite;
+    background-color: grey;
+    border-radius: 50%;
+    animation: slow-spin 2s linear infinite;
 }
 
 @keyframes slow-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .glitch {
-  color: #fff;
-  font-size: 9rem;
-  font-weight: bold;
-  position: relative;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffff00;
+    color: #fff;
+    font-size: 9rem;
+    font-weight: bold;
+    position: relative;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffff00;
 }
 
 .glitch:before,
 .glitch:after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  text-shadow: none;
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    text-shadow: none;
 }
 
 .glitch:before {
-  top: 2px;
-  text-shadow: 0 2px 2px #ff00ff, 0 4px 4px #00ffff;
-  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    top: 2px;
+    text-shadow: 0 2px 2px #ff00ff, 0 4px 4px #00ffff;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch:after {
-  top: -2px;
-  text-shadow: 0 -2px 2px #ffff00, 0 -4px 4px #ff00ff;
-  clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
-  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+    top: -2px;
+    text-shadow: 0 -2px 2px #ffff00, 0 -4px 4px #ff00ff;
+    clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
 
 @keyframes glitch-anim-1 {
-  0% {
-    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-    transform: translate(0, 0);
-  }
-  25% {
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-    transform: translate(4px, -4px);
-  }
-  50% {
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 70%);
-    transform: translate(-4px, 4px);
-  }
-  75% {
-    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
-    transform: translate(4px, 0);
-  }
-  to {
-    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
-    transform: translate(-4px, -4px);
-  }
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        transform: translate(0, 0);
+    }
+    25% {
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+        transform: translate(4px, -4px);
+    }
+    50% {
+        clip-path: polygon(0 0, 100% 0, 100% 70%, 0 70%);
+        transform: translate(-4px, 4px);
+    }
+    75% {
+        clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+        transform: translate(4px, 0);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+        transform: translate(-4px, -4px);
+    }
 }
 
 @keyframes glitch-anim-2 {
-  0% {
-    clip-path: polygon(0, 66%, 100% 66%, 100% 100%, 0 100%);
-    transform: translate(0, 0);
-  }
-  25% {
-    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-    transform: translate(-4px, 4px);
-  }
-  50% {
-    clip-path: polygon(0 30%, 100% 30%, 100% 100%, 0 100%);
-    transform: translate(4px, -4px);
-  }
-  75% {
-    clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
-    transform: translate(-4px, 0);
-  }
-  to {
-    clip-path: polygon(0 20%, 100% 20%, 100% 100%, 0 100%);
-    transform: translate(4px, 4px);
-  }
+    0% {
+        clip-path: polygon(0, 66%, 100% 66%, 100% 100%, 0 100%);
+        transform: translate(0, 0);
+    }
+    25% {
+        clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+        transform: translate(-4px, 4px);
+    }
+    50% {
+        clip-path: polygon(0 30%, 100% 30%, 100% 100%, 0 100%);
+        transform: translate(4px, -4px);
+    }
+    75% {
+        clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
+        transform: translate(-4px, 0);
+    }
+    to {
+        clip-path: polygon(0 20%, 100% 20%, 100% 100%, 0 100%);
+        transform: translate(4px, 4px);
+    }
 }
 
 .text-circle {
-  font-size: 16px;
-  margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 .text-online {
-  color: #46f154;
+    color: #46f154;
 }
