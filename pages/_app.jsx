@@ -1,41 +1,41 @@
-import '../public/styles/globals.css'
-import '../public/styles/tooltip.css'
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import 'tippy.js/animations/scale-subtle.css'
-import 'tippy.js/animations/scale-extreme.css'
-import 'tippy.js/animations/shift-away.css'
-import 'tippy.js/animations/shift-toward.css'
-import Router, {useRouter} from 'next/router'
-import {Fragment, useEffect, useState} from 'react'
-import {Transition} from '@headlessui/react'
-const Header = dynamic(() => import('../components/Header'))
-const Footer = dynamic(() => import('../components/Footer'))
+import "../public/styles/globals.css";
+import "../public/styles/tooltip.css";
+import Head from "next/head";
+import dynamic from "next/dynamic";
+import "tippy.js/animations/scale-subtle.css";
+import "tippy.js/animations/scale-extreme.css";
+import "tippy.js/animations/shift-away.css";
+import "tippy.js/animations/shift-toward.css";
+import Router, { useRouter } from "next/router";
+import { Fragment, useEffect, useState } from "react";
+import { Transition } from "@headlessui/react";
+const Header = dynamic(() => import("../components/Header"));
+const Footer = dynamic(() => import("../components/Footer"));
 
-function MyApp({Component, pageProps}) {
-    let [load, setLoad] = useState(false)
+function MyApp({ Component, pageProps }) {
+    let [load, setLoad] = useState(false);
     useEffect(() => {
         setTimeout(() => {
-            setLoad(true)
-            document.documentElement.style = 'pointer-events: all;'
-        }, 1000)
-    }, [])
-    Router.events.on('routeChangeStart', () => {
-        setLoad(false)
-        document.documentElement.style = 'pointer-events: none;'
-    })
-    Router.events.on('routeChangeComplete', () => {
+            setLoad(true);
+            document.documentElement.style = "pointer-events: all;";
+        }, 1000);
+    }, []);
+    Router.events.on("routeChangeStart", () => {
+        setLoad(false);
+        document.documentElement.style = "pointer-events: none;";
+    });
+    Router.events.on("routeChangeComplete", () => {
         setTimeout(() => {
-            setLoad(true)
-            document.documentElement.style = 'pointer-events: all;'
-        }, 1000)
-    })
-    Router.events.on('routeChangeError', () => {
+            setLoad(true);
+            document.documentElement.style = "pointer-events: all;";
+        }, 1000);
+    });
+    Router.events.on("routeChangeError", () => {
         setTimeout(() => {
-            setLoad(true)
-            document.documentElement.style = 'pointer-events: all;'
-        }, 1000)
-    })
+            setLoad(true);
+            document.documentElement.style = "pointer-events: all;";
+        }, 1000);
+    });
     return (
         <>
             <Head>
@@ -60,7 +60,7 @@ function MyApp({Component, pageProps}) {
                 leaveTo="opacity-0"
             >
                 <div
-                    style={{zIndex: 99999}}
+                    style={{ zIndex: 99999 }}
                     className="fixed bg-black/75 w-full h-screen flex justify-center items-center pointer-events-none"
                 >
                     <div className="flex items-center gap-x-6 animate-pulse">
@@ -89,6 +89,6 @@ function MyApp({Component, pageProps}) {
                 </div>
             </main>
         </>
-    )
+    );
 }
-export default MyApp
+export default MyApp;

@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Tippy from '@tippyjs/react'
+import Head from "next/head";
+import Image from "next/image";
+import Tippy from "@tippyjs/react";
 
 const Home = () => {
     return (
@@ -50,7 +50,7 @@ const Home = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

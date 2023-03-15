@@ -1,16 +1,16 @@
-import fetch from 'isomorphic-unfetch'
-import useSWR from 'swr'
+import fetch from "isomorphic-unfetch";
+import useSWR from "swr";
 
 export default function SWR(url, interval = 1000) {
     return useSWR(
         url,
         (href) =>
             fetch(href, {
-                method: 'GET',
+                method: "GET",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
             }).then((res) => res.json()),
-        {refreshInterval: interval}
-    )
+        { refreshInterval: interval }
+    );
 }

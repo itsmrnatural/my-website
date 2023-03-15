@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const Footer = () => (
     <div className="bg-neutral-800/5 py-4">
@@ -32,6 +32,6 @@ const Footer = () => (
             </div>
         </div>
     </div>
-)
+);
 
-export default Footer
+export default Footer;

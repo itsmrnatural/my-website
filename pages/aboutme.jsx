@@ -1,12 +1,12 @@
-import {useState} from 'react'
-import Head from 'next/head'
+import { useState } from "react";
+import Head from "next/head";
 
 export default function Home() {
-    const [showMore, setShowMore] = useState(false)
+    const [showMore, setShowMore] = useState(false);
 
     const handleShowMore = () => {
-        setShowMore(!showMore)
-    }
+        setShowMore(!showMore);
+    };
 
     return (
         <>
@@ -47,10 +47,10 @@ export default function Home() {
                         className="text-white underline mt-3"
                         onClick={handleShowMore}
                     >
-                        {showMore ? 'Show less' : 'Show more'}
+                        {showMore ? "Show less" : "Show more"}
                     </button>
                 </div>
             </div>
         </>
-    )
+    );
 }

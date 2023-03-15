@@ -1,15 +1,15 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-    mode: 'jit',
+    mode: "jit",
     purge: [
-        './pages/**/*.{js,ts,jsx,tsx}',
-        './components/**/*.{js,ts,jsx,tsx}',
+        "./pages/**/*.{js,ts,jsx,tsx}",
+        "./components/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
         fontFamily: {
-            Poppins: ['Poppins', 'sans-serif'],
-            Karla: ['Karla', 'sans-serif'],
+            Poppins: ["Poppins", "sans-serif"],
+            Karla: ["Karla", "sans-serif"],
         },
         extend: {
             colors: {
@@ -21,4 +21,4 @@ module.exports = {
         extend: {},
     },
     plugins: [],
-}
+};

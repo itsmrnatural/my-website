@@ -1,17 +1,19 @@
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
-var webpack = require('webpack')
-const CompressionPlugin = require('compression-webpack-plugin')
+var LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
+var webpack = require("webpack");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     module: {
         rules: [
             {
-                use: 'babel-loader',
+                use: "babel-loader",
                 test: /\.js$/,
                 exclude: /node_modules/,
                 options: {
-                    plugins: ['lodash'],
-                    presets: [['env', {modules: false, targets: {node: 4}}]],
+                    plugins: ["lodash"],
+                    presets: [
+                        ["env", { modules: false, targets: { node: 4 } }],
+                    ],
                 },
             },
         ],
@@ -21,4 +23,4 @@ module.exports = {
         new LodashModuleReplacementPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
     ],
-}
+};
