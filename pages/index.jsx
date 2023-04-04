@@ -30,7 +30,7 @@ const Home = () => {
                             </p>
                         </div>
                         <div
-                            className={`order-first lg:order-last flex-shrink-0 relative w-[160px] h-[160px] squircle shadow-lg`}
+                            className={"order-first lg:order-last flex-shrink-0 relative w-[160px] h-[160px] squircle shadow-lg"}
                         >
                             <Tippy
                                 content="Mr. Natural#3549"
@@ -39,10 +39,10 @@ const Home = () => {
                             >
                                 <img
                                     alt="itsmrnatural's avatar"
-                                    src={`https://i.imgur.com/isKXF9Q.gif`}
+                                    src={"https://i.imgur.com/isKXF9Q.gif"}
                                     width="160"
                                     height="160"
-                                    className={`bg-neutral-700 w-[160px] h-[160px] squircle`}
+                                    className={"bg-neutral-700 w-[160px] h-[160px] squircle"}
                                 />
                             </Tippy>
                         </div>
