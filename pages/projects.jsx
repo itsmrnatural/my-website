@@ -37,7 +37,8 @@ export default function Home() {
             <div className="py-20 px-5">
                 <p className="text-3xl text-white font-semibold">My Repos</p>
                 <p className="text-xl text-white/50 font-normal mb-5">
-                    These are my current repos. Soon, I will include other projects sections here too.
+                    These are my current repos. Soon, I will include other
+                    projects sections here too.
                 </p>
                 <Repositories
                     repositories={repositories}
