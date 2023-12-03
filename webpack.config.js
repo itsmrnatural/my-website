@@ -1,26 +1,24 @@
-var LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
-var webpack = require("webpack");
-const CompressionPlugin = require("compression-webpack-plugin");
+import LodashModuleReplacementPlugin from "lodash-webpack-plugin";
+import { optimize } from "webpack";
+import CompressionPlugin from "compression-webpack-plugin";
 
-module.exports = {
-    module: {
-        rules: [
-            {
-                use: "babel-loader",
-                test: /\.js$/,
-                exclude: /node_modules/,
-                options: {
-                    plugins: ["lodash"],
-                    presets: [
-                        ["env", { modules: false, targets: { node: 4 } }],
-                    ],
-                },
+export const module = {
+    rules: [
+        {
+            use: "babel-loader",
+            test: /\.js$/,
+            exclude: /node_modules/,
+            options: {
+                plugins: ["lodash"],
+                presets: [
+                    ["env", { modules: false, targets: { node: 4 } }],
+                ],
             },
-        ],
-    },
-    plugins: [
-        new CompressionPlugin(),
-        new LodashModuleReplacementPlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
+        },
     ],
 };
+export const plugins = [
+    new CompressionPlugin(),
+    new LodashModuleReplacementPlugin(),
+    new optimize.UglifyJsPlugin(),
+];
