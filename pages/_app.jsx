@@ -13,37 +13,44 @@ const Header = dynamic(() => import("../components/Header"));
 const Footer = dynamic(() => import("../components/Footer"));
 
 function MyApp({ Component, pageProps }) {
-    let [load, setLoad] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
-        setTimeout(() => {
-            setLoad(true);
-            document.documentElement.style = "pointer-events: all;";
-        }, 1000);
+        const handleRouteChangeStart = () => {
+            setLoading(true);
+            document.documentElement.style.pointerEvents = "none";
+        };
+
+        const handleRouteChangeComplete = () => {
+            setTimeout(() => {
+                setLoading(false);
+                document.documentElement.style.pointerEvents = "all";
+            }, 1000);
+        };
+
+        const handleRouteChangeError = () => {
+            setTimeout(() => {
+                setLoading(false);
+                document.documentElement.style.pointerEvents = "all";
+            }, 1000);
+        };
+
+        Router.events.on("routeChangeStart", handleRouteChangeStart);
+        Router.events.on("routeChangeComplete", handleRouteChangeComplete);
+        Router.events.on("routeChangeError", handleRouteChangeError);
+
+        return () => {
+            Router.events.off("routeChangeStart", handleRouteChangeStart);
+            Router.events.off("routeChangeComplete", handleRouteChangeComplete);
+            Router.events.off("routeChangeError", handleRouteChangeError);
+        };
     }, []);
-    Router.events.on("routeChangeStart", () => {
-        setLoad(false);
-        document.documentElement.style = "pointer-events: none;";
-    });
-    Router.events.on("routeChangeComplete", () => {
-        setTimeout(() => {
-            setLoad(true);
-            document.documentElement.style = "pointer-events: all;";
-        }, 1000);
-    });
-    Router.events.on("routeChangeError", () => {
-        setTimeout(() => {
-            setLoad(true);
-            document.documentElement.style = "pointer-events: all;";
-        }, 1000);
-    });
+
     return (
         <>
             <Head>
                 <title>Mr. Natural • Home</title>
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1.0"
-                />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link
                     href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css"
                     rel="stylesheet"
@@ -51,7 +58,7 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <Transition
                 as={Fragment}
-                show={!load ? true : false}
+                show={loading}
                 enter="transform duration-[50ms] transition"
                 enterFrom="opacity-0"
                 enterTo="opacity-80"
@@ -65,9 +72,7 @@ function MyApp({ Component, pageProps }) {
                 >
                     <div className="flex items-center gap-x-6 animate-pulse">
                         <div className="text-center">
-                            <p className="text-6xl mb-5 font-semibold">
-                                Loading...
-                            </p>
+                            <p className="text-6xl mb-5 font-semibold">Loading...</p>
                             <p className="uppercase text-xl font-semibold text-white">
                                 <i className="fal fa-spinner-third fa-spin" />
                             </p>
@@ -80,7 +85,7 @@ function MyApp({ Component, pageProps }) {
                     <Header />
                     <Component {...pageProps} />
                 </div>
-                <div className=" p-4 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
+                <div className="p-4 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
                     <div className="bg-neutral-800/5">
                         <div className="flex flex-row mx-20">
                             <Footer />
@@ -91,4 +96,5 @@ function MyApp({ Component, pageProps }) {
         </>
     );
 }
+
 export default MyApp;

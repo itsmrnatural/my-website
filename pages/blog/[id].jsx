@@ -49,3 +49,22 @@ export default function BlogPost() {
         </>
     );
 }
+export async function getStaticProps({ params }) {
+    const { id } = params;
+    const blog = blogs.find((blog) => blog.slug === id);
+    return {
+        props: {
+            blog,
+        },
+    };
+}
+
+export async function getStaticPaths() {
+    const paths = blogs.map((blog) => ({
+        params: { id: blog.slug },
+    }));
+    return {
+        paths,
+        fallback: false,
+    };
+}
