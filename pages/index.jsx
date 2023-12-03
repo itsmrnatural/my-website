@@ -1,6 +1,8 @@
+import React from 'react';
 import Head from "next/head";
 import Image from "next/image";
 import Tippy from "@tippyjs/react";
+import SpotifyComponent from './SpotifyComponent';
 
 const Home = () => {
     return (
@@ -28,6 +30,7 @@ const Home = () => {
                                 Mandalorian, The Last of Us, Andor, and The
                                 Inside Job. Thanks for stopping by!
                             </p>
+                            <SpotifyComponent />
                         </div>
                         <div
                             className={
