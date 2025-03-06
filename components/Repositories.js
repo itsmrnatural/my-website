@@ -45,14 +45,14 @@ const languageColors = {
   powershell: "#012456",
   "objective-c": "#438eff",
   clojure: "#db5855",
-  default: "#8b8b8b"
+  default: "#8b8b8b",
 };
 
 const sortOptions = [
   { value: "stars", label: "Most Stars" },
   { value: "forks", label: "Most Forks" },
   { value: "updated", label: "Recently Updated" },
-  { value: "created", label: "Newest" }
+  { value: "created", label: "Newest" },
 ];
 
 const Repositories = ({ repositories, startIndex, endIndex }) => {
@@ -63,7 +63,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
   const [availableLanguages, setAvailableLanguages] = useState([]);
   const filterRef = useRef(null);
   const sortRef = useRef(null);
-  
+
   // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
@@ -74,29 +74,29 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
         setShowSortOptions(false);
       }
     }
-    
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   // Extract available languages from repositories
   useEffect(() => {
     if (repositories && repositories.length > 0) {
       const languages = repositories
-        .map(repo => repo.language)
-        .filter(lang => lang !== null && lang !== undefined);
-      
+        .map((repo) => repo.language)
+        .filter((lang) => lang !== null && lang !== undefined);
+
       const uniqueLanguages = ["all", ...new Set(languages)].sort();
       setAvailableLanguages(uniqueLanguages);
     }
   }, [repositories]);
-  
+
   // Filter and sort repositories
   const filteredSortedRepos = repositories
     ? [...repositories]
-        .filter(repo => {
+        .filter((repo) => {
           if (filterLanguage === "all") return true;
           return repo.language?.toLowerCase() === filterLanguage.toLowerCase();
         })
@@ -115,9 +115,10 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
           }
         })
     : [];
-    
+
   // Get current sort option label
-  const currentSortLabel = sortOptions.find(option => option.value === sortBy)?.label || "Most Stars";
+  const currentSortLabel =
+    sortOptions.find((option) => option.value === sortBy)?.label || "Most Stars";
 
   return (
     <>
@@ -132,14 +133,18 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
             >
               <i className={`fas fa-filter mr-2 text-neutral-400`} />
               {filterLanguage === "all" ? "Filter by Language" : `Language: ${filterLanguage}`}
-              <i className={`fas fa-chevron-${showLanguageFilter ? 'up' : 'down'} ml-2 text-neutral-400`} />
+              <i
+                className={`fas fa-chevron-${
+                  showLanguageFilter ? "up" : "down"
+                } ml-2 text-neutral-400`}
+              />
             </button>
-            
+
             {/* Expandable Language Filter */}
             {showLanguageFilter && (
               <div className="absolute top-full left-0 z-10 mt-2 p-3 rounded-lg bg-neutral-800/90 border border-neutral-700/50 w-72 max-h-64 overflow-y-auto backdrop-blur shadow-lg">
                 <div className="flex flex-wrap gap-2">
-                  {availableLanguages.map(language => (
+                  {availableLanguages.map((language) => (
                     <button
                       key={language}
                       onClick={() => {
@@ -147,15 +152,18 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                         setShowLanguageFilter(false);
                       }}
                       className={`flex items-center px-2 py-1 rounded-md text-xs ${
-                        filterLanguage === language 
-                          ? "bg-neutral-700/80 text-white" 
+                        filterLanguage === language
+                          ? "bg-neutral-700/80 text-white"
                           : "bg-neutral-800/50 text-neutral-400 hover:bg-neutral-700/50 hover:text-neutral-200"
                       }`}
                     >
                       {language !== "all" && (
-                        <span 
-                          className="h-3 w-3 rounded-full mr-1.5" 
-                          style={{ backgroundColor: languageColors[language.toLowerCase()] || languageColors.default }}
+                        <span
+                          className="h-3 w-3 rounded-full mr-1.5"
+                          style={{
+                            backgroundColor:
+                              languageColors[language.toLowerCase()] || languageColors.default,
+                          }}
                         />
                       )}
                       {language === "all" ? "All Languages" : language}
@@ -165,7 +173,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
               </div>
             )}
           </div>
-          
+
           {/* Custom Sort Dropdown (matching filter style) */}
           <div className="flex flex-col w-full sm:w-auto relative" ref={sortRef}>
             <button
@@ -174,9 +182,13 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
             >
               <i className={`fas fa-sort mr-2 text-neutral-400`} />
               {`Sort: ${currentSortLabel}`}
-              <i className={`fas fa-chevron-${showSortOptions ? 'up' : 'down'} ml-2 text-neutral-400`} />
+              <i
+                className={`fas fa-chevron-${
+                  showSortOptions ? "up" : "down"
+                } ml-2 text-neutral-400`}
+              />
             </button>
-            
+
             {/* Sort Options Dropdown */}
             {showSortOptions && (
               <div className="absolute top-full right-0 z-10 mt-2 p-2 rounded-lg bg-neutral-800/90 border border-neutral-700/50 w-56 overflow-hidden backdrop-blur shadow-lg">
@@ -193,11 +205,17 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                         : "text-neutral-300 hover:bg-neutral-700/50 hover:text-neutral-200"
                     }`}
                   >
-                    <i className={`fas fa-${
-                      option.value === 'stars' ? 'star' :
-                      option.value === 'forks' ? 'code-branch' :
-                      option.value === 'updated' ? 'clock' : 'calendar-plus'
-                    } mr-2 ${sortBy === option.value ? 'text-white' : 'text-neutral-400'}`} />
+                    <i
+                      className={`fas fa-${
+                        option.value === "stars"
+                          ? "star"
+                          : option.value === "forks"
+                          ? "code-branch"
+                          : option.value === "updated"
+                          ? "clock"
+                          : "calendar-plus"
+                      } mr-2 ${sortBy === option.value ? "text-white" : "text-neutral-400"}`}
+                    />
                     {option.label}
                   </button>
                 ))}
@@ -215,7 +233,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
               // Get language color or use default
               const langLower = repo.language ? repo.language.toLowerCase() : "default";
               const langColor = languageColors[langLower] || languageColors.default;
-              
+
               return (
                 <a
                   key={index}
@@ -242,13 +260,13 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                         </p>
                       </div>
                     </div>
-                    
+
                     {/* Language indicator */}
                     {repo.language && (
                       <div className="flex-shrink-0">
                         <Tippy content={`Written in ${repo.language}`}>
                           <div className="flex items-center">
-                            <span 
+                            <span
                               className="h-4 w-4 rounded-full mr-1"
                               style={{ backgroundColor: langColor }}
                             />
@@ -297,7 +315,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                       <p className="text-xs text-gray-400">
                         {new Date(repo.updated_at).toLocaleDateString("en-GB", {
                           month: "short",
-                          day: "numeric"
+                          day: "numeric",
                         })}
                       </p>
                     </div>
@@ -309,7 +327,9 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
             // No repositories match filter
             <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col items-center justify-center py-10 px-4 bg-neutral-800/20 rounded-lg border border-neutral-700/30">
               <i className="fas fa-filter text-4xl text-neutral-500 mb-3" />
-              <h3 className="text-lg font-medium text-neutral-300 mb-1">No matching repositories</h3>
+              <h3 className="text-lg font-medium text-neutral-300 mb-1">
+                No matching repositories
+              </h3>
               <p className="text-sm text-neutral-400 text-center">
                 No repositories found with the language "{filterLanguage}".
               </p>
@@ -324,7 +344,10 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
         ) : (
           // Skeleton loading
           Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="bg-white/10 p-4 rounded-lg border border-gray-600 animate-pulse h-[160px] flex flex-col">
+            <div
+              key={index}
+              className="bg-white/10 p-4 rounded-lg border border-gray-600 animate-pulse h-[160px] flex flex-col"
+            >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center">
                   <div className="w-6 h-6 rounded-full overflow-hidden mr-2 bg-white/10" />
