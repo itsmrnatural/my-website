@@ -4,17 +4,19 @@ import swr from "../public/js/swr";
 import Repositories from "../components/Repositories";
 import Pagination from "../components/Pagination";
 
-export default function Home() {
+export default function Projects() {
   const PAGE_SIZE = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data: _repositories } = swr("/api/repos");
-  const repositories = _repositories ? _repositories : null;
-
-  const totalPages = Math.ceil((repositories ? repositories.length : 0) / PAGE_SIZE);
+  // Fetch repositories data
+  const { data: _repositories, error, isValidating } = swr("/api/repos");
+  const repositories = _repositories || [];
+  
+  const totalPages = Math.ceil(repositories.length / PAGE_SIZE);
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
 
+  // Pagination handlers
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -31,19 +33,56 @@ export default function Home() {
     <>
       <Head>
         <title>Mr. Natural • Projects</title>
+        <meta name="description" content="Explore my GitHub repositories and personal projects" />
+        <meta property="og:title" content="Mr. Natural • Projects" />
+        <meta property="og:description" content="Explore my GitHub repositories and personal projects" />
+        <meta property="og:type" content="website" />
       </Head>
-      <div className="py-20 px-5">
-        <p className="text-3xl text-white font-semibold">My Repos</p>
-        <p className="text-xl text-white/50 font-normal mb-5">
-          These are my current repos. Soon, I will include other projects sections here too.
+      
+      <div className="py-8 md:py-12">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">My Projects</h1>
+        <p className="text-xl text-neutral-400 mb-8">
+          Explore my open source repositories and personal projects
         </p>
-        <Repositories repositories={repositories} startIndex={startIndex} endIndex={endIndex} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handlePreviousPage={handlePreviousPage}
-          handleNextPage={handleNextPage}
-        />
+        
+        {/* Loading state */}
+        {isValidating && repositories.length === 0 && (
+          <div className="flex items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+          </div>
+        )}
+        
+        {/* Error state */}
+        {error && (
+          <div className="bg-red-900/20 border border-red-900 rounded-lg p-4 my-4">
+            <p className="text-red-400">Failed to load repositories. Please try again later.</p>
+          </div>
+        )}
+        
+        {/* Empty state */}
+        {!isValidating && repositories.length === 0 && (
+          <div className="bg-neutral-800/20 rounded-lg p-8 text-center my-8">
+            <p className="text-xl">No projects found</p>
+            <p className="text-neutral-400 mt-2">Check back later for updates</p>
+          </div>
+        )}
+        
+        {/* Repository list */}
+        {repositories.length > 0 && (
+          <>
+            <Repositories 
+              repositories={repositories} 
+              startIndex={startIndex} 
+              endIndex={endIndex} 
+            />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              handlePreviousPage={handlePreviousPage}
+              handleNextPage={handleNextPage}
+            />
+          </>
+        )}
       </div>
     </>
   );
