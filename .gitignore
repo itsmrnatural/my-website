@@ -2,6 +2,7 @@
 .replit
 *.nix
 .next/
+.vscode/
 
 # Logs
 logs
