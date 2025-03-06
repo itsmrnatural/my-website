@@ -101,7 +101,6 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Mr. Natural • Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
       </Head>
       <Transition
         as={Fragment}
