@@ -210,10 +210,10 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                         option.value === "stars"
                           ? "star"
                           : option.value === "forks"
-                            ? "code-branch"
-                            : option.value === "updated"
-                              ? "clock"
-                              : "calendar-plus"
+                          ? "code-branch"
+                          : option.value === "updated"
+                          ? "clock"
+                          : "calendar-plus"
                       } mr-2 ${sortBy === option.value ? "text-white" : "text-neutral-400"}`}
                     />
                     {option.label}
