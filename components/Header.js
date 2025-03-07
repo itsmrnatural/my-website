@@ -8,6 +8,7 @@ const socialLinks = [
     link: "https://discord.com/users/624572769484668938",
   },
   { icon: "fab fa-github", link: "https://github.com/itsmrnatural" },
+  { icon: "fab fa-lastfm", link: "https://last.fm/user/itsmrnatural" },
 ];
 
 const navItems = [
@@ -25,8 +26,8 @@ const navItems = [
     href: "/aboutme",
   },
   {
-    icon: "fal fa-clipboard-list",
-    active: "fa fa-clipboard-list",
+    icon: "fal fa-chalkboard",
+    active: "fa fa-chalkboard",
     label: "Blog",
     href: "/blog",
   },
