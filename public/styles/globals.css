@@ -5,6 +5,14 @@
 html {
   background: rgb(0, 0, 0);
   color: #fff;
+  /* Add smooth scrolling behavior */
+  scroll-behavior: smooth;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #101010 #000000;
 }
 
 ::-webkit-scrollbar {
@@ -34,6 +42,15 @@ html {
   font-family: "Karla", sans-serif;
 }
 
+/* Add CSS for the gradient heading that was previously inline */
+.gradient-heading {
+  background: linear-gradient(to right, #ffffff, #d4d4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Rest of your CSS remains unchanged */
 .overflow-small::-webkit-scrollbar {
   width: 8px;
   height: 18px;
