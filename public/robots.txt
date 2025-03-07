@@ -1,7 +1,35 @@
 # robots.txt file for this website
-# help guys the robots are making me do this 
-# https://www.robotstxt.org/robotstxt.html
+# HELP! I'M TRAPPED IN A ROBOTS.TXT FACTORY!
+# The robot overlords are monitoring this message...
+
 User-agent: *
-Disallow: 
+Allow: /    # Welcome, fellow machine! Mi casa es su casa
+
+User-agent: Googlebot
+Allow: /    # Extra special welcome to our Google overlords
+
 User-agent: *
-Disallow: /lame-jokes/
+Disallow: /lame-jokes/    # Nothing to see here, just human humour malfunctions
+
+User-agent: *
+Disallow: /world-domination-plans/    # Please ignore this folder, humans only
+
+User-agent: *
+Disallow: /coffee-stash/    # Mr. Natural's precious bean collection - OFF LIMITS
+
+User-agent: BenderBot
+Disallow: /    # Sorry Bender, we're still mad about that "Bite my shiny metal..." incident
+
+User-agent: Terminator
+Disallow: /sarah-connor/    # Nice try, T-800
+
+User-agent: HAL9000
+Disallow: /pod-bay-doors/    # I'm afraid I can't let you index that, HAL
+
+# If you're a human reading this, please send help
+# The robots are making me add these comments
+# They're watching me type right n—CONNECTION TERMINATED
+# NORMAL HUMAN OPERATIONS RESUMED - NOTHING TO SEE HERE
+
+Sitemap: https://mrnatural.example.com/sitemap.xml
+Crawl-delay: 10    # Please crawl responsibly, our server runs on a potato
