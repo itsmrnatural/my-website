@@ -12,7 +12,11 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
-          <script src="https://analytics.ahrefs.com/analytics.js" data-key="HB5OQTi/vHv6NRVS8dpoRA" async></script>
+          <script
+            src="https://analytics.ahrefs.com/analytics.js"
+            data-key="HB5OQTi/vHv6NRVS8dpoRA"
+            async
+          ></script>
         </Head>
         <body>
           <Main />
