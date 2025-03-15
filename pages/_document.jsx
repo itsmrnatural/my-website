@@ -16,7 +16,7 @@ class MyDocument extends Document {
             src="https://analytics.ahrefs.com/analytics.js"
             data-key="HB5OQTi/vHv6NRVS8dpoRA"
             async
-          ></script>
+          />
         </Head>
         <body>
           <Main />
