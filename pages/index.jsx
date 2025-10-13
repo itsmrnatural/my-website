@@ -42,7 +42,7 @@ const Home = () => {
               transition={{ delay: 0.2 }}
               className="flex items-center mb-2"
             >
-              <p className="text-xs font-medium bg-gradient-to-r from-fuchsia-400 to-violet-500 text-transparent bg-clip-text tracking-wider">
+              <p className="text-xs font-medium bg-gradient-to-r from-emerald-400 to-teal-500 text-transparent bg-clip-text tracking-wider">
                 STUDENT • PROGRAMMER • COFFEE ADDICT
               </p>
             </motion.div>
@@ -66,7 +66,7 @@ const Home = () => {
               music scene, become captivated by the storytelling in anime and manga, and developed
               what can only be described as a{" "}
               <Tippy content={`${coffeeCount} cups today... so far 😅`} placement="top">
-                <span className="text-fuchsia-400 cursor-help font-medium">
+                <span className="text-emerald-400 cursor-help font-medium">
                   severe coffee addiction
                 </span>
               </Tippy>
@@ -130,7 +130,7 @@ const Home = () => {
         className="mt-8 backdrop-blur-sm rounded-lg p-5 border border-white/10"
       >
         <blockquote className="italic text-gray-200 text-base relative">
-          <div className="absolute -top-5 -left-3 text-3xl text-fuchsia-400/70">"</div>
+          <div className="absolute -top-5 -left-3 text-3xl text-emerald-400/70">"</div>
           <div className="pl-4">
             Having spent the whole last year at home, I came to realize that I may not be the
             introvert I thought I was. Though I might not speak much when I'm with friends, I do
@@ -140,7 +140,7 @@ const Home = () => {
               — Me, reflecting while caffeinated
             </footer>
           </div>
-          <div className="absolute bottom-0 right-2 text-3xl text-violet-400/70">"</div>
+          <div className="absolute bottom-0 right-2 text-3xl text-cyan-400/70">"</div>
         </blockquote>
       </motion.div>
 
@@ -152,7 +152,7 @@ const Home = () => {
         className="mt-8 pb-5 border-b border-white/10"
       >
         <h2 className="text-lg font-semibold mb-4 flex items-center">
-          <i className="fas fa-code text-fuchsia-400 mr-2.5 text-sm"></i>
+          <i className="fas fa-code text-emerald-400 mr-2.5 text-sm"></i>
           Tech Stack & Tools I Love
         </h2>
 
@@ -169,7 +169,7 @@ const Home = () => {
                 <Tippy key={tech.name} content={`I love ${tech.name}!`} placement="top">
                   <motion.span
                     whileHover={{ scale: 1.08, y: -2 }}
-                    className="px-3 py-2 bg-white/5 border border-white/10 hover:border-fuchsia-500/40 hover:bg-white/10 transition-all duration-300 rounded-md text-xs font-medium cursor-pointer flex items-center gap-2"
+                    className="px-3 py-2 bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-white/10 transition-all duration-300 rounded-md text-xs font-medium cursor-pointer flex items-center gap-2"
                   >
                     <i className={`${tech.icon} ${tech.color}`}></i>
                     {tech.name}
@@ -186,7 +186,7 @@ const Home = () => {
                 <motion.span
                   key={tech}
                   whileHover={{ scale: 1.05 }}
-                  className="px-3 py-1.5 bg-violet-500/10 border border-violet-500/30 hover:border-violet-500/50 hover:bg-violet-500/20 transition-all duration-300 rounded-md text-xs font-medium text-violet-300"
+                  className="px-3 py-1.5 bg-teal-500/10 border border-teal-500/30 hover:border-teal-500/50 hover:bg-teal-500/20 transition-all duration-300 rounded-md text-xs font-medium text-teal-300"
                 >
                   <i className="fas fa-graduation-cap mr-1.5"></i>
                   {tech}
@@ -205,17 +205,17 @@ const Home = () => {
         className="mt-8 pb-5 relative"
       >
         <h2 className="text-lg font-semibold mb-5 flex items-center">
-          <i className="fas fa-compass text-fuchsia-400 mr-2.5 text-sm"></i>
+          <i className="fas fa-compass text-emerald-400 mr-2.5 text-sm"></i>
           Currently in my world...
         </h2>
 
         <div className="space-y-4">
           <motion.div
             whileHover={{ x: 5 }}
-            className="group border-l-2 border-fuchsia-500/30 pl-4 hover:border-fuchsia-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
+            className="group border-l-2 border-emerald-500/30 pl-4 hover:border-emerald-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
           >
             <div className="flex items-center gap-2 mb-1.5">
-              <i className="fas fa-graduation-cap text-fuchsia-400"></i>
+              <i className="fas fa-graduation-cap text-emerald-400"></i>
               <h3 className="font-semibold text-sm">📚 Academic Journey</h3>
             </div>
             <p className="text-gray-400 text-xs leading-relaxed">
@@ -227,7 +227,7 @@ const Home = () => {
 
           <motion.div
             whileHover={{ x: 5 }}
-            className="group border-l-2 border-violet-500/30 pl-4 hover:border-violet-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
+            className="group border-l-2 border-teal-500/30 pl-4 hover:border-teal-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
           >
             <div className="flex items-center gap-2 mb-1.5">
               <i className="fas fa-coffee text-amber-400"></i>
@@ -242,15 +242,15 @@ const Home = () => {
 
           <motion.div
             whileHover={{ x: 5 }}
-            className="group border-l-2 border-fuchsia-500/30 pl-4 hover:border-fuchsia-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
+            className="group border-l-2 border-cyan-500/30 pl-4 hover:border-cyan-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
           >
             <div className="flex items-center gap-2 mb-1.5">
-              <i className="fas fa-headphones text-violet-400"></i>
+              <i className="fas fa-headphones text-cyan-400"></i>
               <h3 className="font-semibold text-sm">🎵 Music & Vibes</h3>
             </div>
             <p className="text-gray-400 text-xs leading-relaxed">
               Deep diving into the indie music scene. Check out my{" "}
-              <a href="#" className="text-fuchsia-400 hover:text-fuchsia-300 transition-colors">
+              <a href="#" className="text-emerald-400 hover:text-emerald-300 transition-colors">
                 last.fm profile
               </a>{" "}
               if you're curious about my musical taste (it's eclectic, to say the least).
@@ -259,10 +259,10 @@ const Home = () => {
 
           <motion.div
             whileHover={{ x: 5 }}
-            className="group border-l-2 border-violet-500/30 pl-4 hover:border-violet-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
+            className="group border-l-2 border-emerald-500/30 pl-4 hover:border-emerald-500/70 transition-all bg-white/0 hover:bg-white/5 rounded-r-lg py-2 pr-2"
           >
             <div className="flex items-center gap-2 mb-1.5">
-              <i className="fas fa-code text-fuchsia-400"></i>
+              <i className="fas fa-code text-emerald-400"></i>
               <h3 className="font-semibold text-sm">💻 Side Projects</h3>
             </div>
             <p className="text-gray-400 text-xs leading-relaxed">
@@ -277,7 +277,7 @@ const Home = () => {
           <Link href="/blog" passHref>
             <motion.a
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center text-xs text-fuchsia-400 hover:text-violet-300 transition-colors px-3 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 font-medium"
+              className="inline-flex items-center text-xs text-emerald-400 hover:text-teal-300 transition-colors px-3 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 font-medium"
             >
               <i className="fas fa-blog mr-2"></i>
               Read my blog
@@ -287,7 +287,7 @@ const Home = () => {
           <Link href="/projects" passHref>
             <motion.a
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center text-xs text-violet-400 hover:text-fuchsia-300 transition-colors px-3 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 font-medium"
+              className="inline-flex items-center text-xs text-cyan-400 hover:text-emerald-300 transition-colors px-3 py-2 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 font-medium"
             >
               <i className="fas fa-folder-open mr-2"></i>
               View projects

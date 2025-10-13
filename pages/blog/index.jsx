@@ -66,13 +66,13 @@ export default function Blog({ blogs, tags }) {
                 placeholder="Search posts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-fuchsia-500/50 focus:ring-1 focus:ring-fuchsia-500/50 transition-all"
+                className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
               />
             </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-fuchsia-500/50 focus:ring-1 focus:ring-fuchsia-500/50 transition-all"
+              className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
             >
               <option value="date">Sort by Date</option>
               <option value="title">Sort by Title</option>
@@ -86,7 +86,7 @@ export default function Blog({ blogs, tags }) {
                 onClick={() => setSelectedTag("")}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   selectedTag === ""
-                    ? "bg-fuchsia-500 text-white"
+                    ? "bg-emerald-500 text-white"
                     : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
                 }`}
               >
@@ -98,7 +98,7 @@ export default function Blog({ blogs, tags }) {
                   onClick={() => setSelectedTag(tag)}
                   className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                     selectedTag === tag
-                      ? "bg-fuchsia-500 text-white"
+                      ? "bg-emerald-500 text-white"
                       : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
                   }`}
                 >
@@ -157,7 +157,7 @@ export default function Blog({ blogs, tags }) {
                 setSearchQuery("");
                 setSelectedTag("");
               }}
-              className="mt-4 px-4 py-2 bg-fuchsia-500 hover:bg-fuchsia-600 text-white rounded-lg transition-all"
+              className="mt-4 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-all"
             >
               Clear Filters
             </button>

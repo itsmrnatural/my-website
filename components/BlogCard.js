@@ -30,7 +30,7 @@ export default function BlogCard(props) {
             {blog.tags.slice(0, 2).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 bg-fuchsia-500/90 text-white text-xs rounded-full font-medium"
+                className="px-2 py-0.5 bg-emerald-500/90 text-white text-xs rounded-full font-medium"
               >
                 {tag}
               </span>
@@ -39,16 +39,16 @@ export default function BlogCard(props) {
         )}
       </div>
       <div className="p-4 flex flex-col h-40">
-        <h3 className="text-white text-lg font-semibold mb-2 line-clamp-2 group-hover:text-fuchsia-300 transition-colors">
+        <h3 className="text-white text-lg font-semibold mb-2 line-clamp-2 group-hover:text-emerald-300 transition-colors">
           {blog.title}
         </h3>
         <p className="text-gray-400 text-xs mb-2 flex items-center gap-1">
-          <i className="fas fa-calendar text-fuchsia-400"></i>
+          <i className="fas fa-calendar text-emerald-400"></i>
           {formattedDate}
         </p>
         <p className="text-gray-300 text-sm line-clamp-3 flex-1">{blog.preview}</p>
         <div className="mt-2 pt-2 border-t border-white/10">
-          <span className="text-fuchsia-400 text-xs font-medium group-hover:text-fuchsia-300 transition-colors inline-flex items-center gap-1">
+          <span className="text-emerald-400 text-xs font-medium group-hover:text-emerald-300 transition-colors inline-flex items-center gap-1">
             Read more
             <i className="fas fa-arrow-right text-[10px]"></i>
           </span>

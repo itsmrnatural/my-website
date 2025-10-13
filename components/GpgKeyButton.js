@@ -24,22 +24,22 @@ export default function GpgKeyButton() {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className="bg-gradient-to-r from-fuchsia-500/10 to-violet-500/10 border border-fuchsia-500/30 rounded-lg p-4 backdrop-blur-sm"
+      className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 rounded-lg p-4 backdrop-blur-sm"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
-            <i className="fas fa-shield-alt text-fuchsia-400"></i>
+            <i className="fas fa-shield-alt text-emerald-400"></i>
             <h3 className="text-sm font-semibold text-white">GPG Public Key</h3>
           </div>
           <p className="text-xs text-gray-300 font-mono break-all mb-1">{gpgFingerprint}</p>
           <p className="text-xs text-gray-400">
-            Key ID: <span className="text-fuchsia-300 font-mono">{gpgKeyId}</span>
+            Key ID: <span className="text-emerald-300 font-mono">{gpgKeyId}</span>
           </p>
         </div>
         <button
           onClick={handleCopy}
-          className="flex-shrink-0 px-3 py-2 bg-fuchsia-500 hover:bg-fuchsia-600 text-white rounded-md transition-all text-xs font-medium flex items-center gap-2"
+          className="flex-shrink-0 px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-md transition-all text-xs font-medium flex items-center gap-2"
         >
           <i className={`fas ${copied ? "fa-check" : "fa-copy"}`}></i>
           {copied ? "Copied!" : "Copy"}
@@ -50,7 +50,7 @@ export default function GpgKeyButton() {
           href="https://keys.openpgp.org/search?q=92EA052E245766B4D8494D5B3D280550B702CBB9"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-fuchsia-400 hover:text-fuchsia-300 transition-colors inline-flex items-center gap-1"
+          className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1"
         >
           View on keyserver
           <i className="fas fa-external-link-alt text-[9px]"></i>
