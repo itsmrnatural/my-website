@@ -4,6 +4,10 @@ import Link from "next/link";
 import BlogCard from "@components/BlogCard";
 import blogs from "../../public/blogData";
 
+/**
+ * Blog listing page component displaying all blog posts
+ * @returns {JSX.Element} The Blog listing page
+ */
 export default function Blog() {
   return (
     <>

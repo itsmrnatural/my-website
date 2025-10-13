@@ -5,6 +5,10 @@ import Image from "next/image";
 import blogs from "../../public/blogData";
 import { useRouter } from "next/router";
 
+/**
+ * Individual blog post page component
+ * @returns {JSX.Element} The blog post detail page
+ */
 export default function BlogPost() {
   const [blog, setBlogPost] = useState({});
   const router = useRouter();

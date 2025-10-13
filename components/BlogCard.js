@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * BlogCard component for displaying a blog post preview
+ * @param {Object} props - Component props
+ * @param {Object} props.blog - Blog post object containing title, image, author, date, and preview
+ * @returns {JSX.Element} The blog card component
+ */
 export default function BlogCard(props) {
   const blog = props.blog;
 

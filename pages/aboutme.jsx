@@ -1,9 +1,16 @@
 import { useState } from "react";
 import Head from "next/head";
 
+/**
+ * About Me page component displaying personal information
+ * @returns {JSX.Element} The About Me page
+ */
 export default function Home() {
   const [showMore, setShowMore] = useState(false);
 
+  /**
+   * Toggles the visibility of additional content
+   */
   const handleShowMore = () => {
     setShowMore(!showMore);
   };

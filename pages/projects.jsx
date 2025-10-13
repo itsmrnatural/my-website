@@ -4,6 +4,10 @@ import swr from "../public/js/swr";
 import Repositories from "../components/Repositories";
 import Pagination from "../components/Pagination";
 
+/**
+ * Projects page component displaying GitHub repositories with pagination
+ * @returns {JSX.Element} The Projects page
+ */
 export default function Projects() {
   const PAGE_SIZE = 6;
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,13 +20,18 @@ export default function Projects() {
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
 
-  // Pagination handlers
+  /**
+   * Handles navigation to the previous page
+   */
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
+  /**
+   * Handles navigation to the next page
+   */
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);

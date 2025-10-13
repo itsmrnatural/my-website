@@ -3,6 +3,11 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { useState, useEffect, useRef } from "react";
 
+/**
+ * Formats a number to a human-readable string with K/M suffixes
+ * @param {number} num - The number to format
+ * @returns {string} The formatted number string
+ */
 const formatNumber = (num) => {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(1) + "M";
@@ -13,6 +18,9 @@ const formatNumber = (num) => {
   }
 };
 
+/**
+ * Programming language color mappings for repository badges
+ */
 const languageColors = {
   javascript: "#f1e05a",
   typescript: "#3178c6",
@@ -48,6 +56,9 @@ const languageColors = {
   default: "#8b8b8b",
 };
 
+/**
+ * Sort options for repository listings
+ */
 const sortOptions = [
   { value: "stars", label: "Most Stars" },
   { value: "forks", label: "Most Forks" },
@@ -55,6 +66,14 @@ const sortOptions = [
   { value: "created", label: "Newest" },
 ];
 
+/**
+ * Repositories component for displaying GitHub repositories with filtering and sorting
+ * @param {Object} props - Component props
+ * @param {Array} props.repositories - List of repository objects
+ * @param {number} props.startIndex - Starting index for pagination
+ * @param {number} props.endIndex - Ending index for pagination
+ * @returns {JSX.Element} The repositories grid with controls
+ */
 const Repositories = ({ repositories, startIndex, endIndex }) => {
   const [sortBy, setSortBy] = useState("stars");
   const [filterLanguage, setFilterLanguage] = useState("all");

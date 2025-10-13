@@ -6,6 +6,10 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+/**
+ * Home page component displaying personal introduction and information
+ * @returns {JSX.Element} The Home page
+ */
 const Home = () => {
   return (
     <>

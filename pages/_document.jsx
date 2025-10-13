@@ -1,6 +1,14 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+/**
+ * Custom Document component for Next.js application
+ * Defines HTML structure and includes external resources
+ */
 class MyDocument extends Document {
+  /**
+   * Renders the document structure
+   * @returns {JSX.Element} The HTML document structure
+   */
   render() {
     return (
       <Html>
