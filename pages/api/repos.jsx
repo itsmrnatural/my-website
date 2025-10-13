@@ -2,6 +2,12 @@ const fetch = require("node-fetch");
 
 const GITHUB_API_TOKEN = process.env.GITHUB_API_TOKEN;
 
+/**
+ * API handler to fetch GitHub repositories
+ * @param {Object} req - The HTTP request object
+ * @param {Object} res - The HTTP response object
+ * @returns {Promise<void>} Sends repository data or error response
+ */
 export default async (req, res) => {
   try {
     const response = await fetch("https://api.github.com/users/itsmrnatural/repos", {

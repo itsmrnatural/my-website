@@ -1,6 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
+/**
+ * Footer component with copyright information and external links
+ * @returns {JSX.Element} The footer section
+ */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 

@@ -1,6 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 
+/**
+ * 404 Not Found page component
+ * @returns {JSX.Element} The 404 error page
+ */
 export default function NotFound() {
   return (
     <>

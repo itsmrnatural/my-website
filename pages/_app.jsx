@@ -13,7 +13,9 @@ import { Transition } from "@headlessui/react";
 const Header = dynamic(() => import("../components/Header"));
 const Footer = dynamic(() => import("../components/Footer"));
 
-// Required for smoother page transitions
+/**
+ * Preloads page components for smoother page transitions
+ */
 const preloadPages = () => {
   const importPage = (path) => {
     switch (path) {
@@ -38,6 +40,14 @@ const preloadPages = () => {
   navItems.forEach((item) => importPage(item));
 };
 
+/**
+ * Main App component for Next.js application
+ * Handles routing, loading states, and global layout
+ * @param {Object} props - Component props
+ * @param {React.ComponentType} props.Component - The active page component
+ * @param {Object} props.pageProps - Props for the active page
+ * @returns {JSX.Element} The application wrapper
+ */
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();

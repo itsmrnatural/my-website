@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+/**
+ * Social media links configuration
+ */
 const socialLinks = [
   { icon: "fab fa-twitter", link: "https://twitter.com/itsmrnatural" },
   {
@@ -11,6 +14,9 @@ const socialLinks = [
   { icon: "fab fa-lastfm", link: "https://last.fm/user/itsmrnatural" },
 ];
 
+/**
+ * Navigation menu items configuration
+ */
 const navItems = [
   { icon: "fal fa-home", active: "fa fa-home", label: "Home", href: "/" },
   {
@@ -33,8 +39,17 @@ const navItems = [
   },
 ];
 
+/**
+ * Header component with navigation and social links
+ * @returns {JSX.Element} The header with navigation menu
+ */
 const Header = () => {
   const router = useRouter();
+  /**
+   * Checks if the given href matches the current route
+   * @param {string} href - The route to check
+   * @returns {boolean} True if the route is active
+   */
   const isActive = (href) => router.asPath === href;
 
   return (
