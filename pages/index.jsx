@@ -62,11 +62,13 @@ const Home = () => {
               className="text-gray-300 text-base mt-3 max-w-2xl"
             >
               I discovered my passion for programming at 14, and five years later, that spark hasn't
-              faded—it's only grown stronger. Along the way, I've fallen in love with the indie music
-              scene, become captivated by the storytelling in anime and manga, and developed what can
-              only be described as a{" "}
+              faded—it's only grown stronger. Along the way, I've fallen in love with the indie
+              music scene, become captivated by the storytelling in anime and manga, and developed
+              what can only be described as a{" "}
               <Tippy content={`${coffeeCount} cups today... so far 😅`} placement="top">
-                <span className="text-fuchsia-400 cursor-help font-medium">severe coffee addiction</span>
+                <span className="text-fuchsia-400 cursor-help font-medium">
+                  severe coffee addiction
+                </span>
               </Tippy>
               . Welcome to my little corner of the internet! ☕
             </motion.p>
@@ -176,7 +178,7 @@ const Home = () => {
               ))}
             </div>
           </div>
-          
+
           <div>
             <p className="text-xs text-gray-400 mb-2">Currently learning:</p>
             <div className="flex flex-wrap gap-2">
@@ -248,10 +250,7 @@ const Home = () => {
             </div>
             <p className="text-gray-400 text-xs leading-relaxed">
               Deep diving into the indie music scene. Check out my{" "}
-              <a
-                href="#"
-                className="text-fuchsia-400 hover:text-fuchsia-300 transition-colors"
-              >
+              <a href="#" className="text-fuchsia-400 hover:text-fuchsia-300 transition-colors">
                 last.fm profile
               </a>{" "}
               if you're curious about my musical taste (it's eclectic, to say the least).
@@ -268,7 +267,8 @@ const Home = () => {
             </div>
             <p className="text-gray-400 text-xs leading-relaxed">
               Building random stuff that interests me—sometimes useful, sometimes just for fun.
-              Because what's the point of knowing how to code if you can't make weird things at 3 AM?
+              Because what's the point of knowing how to code if you can't make weird things at 3
+              AM?
             </p>
           </motion.div>
         </div>

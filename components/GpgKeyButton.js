@@ -34,8 +34,7 @@ export default function GpgKeyButton() {
           </div>
           <p className="text-xs text-gray-300 font-mono break-all mb-1">{gpgFingerprint}</p>
           <p className="text-xs text-gray-400">
-            Key ID:{" "}
-            <span className="text-fuchsia-300 font-mono">{gpgKeyId}</span>
+            Key ID: <span className="text-fuchsia-300 font-mono">{gpgKeyId}</span>
           </p>
         </div>
         <button
