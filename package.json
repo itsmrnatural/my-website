@@ -12,7 +12,9 @@
     "@headlessui/react": "^1.5.0",
     "@tippyjs/react": "^4.2.6",
     "compression-webpack-plugin": "^11.0.0",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.4.10",
+    "gray-matter": "^4.0.3",
     "isomorphic-unfetch": "^3.1.0",
     "lodash-webpack-plugin": "^0.11.6",
     "next": "^15.2.3",
@@ -21,9 +23,13 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-tooltip": "^5.10.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "remark-parse": "^11.0.0",
     "swr": "^1.2.1",
     "terser-webpack-plugin": "^5.3.7",
     "tippy.js": "^6.3.7",
+    "unified": "^11.0.5",
     "webpack": "^5.98.0"
   },
   "devDependencies": {
