@@ -18,9 +18,9 @@ module.exports = {
           css: {
             color: "#FFFFFF",
             a: {
-              color: "#34D399",
+              color: "#60A5FA",
               "&:hover": {
-                color: "#10B981",
+                color: "#3B82F6",
               },
             },
             h1: {
@@ -43,7 +43,7 @@ module.exports = {
             },
             blockquote: {
               color: "#E2E8F0",
-              borderLeftColor: "#10B981",
+              borderLeftColor: "#3B82F6",
             },
           },
         },

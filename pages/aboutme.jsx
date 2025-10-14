@@ -38,7 +38,7 @@ export default function AboutMe() {
           >
             {/* Profile Picture */}
             <div className="flex-shrink-0">
-              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-emerald-500/30 shadow-lg shadow-emerald-500/20">
+              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-lg shadow-blue-500/20">
                 <Image
                   src="https://i.imgur.com/isKXF9Q.gif"
                   alt="Mr. Natural"
@@ -48,7 +48,7 @@ export default function AboutMe() {
                 />
               </div>
               <h2 className="text-center text-xl font-semibold text-white mt-4">Mr. Natural</h2>
-              <p className="text-center text-sm text-emerald-400">
+              <p className="text-center text-sm text-blue-400">
                 Student • Developer • Coffee Enthusiast
               </p>
             </div>
@@ -57,7 +57,7 @@ export default function AboutMe() {
             <div className="flex-1">
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <i className="fas fa-user text-emerald-400"></i>
+                  <i className="fas fa-user text-blue-400"></i>
                   Introduction
                 </h3>
                 <p className="text-gray-300 leading-relaxed mb-4">
@@ -80,13 +80,13 @@ export default function AboutMe() {
             className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 mb-8"
           >
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <i className="fas fa-graduation-cap text-emerald-400"></i>
+              <i className="fas fa-graduation-cap text-blue-400"></i>
               Education
             </h3>
             <div className="space-y-4">
-              <div className="border-l-2 border-emerald-500/30 pl-4">
+              <div className="border-l-2 border-blue-500/30 pl-4">
                 <p className="text-white font-medium">[University/School Name]</p>
-                <p className="text-emerald-400 text-sm">[Degree/Program]</p>
+                <p className="text-blue-400 text-sm">[Degree/Program]</p>
                 <p className="text-gray-400 text-sm">[Year] - [Year/Present]</p>
                 <p className="text-gray-300 text-sm mt-2">
                   [Add details about your studies, achievements, or interesting courses]
@@ -103,7 +103,7 @@ export default function AboutMe() {
             className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 mb-8"
           >
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <i className="fas fa-users text-emerald-400"></i>
+              <i className="fas fa-users text-blue-400"></i>
               Friends & Community
             </h3>
             <p className="text-gray-300 mb-4">
@@ -134,38 +134,38 @@ export default function AboutMe() {
             className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 mb-8"
           >
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <i className="fas fa-heart text-emerald-400"></i>
+              <i className="fas fa-heart text-blue-400"></i>
               Interests & Hobbies
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border-l-2 border-emerald-500/30 pl-4">
+              <div className="border-l-2 border-blue-500/30 pl-4">
                 <h4 className="text-white font-medium mb-2">
-                  <i className="fas fa-code text-emerald-400 mr-2"></i>
+                  <i className="fas fa-code text-blue-400 mr-2"></i>
                   Programming
                 </h4>
                 <p className="text-gray-300 text-sm">
                   [Describe your coding interests and favorite projects]
                 </p>
               </div>
-              <div className="border-l-2 border-teal-500/30 pl-4">
+              <div className="border-l-2 border-slate-500/30 pl-4">
                 <h4 className="text-white font-medium mb-2">
-                  <i className="fas fa-coffee text-teal-400 mr-2"></i>
+                  <i className="fas fa-coffee text-slate-400 mr-2"></i>
                   Coffee
                 </h4>
                 <p className="text-gray-300 text-sm">
                   [Share your love for coffee and favorite brews]
                 </p>
               </div>
-              <div className="border-l-2 border-cyan-500/30 pl-4">
+              <div className="border-l-2 border-gray-500/30 pl-4">
                 <h4 className="text-white font-medium mb-2">
-                  <i className="fas fa-music text-cyan-400 mr-2"></i>
+                  <i className="fas fa-music text-gray-400 mr-2"></i>
                   Music
                 </h4>
                 <p className="text-gray-300 text-sm">[Talk about your musical interests]</p>
               </div>
-              <div className="border-l-2 border-emerald-500/30 pl-4">
+              <div className="border-l-2 border-blue-500/30 pl-4">
                 <h4 className="text-white font-medium mb-2">
-                  <i className="fas fa-book text-emerald-400 mr-2"></i>
+                  <i className="fas fa-book text-blue-400 mr-2"></i>
                   Reading
                 </h4>
                 <p className="text-gray-300 text-sm">[Share your favorite books or manga]</p>
@@ -178,10 +178,10 @@ export default function AboutMe() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30"
+            className="bg-gradient-to-r from-blue-500/10 to-slate-500/10 backdrop-blur-sm rounded-lg p-6 border border-blue-500/30"
           >
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-              <i className="fas fa-envelope text-emerald-400"></i>
+              <i className="fas fa-envelope text-blue-400"></i>
               Let's Connect
             </h3>
             <p className="text-gray-300 mb-4">
@@ -190,7 +190,7 @@ export default function AboutMe() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="mailto:something.mrnatural@gmail.com"
-                className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-all flex items-center gap-2"
+                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all flex items-center gap-2"
               >
                 <i className="fas fa-envelope"></i>
                 Email Me

@@ -66,13 +66,13 @@ export default function Blog({ blogs, tags }) {
                 placeholder="Search posts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
+                className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
               />
             </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
+              className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
             >
               <option value="date">Sort by Date</option>
               <option value="title">Sort by Title</option>
@@ -86,7 +86,7 @@ export default function Blog({ blogs, tags }) {
                 onClick={() => setSelectedTag("")}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   selectedTag === ""
-                    ? "bg-emerald-500 text-white"
+                    ? "bg-blue-500 text-white"
                     : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
                 }`}
               >
@@ -98,7 +98,7 @@ export default function Blog({ blogs, tags }) {
                   onClick={() => setSelectedTag(tag)}
                   className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                     selectedTag === tag
-                      ? "bg-emerald-500 text-white"
+                      ? "bg-blue-500 text-white"
                       : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
                   }`}
                 >
@@ -126,25 +126,45 @@ export default function Blog({ blogs, tags }) {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="timeline-container pl-8 mt-6"
         >
-          {filteredBlogs.map((blog, index) => (
-            <motion.div
-              key={blog.slug}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 * index, duration: 0.3 }}
-              className="relative mb-12 last:mb-0"
-            >
-              {/* Timeline dot */}
-              <div className="absolute -left-8 top-8 w-4 h-4 bg-emerald-500 rounded-full border-4 border-black z-10"></div>
+          {filteredBlogs.map((blog, index) => {
+            const blogYear = new Date(blog.date).getFullYear();
+            const prevBlogYear =
+              index > 0 ? new Date(filteredBlogs[index - 1].date).getFullYear() : null;
+            const showYear = index === 0 || blogYear !== prevBlogYear;
 
-              {/* Blog card */}
-              <Link href={`/blog/${blog.slug}`}>
-                <a href={`/blog/${blog.slug}`}>
-                  <BlogCard blog={blog} />
-                </a>
-              </Link>
-            </motion.div>
-          ))}
+            return (
+              <motion.div
+                key={blog.slug}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 * index, duration: 0.3 }}
+                className="relative mb-12 last:mb-0"
+              >
+                {/* Year marker */}
+                {showYear && (
+                  <div className="absolute -left-8 -top-2 flex items-center">
+                    <div className="bg-black px-2 py-1 rounded text-blue-400 font-bold text-sm border border-blue-500/30">
+                      {blogYear}
+                    </div>
+                  </div>
+                )}
+
+                {/* Timeline dot */}
+                <div
+                  className={`absolute -left-8 ${
+                    showYear ? "top-12" : "top-8"
+                  } w-4 h-4 bg-blue-500 rounded-full border-4 border-black z-10`}
+                ></div>
+
+                {/* Blog card */}
+                <Link href={`/blog/${blog.slug}`}>
+                  <a href={`/blog/${blog.slug}`} className={showYear ? "mt-10 block" : "block"}>
+                    <BlogCard blog={blog} />
+                  </a>
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* No Results Message */}
@@ -162,7 +182,7 @@ export default function Blog({ blogs, tags }) {
                 setSearchQuery("");
                 setSelectedTag("");
               }}
-              className="mt-4 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-all"
+              className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all"
             >
               Clear Filters
             </button>

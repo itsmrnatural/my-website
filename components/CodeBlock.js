@@ -24,7 +24,7 @@ export default function CodeBlock() {
       // Create copy button
       const button = document.createElement("button");
       button.className =
-        "copy-button absolute top-2 right-2 px-3 py-1.5 bg-emerald-500/80 hover:bg-emerald-600 text-white text-xs rounded-md transition-all opacity-0 group-hover:opacity-100 flex items-center gap-2";
+        "copy-button absolute top-2 right-2 px-3 py-1.5 bg-blue-500/80 hover:bg-blue-600 text-white text-xs rounded-md transition-all opacity-0 group-hover:opacity-100 flex items-center gap-2";
       button.innerHTML = '<i class="fas fa-copy"></i> Copy';
 
       // Wrap the pre element
@@ -38,10 +38,10 @@ export default function CodeBlock() {
         try {
           await navigator.clipboard.writeText(code);
           button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-          button.classList.add("bg-emerald-600");
+          button.classList.add("bg-blue-600");
           setTimeout(() => {
             button.innerHTML = '<i class="fas fa-copy"></i> Copy';
-            button.classList.remove("bg-emerald-600");
+            button.classList.remove("bg-blue-600");
           }, 2000);
         } catch (err) {
           console.error("Failed to copy:", err);

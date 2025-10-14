@@ -8,7 +8,7 @@ export default function Comments() {
   return (
     <div className="mt-16 pt-8 border-t border-white/10">
       <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-        <i className="fas fa-comments text-emerald-400"></i>
+        <i className="fas fa-comments text-blue-400"></i>
         Comments
       </h2>
       <Giscus

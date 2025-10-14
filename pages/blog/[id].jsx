@@ -18,9 +18,7 @@ export default function BlogPost({ blog }) {
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-white text-xl">Blog post not found</p>
           <Link href="/blog">
-            <a className="text-emerald-400 hover:text-emerald-300 mt-4 inline-block">
-              ← Back to Blog
-            </a>
+            <a className="text-blue-400 hover:text-blue-300 mt-4 inline-block">← Back to Blog</a>
           </Link>
         </div>
       </div>
@@ -86,16 +84,16 @@ export default function BlogPost({ blog }) {
 
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
                 <div className="flex items-center gap-2">
-                  <i className="fas fa-user text-emerald-400"></i>
+                  <i className="fas fa-user text-blue-400"></i>
                   <span>{blog.author}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <i className="fas fa-calendar text-emerald-400"></i>
+                  <i className="fas fa-calendar text-blue-400"></i>
                   <span>{formattedDate}</span>
                 </div>
                 {blog.readingTime && (
                   <div className="flex items-center gap-2">
-                    <i className="fas fa-clock text-emerald-400"></i>
+                    <i className="fas fa-clock text-blue-400"></i>
                     <span>{blog.readingTime} min read</span>
                   </div>
                 )}
@@ -107,7 +105,7 @@ export default function BlogPost({ blog }) {
                   {blog.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 rounded-full text-xs font-medium"
+                      className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 text-blue-300 rounded-full text-xs font-medium"
                     >
                       #{tag}
                     </span>
@@ -122,11 +120,11 @@ export default function BlogPost({ blog }) {
                 prose-headings:text-white prose-headings:font-bold
                 prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
                 prose-p:text-gray-300 prose-p:leading-relaxed
-                prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300
+                prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300
                 prose-strong:text-white prose-strong:font-semibold
-                prose-code:text-emerald-300 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                prose-code:text-blue-300 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
                 prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-pre:p-0 prose-pre:m-0
-                prose-blockquote:border-l-4 prose-blockquote:border-emerald-500 prose-blockquote:text-gray-300
+                prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:text-gray-300
                 prose-ul:text-gray-300 prose-ol:text-gray-300
                 prose-li:text-gray-300
                 prose-img:rounded-lg"
@@ -152,7 +150,7 @@ export default function BlogPost({ blog }) {
             className="mt-16 pt-8 border-t border-white/10 text-center"
           >
             <Link href="/blog">
-              <a className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors text-sm font-medium">
+              <a className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium">
                 <i className="fas fa-arrow-left"></i>
                 Back to all posts
               </a>
