@@ -25,7 +25,7 @@ There's something magical about that first sip of coffee in the morning. It's li
 
 I've noticed a direct correlation between my coffee intake and my code quality. Here's my highly scientific analysis:
 
-```
+```py
 coffee_quality = code_quality * caffeine_level
 if tired:
     make_coffee()
