@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Google Font - JetBrains Mono for code blocks */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
 /* Import highlight.js theme for syntax highlighting */
 @import "highlight.js/styles/github-dark.css";
 
@@ -100,10 +103,7 @@ html {
   font-size: 9rem;
   font-weight: bold;
   position: relative;
-  text-shadow:
-    0 0 10px #ff00ff,
-    0 0 20px #00ffff,
-    0 0 30px #ffff00;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffff00;
 }
 
 .glitch:before,
@@ -116,18 +116,14 @@ html {
 
 .glitch:before {
   top: 2px;
-  text-shadow:
-    0 2px 2px #ff00ff,
-    0 4px 4px #00ffff;
+  text-shadow: 0 2px 2px #ff00ff, 0 4px 4px #00ffff;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
   animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch:after {
   top: -2px;
-  text-shadow:
-    0 -2px 2px #ffff00,
-    0 -4px 4px #ff00ff;
+  text-shadow: 0 -2px 2px #ffff00, 0 -4px 4px #ff00ff;
   clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
   animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
@@ -200,8 +196,17 @@ html {
 }
 
 .code-block-wrapper pre code {
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.875rem;
   line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Apply JetBrains Mono to all code elements */
+code,
+pre,
+.hljs {
+  font-family: "JetBrains Mono", monospace !important;
 }
 
 /* Timeline effect for blog cards */

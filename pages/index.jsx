@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import GpgKeyButton from "@components/GpgKeyButton";
+import LastFmNowPlaying from "@components/LastFmNowPlaying";
 
 /**
  * Home page component displaying personal introduction and information
@@ -90,12 +91,15 @@ const Home = () => {
         </div>
       </motion.div>
 
+      {/* Last.fm Now Playing */}
+      <LastFmNowPlaying />
+
       {/* Quick Links */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="mt-8 flex gap-4"
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="mt-6 flex gap-4"
       >
         <Link href="/blog" passHref>
           <motion.a
