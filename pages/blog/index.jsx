@@ -119,20 +119,25 @@ export default function Blog({ blogs, tags }) {
           Showing {filteredBlogs.length} {filteredBlogs.length === 1 ? "post" : "posts"}
         </motion.div>
 
-        {/* Blog Grid */}
+        {/* Blog Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6"
+          className="timeline-container pl-8 mt-6"
         >
           {filteredBlogs.map((blog, index) => (
             <motion.div
               key={blog.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 * index, duration: 0.3 }}
+              className="relative mb-12 last:mb-0"
             >
+              {/* Timeline dot */}
+              <div className="absolute -left-8 top-8 w-4 h-4 bg-emerald-500 rounded-full border-4 border-black z-10"></div>
+
+              {/* Blog card */}
               <Link href={`/blog/${blog.slug}`}>
                 <a href={`/blog/${blog.slug}`}>
                   <BlogCard blog={blog} />

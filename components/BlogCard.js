@@ -42,10 +42,18 @@ export default function BlogCard(props) {
         <h3 className="text-white text-lg font-semibold mb-2 line-clamp-2 group-hover:text-emerald-300 transition-colors">
           {blog.title}
         </h3>
-        <p className="text-gray-400 text-xs mb-2 flex items-center gap-1">
-          <i className="fas fa-calendar text-emerald-400"></i>
-          {formattedDate}
-        </p>
+        <div className="flex items-center gap-3 text-gray-400 text-xs mb-2">
+          <span className="flex items-center gap-1">
+            <i className="fas fa-calendar text-emerald-400"></i>
+            {formattedDate}
+          </span>
+          {blog.readingTime && (
+            <span className="flex items-center gap-1">
+              <i className="fas fa-clock text-emerald-400"></i>
+              {blog.readingTime} min
+            </span>
+          )}
+        </div>
         <p className="text-gray-300 text-sm line-clamp-3 flex-1">{blog.preview}</p>
         <div className="mt-2 pt-2 border-t border-white/10">
           <span className="text-emerald-400 text-xs font-medium group-hover:text-emerald-300 transition-colors inline-flex items-center gap-1">

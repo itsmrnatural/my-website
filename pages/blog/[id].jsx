@@ -4,6 +4,8 @@ import Image from "next/image";
 import { getBlogBySlug, getAllBlogSlugs } from "@lib/blog";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
+import CodeBlock from "@components/CodeBlock";
+import Comments from "@components/Comments";
 
 /**
  * Individual blog post page component
@@ -91,6 +93,12 @@ export default function BlogPost({ blog }) {
                   <i className="fas fa-calendar text-emerald-400"></i>
                   <span>{formattedDate}</span>
                 </div>
+                {blog.readingTime && (
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-clock text-emerald-400"></i>
+                    <span>{blog.readingTime} min read</span>
+                  </div>
+                )}
               </div>
 
               {/* Tags */}
@@ -116,15 +124,25 @@ export default function BlogPost({ blog }) {
                 prose-p:text-gray-300 prose-p:leading-relaxed
                 prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300
                 prose-strong:text-white prose-strong:font-semibold
-                prose-code:text-emerald-300 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10
+                prose-code:text-emerald-300 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-pre:p-0 prose-pre:m-0
                 prose-blockquote:border-l-4 prose-blockquote:border-emerald-500 prose-blockquote:text-gray-300
                 prose-ul:text-gray-300 prose-ol:text-gray-300
                 prose-li:text-gray-300
                 prose-img:rounded-lg"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
+            <CodeBlock />
           </motion.article>
+
+          {/* Comments Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <Comments />
+          </motion.div>
 
           {/* Back to Blog Footer */}
           <motion.div
