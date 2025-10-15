@@ -58,49 +58,62 @@ export default function Blog({ blogs, tags }) {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="mt-8 space-y-4"
         >
-          {/* Search Bar */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1">
+          {/* Search Bar - Organic Shape */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex-1 relative">
               <input
                 type="text"
                 placeholder="Search posts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                className="w-full px-6 py-3 bg-white/5 border-2 border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
+                style={{
+                  borderRadius: "30px 10px 30px 10px",
+                }}
               />
+              <i className="fas fa-search absolute right-5 top-1/2 -translate-y-1/2 text-gray-500"></i>
             </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+              className="px-6 py-3 bg-white/5 border-2 border-white/10 text-white focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 cursor-pointer"
+              style={{
+                borderRadius: "10px 30px 10px 30px",
+              }}
             >
               <option value="date">Sort by Date</option>
               <option value="title">Sort by Title</option>
             </select>
           </div>
 
-          {/* Tags Filter */}
+          {/* Tags Filter - Organic Pill Shapes */}
           {tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setSelectedTag("")}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                className={`px-4 py-2 text-xs font-medium transition-all duration-300 ${
                   selectedTag === ""
-                    ? "bg-blue-500 text-white"
+                    ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30"
                     : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
                 }`}
+                style={{
+                  borderRadius: "25px 10px 25px 10px",
+                }}
               >
                 All
               </button>
-              {tags.map((tag) => (
+              {tags.map((tag, idx) => (
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                  className={`px-4 py-2 text-xs font-medium transition-all duration-300 ${
                     selectedTag === tag
-                      ? "bg-blue-500 text-white"
+                      ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30"
                       : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
                   }`}
+                  style={{
+                    borderRadius: idx % 2 === 0 ? "10px 25px 10px 25px" : "25px 10px 25px 10px",
+                  }}
                 >
                   {tag}
                 </button>
@@ -140,10 +153,15 @@ export default function Blog({ blogs, tags }) {
                 transition={{ delay: 0.1 * index, duration: 0.3 }}
                 className="relative mb-12 last:mb-0"
               >
-                {/* Year marker */}
+                {/* Year marker - Organic Badge */}
                 {showYear && (
-                  <div className="absolute -left-8 -top-2 flex items-center">
-                    <div className="bg-black px-2 py-1 rounded text-blue-400 font-bold text-sm border border-blue-500/30">
+                  <div className="absolute -left-8 -top-2 flex items-center z-10">
+                    <div
+                      className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 backdrop-blur-sm px-3 py-1.5 text-blue-400 font-bold text-sm border-2 border-blue-500/40 shadow-lg shadow-blue-500/20"
+                      style={{
+                        borderRadius: "20px 8px 20px 8px",
+                      }}
+                    >
                       {blogYear}
                     </div>
                   </div>
