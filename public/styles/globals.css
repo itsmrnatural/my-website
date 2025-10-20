@@ -9,8 +9,8 @@
 @import "highlight.js/styles/github-dark.css";
 
 html {
-  background: #252A34;
-  color: #EAEAEA;
+  background: #252a34;
+  color: #eaeaea;
   /* Add smooth scrolling behavior */
   scroll-behavior: smooth;
 }
@@ -18,18 +18,18 @@ html {
 /* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #08D9D6 #252A34;
+  scrollbar-color: #08d9d6 #252a34;
 }
 
 ::-webkit-scrollbar {
   width: 14px;
   height: 18px;
-  background: #252A34;
+  background: #252a34;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #08D9D6;
+  background-color: #08d9d6;
   border-color: transparent;
   border-style: solid;
   border-width: 2px;
@@ -38,10 +38,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #FF2E63;
+  background-color: #ff2e63;
 }
 ::-webkit-scrollbar-thumb:active {
-  background-color: #FF2E63;
+  background-color: #ff2e63;
 }
 
 * {
@@ -49,23 +49,36 @@ html {
 }
 
 /* Typography hierarchy following Don't Make Me Think principles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Philosopher", serif;
   font-weight: 700;
-  color: #EAEAEA;
+  color: #eaeaea;
 }
 
-p, span, div {
+p,
+span,
+div {
   font-family: "Lora", serif;
-  color: #EAEAEA;
+  color: #eaeaea;
 }
 
-button, a, input, select, label {
+button,
+a,
+input,
+select,
+label {
   font-family: "Karla", sans-serif;
 }
 
 /* Code blocks use JetBrains Mono */
-code, pre, .hljs {
+code,
+pre,
+.hljs {
   font-family: "JetBrains Mono", monospace !important;
 }
 
@@ -249,5 +262,5 @@ pre,
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #08D9D6, #FF2E63, #EAEAEA);
+  background: linear-gradient(to bottom, #08d9d6, #ff2e63, #eaeaea);
 }
