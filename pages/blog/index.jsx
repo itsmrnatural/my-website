@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 /**
  * Blog listing page component displaying all blog posts
+ * Following "Don't Make Me Think" design principles
  * @returns {JSX.Element} The Blog listing page
  */
 export default function Blog({ blogs, tags }) {
@@ -40,80 +41,72 @@ export default function Blog({ blogs, tags }) {
         <meta name="description" content="Thoughts on code, coffee, and everything in between." />
       </Head>
       <div className="py-20 px-5">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-3xl text-white font-semibold text-left">Blog</p>
-          <p className="text-xl text-white/50 font-normal text-left mb-5">
+          <h1 className="text-4xl font-philosopher font-bold text-primary-light">Blog</h1>
+          <p className="font-lora text-lg text-primary-light/70 mt-2">
             Thoughts on code, coffee, and everything in between.
           </p>
         </motion.div>
 
-        {/* Search and Filter Section */}
+        {/* Search and Filter Section - Clear and intuitive */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="mt-8 space-y-4"
         >
-          {/* Search Bar - Organic Shape */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
+          {/* Search and Sort Row */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1">
               <input
                 type="text"
                 placeholder="Search posts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-3 bg-white/5 border-2 border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
-                style={{
-                  borderRadius: "30px 10px 30px 10px",
-                }}
+                className="w-full px-4 py-3 bg-primary-dark/50 border border-primary-cyan/30 rounded-lg font-karla text-primary-light placeholder-primary-light/40 focus:outline-none focus:border-primary-cyan focus:ring-2 focus:ring-primary-cyan/20 transition-all"
               />
-              <i className="fas fa-search absolute right-5 top-1/2 -translate-y-1/2 text-gray-500"></i>
             </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-6 py-3 bg-white/5 border-2 border-white/10 text-white focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 cursor-pointer"
-              style={{
-                borderRadius: "10px 30px 10px 30px",
-              }}
+              className="px-4 py-3 bg-primary-dark/50 border border-primary-cyan/30 rounded-lg font-karla text-primary-light focus:outline-none focus:border-primary-cyan focus:ring-2 focus:ring-primary-cyan/20 transition-all"
             >
-              <option value="date">Sort by Date</option>
-              <option value="title">Sort by Title</option>
+              <option value="date" className="bg-primary-dark">
+                Sort by Date
+              </option>
+              <option value="title" className="bg-primary-dark">
+                Sort by Title
+              </option>
             </select>
           </div>
 
-          {/* Tags Filter - Organic Pill Shapes */}
+          {/* Tags Filter - Clear visual hierarchy */}
           {tags.length > 0 && (
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedTag("")}
-                className={`px-4 py-2 text-xs font-medium transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg font-karla text-sm font-medium transition-all ${
                   selectedTag === ""
-                    ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30"
-                    : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
+                    ? "bg-primary-cyan text-primary-dark"
+                    : "bg-primary-dark/50 text-primary-light/70 hover:text-primary-light border border-primary-light/20 hover:border-primary-cyan/50"
                 }`}
-                style={{
-                  borderRadius: "25px 10px 25px 10px",
-                }}
               >
                 All
               </button>
-              {tags.map((tag, idx) => (
+              {tags.map((tag) => (
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
-                  className={`px-4 py-2 text-xs font-medium transition-all duration-300 ${
+                  className={`px-4 py-2 rounded-lg font-karla text-sm font-medium transition-all ${
                     selectedTag === tag
-                      ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30"
-                      : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
+                      ? "bg-primary-cyan text-primary-dark"
+                      : "bg-primary-dark/50 text-primary-light/70 hover:text-primary-light border border-primary-light/20 hover:border-primary-pink/50"
                   }`}
-                  style={{
-                    borderRadius: idx % 2 === 0 ? "10px 25px 10px 25px" : "25px 10px 25px 10px",
-                  }}
                 >
                   {tag}
                 </button>
@@ -127,12 +120,12 @@ export default function Blog({ blogs, tags }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="mt-6 text-sm text-gray-400"
+          className="mt-6 font-lora text-sm text-primary-light/60"
         >
           Showing {filteredBlogs.length} {filteredBlogs.length === 1 ? "post" : "posts"}
         </motion.div>
 
-        {/* Blog Timeline */}
+        {/* Blog Timeline - Clear visual progression */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -153,15 +146,10 @@ export default function Blog({ blogs, tags }) {
                 transition={{ delay: 0.1 * index, duration: 0.3 }}
                 className="relative mb-12 last:mb-0"
               >
-                {/* Year marker - Organic Badge */}
+                {/* Year marker - Clear temporal organization */}
                 {showYear && (
-                  <div className="absolute -left-8 -top-2 flex items-center z-10">
-                    <div
-                      className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 backdrop-blur-sm px-3 py-1.5 text-blue-400 font-bold text-sm border-2 border-blue-500/40 shadow-lg shadow-blue-500/20"
-                      style={{
-                        borderRadius: "20px 8px 20px 8px",
-                      }}
-                    >
+                  <div className="absolute -left-8 -top-2 flex items-center">
+                    <div className="bg-primary-dark px-3 py-1 rounded-lg font-philosopher text-primary-cyan font-bold text-sm border border-primary-cyan/40">
                       {blogYear}
                     </div>
                   </div>
@@ -171,7 +159,7 @@ export default function Blog({ blogs, tags }) {
                 <div
                   className={`absolute -left-8 ${
                     showYear ? "top-12" : "top-8"
-                  } w-4 h-4 bg-blue-500 rounded-full border-4 border-black z-10`}
+                  } w-4 h-4 bg-primary-cyan rounded-full border-4 border-primary-dark z-10`}
                 ></div>
 
                 {/* Blog card */}
@@ -185,7 +173,7 @@ export default function Blog({ blogs, tags }) {
           })}
         </motion.div>
 
-        {/* No Results Message */}
+        {/* No Results Message - Clear feedback */}
         {filteredBlogs.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -193,14 +181,16 @@ export default function Blog({ blogs, tags }) {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-center py-20"
           >
-            <i className="fas fa-search text-4xl text-gray-600 mb-4"></i>
-            <p className="text-gray-400 text-lg">No posts found matching your criteria.</p>
+            <i className="fas fa-search text-4xl text-primary-light/30 mb-4"></i>
+            <p className="font-lora text-primary-light/70 text-lg mb-4">
+              No posts found matching your criteria.
+            </p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setSelectedTag("");
               }}
-              className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all"
+              className="px-6 py-3 bg-primary-cyan hover:bg-primary-pink text-primary-dark font-karla font-medium rounded-lg transition-all"
             >
               Clear Filters
             </button>

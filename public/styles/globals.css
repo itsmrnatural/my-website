@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Google Font - JetBrains Mono for code blocks */
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+/* Import Google Fonts - Philosopher, Lora, Karla, and JetBrains Mono */
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Lora:wght@400;500;600;700&family=Karla:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 /* Import highlight.js theme for syntax highlighting */
 @import "highlight.js/styles/github-dark.css";
 
 html {
-  background: rgb(0, 0, 0);
-  color: #fff;
+  background: #252A34;
+  color: #EAEAEA;
   /* Add smooth scrolling behavior */
   scroll-behavior: smooth;
 }
@@ -18,209 +18,55 @@ html {
 /* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #101010 #000000;
+  scrollbar-color: #08D9D6 #252A34;
 }
 
 ::-webkit-scrollbar {
   width: 14px;
   height: 18px;
-  background: #000000; /* change the background color to black */
-  border-radius: 10px; /* add border radius to make corners rounded */
+  background: #252A34;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #101010;
+  background-color: #08D9D6;
   border-color: transparent;
   border-style: solid;
   border-width: 2px;
   background-clip: padding-box;
-  border-radius: 10px; /* add border radius to make corners rounded */
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #212121;
+  background-color: #FF2E63;
 }
 ::-webkit-scrollbar-thumb:active {
-  background-color: #2e2e2e;
+  background-color: #FF2E63;
 }
 
 * {
   font-family: "Karla", sans-serif;
 }
 
-/* Organic blob shapes */
-.blob {
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  animation: morphBlob 8s ease-in-out infinite;
+/* Typography hierarchy following Don't Make Me Think principles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Philosopher", serif;
+  font-weight: 700;
+  color: #EAEAEA;
 }
 
-@keyframes morphBlob {
-  0%,
-  100% {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  }
-  25% {
-    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
-  }
-  50% {
-    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
-  }
-  75% {
-    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
-  }
+p, span, div {
+  font-family: "Lora", serif;
+  color: #EAEAEA;
 }
 
-.blob-slow {
-  animation: morphBlobSlow 12s ease-in-out infinite;
+button, a, input, select, label {
+  font-family: "Karla", sans-serif;
 }
 
-@keyframes morphBlobSlow {
-  0%,
-  100% {
-    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-  }
-  33% {
-    border-radius: 70% 30% 50% 50% / 60% 70% 30% 40%;
-  }
-  66% {
-    border-radius: 40% 60% 70% 30% / 50% 50% 50% 50%;
-  }
-}
-
-/* Curved section dividers */
-.curve-top {
-  position: relative;
-}
-
-.curve-top::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: inherit;
-  clip-path: ellipse(100% 100% at 50% 100%);
-}
-
-/* Diagonal sections */
-.diagonal-section {
-  transform: skewY(-3deg);
-}
-
-.diagonal-section > * {
-  transform: skewY(3deg);
-}
-
-/* Floating animation */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Wavy border effect */
-.wavy-border {
-  position: relative;
-  overflow: visible;
-}
-
-.wavy-border::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background: linear-gradient(90deg, transparent, currentColor, transparent);
-  clip-path: polygon(
-    0 0,
-    5% 100%,
-    10% 0,
-    15% 100%,
-    20% 0,
-    25% 100%,
-    30% 0,
-    35% 100%,
-    40% 0,
-    45% 100%,
-    50% 0,
-    55% 100%,
-    60% 0,
-    65% 100%,
-    70% 0,
-    75% 100%,
-    80% 0,
-    85% 100%,
-    90% 0,
-    95% 100%,
-    100% 0
-  );
-}
-
-/* Organic card shape */
-.organic-card {
-  border-radius: 40% 60% 50% 50% / 60% 30% 70% 40%;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Flowing gradient background */
-.flowing-gradient {
-  background: linear-gradient(
-    -45deg,
-    rgba(59, 130, 246, 0.1),
-    rgba(99, 102, 241, 0.1),
-    rgba(139, 92, 246, 0.1),
-    rgba(59, 130, 246, 0.1)
-  );
-  background-size: 400% 400%;
-  animation: gradientFlow 15s ease infinite;
-}
-
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Tear drop shape */
-.tear-drop {
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-}
-
-/* Asymmetric pentagon */
-.pentagon {
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-}
-
-/* Hexagon shape */
-.hexagon {
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
-
-/* Parallelogram shape */
-.parallelogram {
-  transform: skew(-20deg);
-}
-
-.parallelogram > * {
-  transform: skew(20deg);
+/* Code blocks use JetBrains Mono */
+code, pre, .hljs {
+  font-family: "JetBrains Mono", monospace !important;
 }
 
 /* Add CSS for the gradient heading that was previously inline */
@@ -403,5 +249,5 @@ pre,
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #3b82f6, #64748b, #475569);
+  background: linear-gradient(to bottom, #08D9D6, #FF2E63, #EAEAEA);
 }

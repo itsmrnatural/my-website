@@ -6,44 +6,60 @@ module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
+      philosopher: ["Philosopher", "serif"],
+      lora: ["Lora", "serif"],
       sans: ["Karla", "ui-sans-serif", "system-ui"],
-      heading: ["Poppins", "ui-sans-serif", "system-ui"],
+      heading: ["Philosopher", "serif"],
+      mono: ["JetBrains Mono", "monospace"],
     },
     extend: {
       colors: {
         ...colors,
+        primary: {
+          cyan: "#08D9D6",
+          dark: "#252A34",
+          pink: "#FF2E63",
+          light: "#EAEAEA",
+        },
       },
       typography: {
         DEFAULT: {
           css: {
-            color: "#FFFFFF",
+            color: "#EAEAEA",
             a: {
-              color: "#60A5FA",
+              color: "#08D9D6",
               "&:hover": {
-                color: "#3B82F6",
+                color: "#FF2E63",
               },
             },
             h1: {
-              color: "#FFFFFF",
+              color: "#EAEAEA",
+              fontFamily: "Philosopher, serif",
             },
             h2: {
-              color: "#FFFFFF",
+              color: "#EAEAEA",
+              fontFamily: "Philosopher, serif",
             },
             h3: {
-              color: "#FFFFFF",
+              color: "#EAEAEA",
+              fontFamily: "Philosopher, serif",
             },
             strong: {
-              color: "#FFFFFF",
+              color: "#EAEAEA",
             },
             code: {
-              color: "#FFFFFF",
-              backgroundColor: "rgba(255,255,255,0.1)",
+              color: "#EAEAEA",
+              backgroundColor: "rgba(8, 217, 214, 0.1)",
               borderRadius: "0.25rem",
               padding: "0.25rem",
+              fontFamily: "JetBrains Mono, monospace",
             },
             blockquote: {
-              color: "#E2E8F0",
-              borderLeftColor: "#3B82F6",
+              color: "#EAEAEA",
+              borderLeftColor: "#08D9D6",
+            },
+            p: {
+              fontFamily: "Lora, serif",
             },
           },
         },

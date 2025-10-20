@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 /**
  * Last.fm Now Playing component
  * Displays the currently playing or last played track from Last.fm
+ * Following "Don't Make Me Think" - clear, simple presentation
  * @returns {JSX.Element} The Last.fm widget
  */
 export default function LastFmNowPlaying() {
@@ -54,12 +55,12 @@ export default function LastFmNowPlaying() {
 
   if (loading) {
     return (
-      <div className="border-t border-white/10 pt-4 mt-6">
+      <div className="border-t border-primary-cyan/20 pt-4 mt-6">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-white/10 rounded-md animate-pulse"></div>
+          <div className="w-12 h-12 bg-primary-dark/50 rounded-md animate-pulse"></div>
           <div className="flex-1">
-            <div className="h-3 bg-white/10 rounded w-2/3 mb-2 animate-pulse"></div>
-            <div className="h-2 bg-white/10 rounded w-1/2 animate-pulse"></div>
+            <div className="h-3 bg-primary-dark/50 rounded w-2/3 mb-2 animate-pulse"></div>
+            <div className="h-2 bg-primary-dark/50 rounded w-1/2 animate-pulse"></div>
           </div>
         </div>
       </div>
@@ -75,25 +76,27 @@ export default function LastFmNowPlaying() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.7, duration: 0.5 }}
-      className="border-t border-white/10 pt-4 mt-6"
+      className="border-t border-primary-cyan/20 pt-4 mt-6"
     >
+      {/* Status indicator - Clear communication */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs font-medium text-gray-400">
-          {track.nowPlaying ? "Listening to Spotify" : "Last played"}
+        <span className="text-xs font-karla font-medium text-primary-light/60">
+          {track.nowPlaying ? "Listening Now" : "Last Played"}
         </span>
         {track.nowPlaying && (
-          <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+          <span className="w-2 h-2 bg-primary-pink rounded-full animate-pulse"></span>
         )}
       </div>
 
+      {/* Track info - Clear clickable area */}
       <a
         href={track.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-3 group hover:bg-white/5 -mx-2 px-2 py-2 rounded-md transition-colors"
+        className="flex items-center gap-3 group hover:bg-primary-dark/30 -mx-2 px-2 py-2 rounded-md transition-colors"
       >
         {track.image && (
-          <div className="relative w-12 h-12 flex-shrink-0 rounded-md overflow-hidden">
+          <div className="relative w-12 h-12 flex-shrink-0 rounded-md overflow-hidden border border-primary-cyan/20">
             <img
               src={track.image}
               alt={`${track.name} album art`}
@@ -103,13 +106,13 @@ export default function LastFmNowPlaying() {
         )}
 
         <div className="flex-1 min-w-0">
-          <p className="text-white font-medium text-sm truncate group-hover:text-blue-400 transition-colors">
+          <p className="font-lora text-primary-light font-medium text-sm truncate group-hover:text-primary-cyan transition-colors">
             {track.name}
           </p>
-          <p className="text-gray-400 text-xs truncate">by {track.artist}</p>
+          <p className="font-karla text-primary-light/60 text-xs truncate">by {track.artist}</p>
         </div>
 
-        <i className="fas fa-external-link-alt text-gray-500 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+        <i className="fas fa-external-link-alt text-primary-light/40 text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
       </a>
     </motion.div>
   );
