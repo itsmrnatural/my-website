@@ -354,14 +354,12 @@ const Home = () => {
         </div>
 
         <div className="mt-6 text-right">
-          <Link href="/blog">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center text-xs text-fuchsia-400 hover:text-violet-300 transition-colors px-2.5 py-1 rounded-md bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:bg-coffee-200 dark:hover:bg-white/10"
-            >
-              Read more on my blog
-              <i className="fas fa-arrow-right ml-1.5 text-[10px]"></i>
-            </motion.a>
+          <Link
+            href="/blog"
+            className="inline-flex items-center text-xs text-fuchsia-400 hover:text-violet-300 transition-colors px-2.5 py-1 rounded-md bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:bg-coffee-200 dark:hover:bg-white/10"
+          >
+            Read more on my blog
+            <i className="fas fa-arrow-right ml-1.5 text-[10px]"></i>
           </Link>
         </div>
       </motion.div>
