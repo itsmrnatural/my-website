@@ -108,7 +108,9 @@ const Home = () => {
         className="mt-11 md:mt-14 bg-coffee-100 dark:bg-transparent backdrop-blur-sm rounded-lg p-5 border border-coffee-300 dark:border-white/10"
       >
         <blockquote className="italic text-coffee-800 dark:text-gray-200 text-base relative">
-          <div className="absolute -top-5 -left-3 text-3xl text-coffee-500/70 dark:text-coffee-400/70">"</div>
+          <div className="absolute -top-5 -left-3 text-3xl text-coffee-500/70 dark:text-coffee-400/70">
+            "
+          </div>
           <div className="pl-4">
             Having spent the whole last year at home, I have come to realize that I may not be the
             introvert I thought I was. Though I might not speak much when I am with friends, I do
@@ -117,7 +119,9 @@ const Home = () => {
               — Me, while alone and bored.
             </footer>
           </div>
-          <div className="absolute bottom-0 right-2 text-3xl text-coffee-500/70 dark:text-coffee-400/70">"</div>
+          <div className="absolute bottom-0 right-2 text-3xl text-coffee-500/70 dark:text-coffee-400/70">
+            "
+          </div>
         </blockquote>
       </motion.div>
 
@@ -264,7 +268,9 @@ const Home = () => {
             You can import my GPG key fingerprint to verify my commits and encrypt messages to me.
           </p>
           <div className="mb-3">
-            <p className="text-xs text-coffee-600 dark:text-gray-400 mb-1 font-semibold">Key Fingerprint:</p>
+            <p className="text-xs text-coffee-600 dark:text-gray-400 mb-1 font-semibold">
+              Key Fingerprint:
+            </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <code className="flex-1 bg-coffee-200 dark:bg-black/30 text-coffee-900 dark:text-gray-200 px-3 py-2 rounded text-xs font-mono break-all">
                 92EA 052E 2457 66B4 D849 4D5B 3D28 0550 B702 CBB9

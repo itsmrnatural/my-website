@@ -176,10 +176,7 @@ export default function BlogPost({ post, mdxSource }) {
                   </h3>
                   <ul className="space-y-2">
                     {headings.map((heading) => (
-                      <li
-                        key={heading.id}
-                        className={heading.level === 3 ? "ml-3" : ""}
-                      >
+                      <li key={heading.id} className={heading.level === 3 ? "ml-3" : ""}>
                         <a
                           href={`#${heading.id}`}
                           className={`text-xs block py-1 transition-colors ${

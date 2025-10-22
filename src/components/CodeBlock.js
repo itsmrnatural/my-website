@@ -7,16 +7,14 @@ import { motion } from "framer-motion";
  */
 export default function CodeBlock({ children, className, ...props }) {
   const [copied, setCopied] = useState(false);
-  
+
   // Extract the code content from children
   const getCodeContent = () => {
     if (typeof children === "string") {
       return children;
     }
     if (children?.props?.children) {
-      return typeof children.props.children === "string" 
-        ? children.props.children 
-        : "";
+      return typeof children.props.children === "string" ? children.props.children : "";
     }
     return "";
   };
