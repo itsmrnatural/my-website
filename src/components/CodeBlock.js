@@ -8,26 +8,31 @@ import { motion } from "framer-motion";
 export default function CodeBlock({ children, className, ...props }) {
   const [copied, setCopied] = useState(false);
 
-  // Extract the code content from children
-  const getCodeContent = () => {
-    if (typeof children === "string") {
-      return children;
+  // Extract the code content from children - recursively handle nested elements
+  const getCodeContent = (node) => {
+    if (typeof node === "string") {
+      return node;
     }
-    if (children?.props?.children) {
-      return typeof children.props.children === "string" ? children.props.children : "";
+    if (Array.isArray(node)) {
+      return node.map((n) => getCodeContent(n)).join("");
+    }
+    if (node?.props?.children) {
+      return getCodeContent(node.props.children);
     }
     return "";
   };
 
   const copyCode = () => {
-    const code = getCodeContent();
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const code = getCodeContent(children);
+    if (code) {
+      navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
-    <div className="relative group">
+    <div className="relative group my-4">
       <pre className={className} {...props}>
         {children}
       </pre>

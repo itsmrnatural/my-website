@@ -18,6 +18,43 @@ html.dark pre code.hljs {
   backdrop-filter: blur(10px);
 }
 
+/* Compact prose styling for blog posts */
+.prose-compact p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-compact h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-compact h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-compact ul,
+.prose-compact ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-compact li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-compact pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose-compact blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 html {
   scroll-behavior: smooth;
 }

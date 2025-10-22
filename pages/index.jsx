@@ -13,12 +13,22 @@ import CustomCursor from "@components/CustomCursor";
  */
 const Home = () => {
   const [gpgCopied, setGpgCopied] = useState(false);
+  const [gpgKey, setGpgKey] = useState("");
+
+  // Fetch GPG key on mount
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/itsmrnatural/itsmrnatural/main/public-key.asc")
+      .then((res) => res.text())
+      .then((key) => setGpgKey(key))
+      .catch((err) => console.error("Failed to fetch GPG key:", err));
+  }, []);
 
   const copyGPGKey = () => {
-    const gpgFingerprint = "92EA 052E 2457 66B4 D849  4D5B 3D28 0550 B702 CBB9";
-    navigator.clipboard.writeText(gpgFingerprint);
-    setGpgCopied(true);
-    setTimeout(() => setGpgCopied(false), 2000);
+    if (gpgKey) {
+      navigator.clipboard.writeText(gpgKey);
+      setGpgCopied(true);
+      setTimeout(() => setGpgCopied(false), 2000);
+    }
   };
 
   return (
@@ -265,7 +275,7 @@ const Home = () => {
         </h2>
         <div className="bg-coffee-100 dark:bg-white/5 rounded-lg p-4 border border-coffee-300 dark:border-white/10">
           <p className="text-sm text-coffee-700 dark:text-gray-300 mb-3">
-            You can import my GPG key fingerprint to verify my commits and encrypt messages to me.
+            You can import my GPG key to verify my commits and encrypt messages to me.
           </p>
           <div className="mb-3">
             <p className="text-xs text-coffee-600 dark:text-gray-400 mb-1 font-semibold">
@@ -282,7 +292,7 @@ const Home = () => {
                 className="px-4 py-2 bg-coffee-600 hover:bg-coffee-700 dark:bg-coffee-700 dark:hover:bg-coffee-600 text-white rounded-md text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap"
               >
                 <i className={`fas ${gpgCopied ? "fa-check" : "fa-copy"}`}></i>
-                {gpgCopied ? "Copied!" : "Copy Fingerprint"}
+                {gpgCopied ? "Copied!" : "Copy Key"}
               </motion.button>
             </div>
           </div>
