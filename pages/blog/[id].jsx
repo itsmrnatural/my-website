@@ -49,27 +49,27 @@ export default function BlogPost({ post, mdxSource }) {
         level: parseInt(heading.tagName.charAt(1)),
       }));
       setHeadings(headingData);
+
+      // Intersection Observer for active heading
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "-80px 0px -80% 0px" }
+      );
+
+      headingElements.forEach((heading) => {
+        if (heading.id) {
+          observer.observe(heading);
+        }
+      });
+
+      return () => observer.disconnect();
     }
-
-    // Intersection Observer for active heading
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-80px 0px -80% 0px" }
-    );
-
-    headingElements.forEach((heading) => {
-      if (heading.id) {
-        observer.observe(heading);
-      }
-    });
-
-    return () => observer.disconnect();
   }, [post]);
 
   if (!post) {
