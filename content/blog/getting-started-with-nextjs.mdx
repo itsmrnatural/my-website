@@ -51,7 +51,7 @@ pages/
 Here's a basic Next.js page component:
 
 ```jsx
-import Head from 'next/head';
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -77,7 +77,7 @@ Next.js provides several methods for fetching data:
 ```javascript
 export async function getStaticProps() {
   const data = await fetchData();
-  
+
   return {
     props: {
       data,
@@ -91,7 +91,7 @@ export async function getStaticProps() {
 ```javascript
 export async function getServerSideProps(context) {
   const data = await fetchData(context.params.id);
-  
+
   return {
     props: {
       data,
