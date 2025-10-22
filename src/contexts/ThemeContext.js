@@ -26,7 +26,7 @@ export function ThemeProvider({ children }) {
       }
       return "light";
     };
-    
+
     setTheme(getInitialTheme());
     setMounted(true);
   }, []);

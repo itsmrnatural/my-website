@@ -180,7 +180,11 @@ const Home = () => {
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
-                { name: "C", icon: "https://skillicons.dev/icons?i=c", link: "https://en.cppreference.com/w/c/language" },
+                {
+                  name: "C",
+                  icon: "https://skillicons.dev/icons?i=c",
+                  link: "https://en.cppreference.com/w/c/language",
+                },
                 {
                   name: "Haskell",
                   icon: "https://skillicons.dev/icons?i=haskell",
@@ -207,8 +211,16 @@ const Home = () => {
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
-                { name: "Git", icon: "https://skillicons.dev/icons?i=git", link: "https://git-scm.com/" },
-                { name: "GitHub", icon: "https://skillicons.dev/icons?i=github", link: "https://github.com/" },
+                {
+                  name: "Git",
+                  icon: "https://skillicons.dev/icons?i=git",
+                  link: "https://git-scm.com/",
+                },
+                {
+                  name: "GitHub",
+                  icon: "https://skillicons.dev/icons?i=github",
+                  link: "https://github.com/",
+                },
                 {
                   name: "VS Code",
                   icon: "https://skillicons.dev/icons?i=vscode",
