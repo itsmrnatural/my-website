@@ -144,13 +144,7 @@ function MyApp({ Component, pageProps }) {
           <Header />
           <Component {...pageProps} />
         </div>
-        <div className=" p-4 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
-          <div className="bg-coffee-100 dark:bg-neutral-800/5">
-            <div className="flex flex-row mx-20">
-              <Footer />
-            </div>
-          </div>
-        </div>
+        <Footer />
       </main>
     </ThemeProvider>
   );

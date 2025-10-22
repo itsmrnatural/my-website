@@ -2,17 +2,28 @@ import Head from "next/head";
 import Image from "next/image";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import CustomCursor from "@components/CustomCursor";
 
 /**
  * Home page component displaying personal introduction and information
  * @returns {JSX.Element} The Home page
  */
 const Home = () => {
+  const [gpgCopied, setGpgCopied] = useState(false);
+
+  const copyGPGKey = () => {
+    const gpgFingerprint = "92EA 052E 2457 66B4 D849  4D5B 3D28 0550 B702 CBB9";
+    navigator.clipboard.writeText(gpgFingerprint);
+    setGpgCopied(true);
+    setTimeout(() => setGpgCopied(false), 2000);
+  };
+
   return (
     <>
+      <CustomCursor />
       <Head>
         <title>Mr. Natural • Home</title>
         <meta name="description" content="Student, programmer, and severe coffee addict." />
@@ -116,23 +127,165 @@ const Home = () => {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="mt-11 md:mt-14 pb-5 border-b border-coffee-300 dark:border-white/10"
       >
-        <h2 className="text-lg font-heading font-semibold text-coffee-900 dark:text-white mb-4 flex items-center">
+        <h2 className="text-lg font-heading font-semibold text-coffee-900 dark:text-white mb-5 flex items-center">
           <i className="fas fa-code text-fuchsia-400 mr-2.5 text-sm"></i>
-          Technologies I like to tinker with
+          Tech Arsenal
         </h2>
 
-        <div className="flex flex-wrap gap-2">
-          {["Python", "JavaScript", "React", "Tailwind CSS", "C++", "Rust", "Elixir"].map(
-            (tech) => (
-              <motion.span
-                key={tech}
-                whileHover={{ scale: 1.05 }}
-                className="px-3 py-1.5 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-fuchsia-500/30 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-md text-xs font-medium text-coffee-900 dark:text-white"
-              >
-                {tech}
-              </motion.span>
-            )
-          )}
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-3">
+              Fluent In
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {[
+                {
+                  name: "Python",
+                  icon: "https://skillicons.dev/icons?i=py",
+                  link: "https://www.python.org/",
+                },
+                {
+                  name: "JavaScript",
+                  icon: "https://skillicons.dev/icons?i=js",
+                  link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                },
+                {
+                  name: "HTML",
+                  icon: "https://skillicons.dev/icons?i=html",
+                  link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                },
+                {
+                  name: "CSS",
+                  icon: "https://skillicons.dev/icons?i=css",
+                  link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+                },
+              ].map((tech) => (
+                <Tippy key={tech.name} content={tech.name} placement="top">
+                  <a
+                    href={tech.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 px-3 py-2 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-fuchsia-500/50 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-lg"
+                  >
+                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
+                  </a>
+                </Tippy>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-3">
+              Currently Learning
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { name: "C", icon: "https://skillicons.dev/icons?i=c", link: "https://en.cppreference.com/w/c/language" },
+                {
+                  name: "Haskell",
+                  icon: "https://skillicons.dev/icons?i=haskell",
+                  link: "https://www.haskell.org/",
+                },
+              ].map((tech) => (
+                <Tippy key={tech.name} content={tech.name} placement="top">
+                  <a
+                    href={tech.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 px-3 py-2 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-violet-500/50 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-lg"
+                  >
+                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
+                  </a>
+                </Tippy>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-3">
+              Tools & Platforms
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { name: "Git", icon: "https://skillicons.dev/icons?i=git", link: "https://git-scm.com/" },
+                { name: "GitHub", icon: "https://skillicons.dev/icons?i=github", link: "https://github.com/" },
+                {
+                  name: "VS Code",
+                  icon: "https://skillicons.dev/icons?i=vscode",
+                  link: "https://code.visualstudio.com/",
+                },
+                {
+                  name: "Helix",
+                  icon: "https://go-skill-icons.vercel.app/api/icons?i=helix",
+                  link: "https://helix-editor.com/",
+                },
+              ].map((tech) => (
+                <Tippy key={tech.name} content={tech.name} placement="top">
+                  <a
+                    href={tech.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 px-3 py-2 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-fuchsia-500/50 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-lg"
+                  >
+                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
+                  </a>
+                </Tippy>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* GPG Key Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="mt-11 md:mt-14 pb-5 border-b border-coffee-300 dark:border-white/10"
+      >
+        <h2 className="text-lg font-heading font-semibold text-coffee-900 dark:text-white mb-4 flex items-center">
+          <i className="fas fa-key text-fuchsia-400 mr-2.5 text-sm"></i>
+          GPG Public Key
+        </h2>
+        <div className="bg-coffee-100 dark:bg-white/5 rounded-lg p-4 border border-coffee-300 dark:border-white/10">
+          <p className="text-sm text-coffee-700 dark:text-gray-300 mb-3">
+            You can import my GPG key to verify my commits and encrypt messages to me.
+          </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <code className="flex-1 bg-coffee-200 dark:bg-black/30 text-coffee-900 dark:text-gray-200 px-3 py-2 rounded text-xs font-mono break-all">
+              92EA 052E 2457 66B4 D849 4D5B 3D28 0550 B702 CBB9
+            </code>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={copyGPGKey}
+              className="px-4 py-2 bg-fuchsia-500 hover:bg-fuchsia-600 text-white rounded-md text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap"
+            >
+              <i className={`fas ${gpgCopied ? "fa-check" : "fa-copy"}`}></i>
+              {gpgCopied ? "Copied!" : "Copy Key"}
+            </motion.button>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            <a
+              href="https://raw.githubusercontent.com/itsmrnatural/itsmrnatural/main/public-key.asc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-fuchsia-500 hover:text-fuchsia-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-300 transition-colors"
+            >
+              <i className="fas fa-download mr-1"></i>
+              Download public-key.asc
+            </a>
+            <span className="text-coffee-500 dark:text-gray-500">•</span>
+            <a
+              href="https://keys.openpgp.org/search?q=92EA052E245766B4D8494D5B3D280550B702CBB9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-fuchsia-500 hover:text-fuchsia-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-300 transition-colors"
+            >
+              <i className="fas fa-external-link mr-1"></i>
+              View on keyserver
+            </a>
+          </div>
         </div>
       </motion.div>
 

@@ -14,8 +14,20 @@ export function ThemeProvider({ children }) {
 
   // Load theme from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
+    // Check system preference first
+    const getInitialTheme = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        return savedTheme;
+      }
+      // Use system preference if no saved theme
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    };
+    
+    setTheme(getInitialTheme());
     setMounted(true);
   }, []);
 
