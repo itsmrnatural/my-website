@@ -2,14 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import { getAllPosts, getPostBySlug } from "../../lib/mdx";
+import { getAllPosts, getPostBySlug } from "@lib/mdx";
 import remarkGfm from "remark-gfm";
 import remarkFootnotes from "remark-footnotes";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import Giscus from "@giscus/react";
-import { useTheme } from "../../contexts/ThemeContext";
+import { useTheme } from "@contexts/ThemeContext";
 
 // MDX Components
 const components = {

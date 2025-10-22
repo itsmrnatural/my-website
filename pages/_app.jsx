@@ -1,5 +1,5 @@
-import "../public/styles/globals.css";
-import "../public/styles/tooltip.css";
+import "../src/styles/globals.css";
+import "../src/styles/tooltip.css";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import "tippy.js/animations/scale-subtle.css";
@@ -9,10 +9,10 @@ import "tippy.js/animations/shift-toward.css";
 import Router, { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
-import { ThemeProvider } from "../contexts/ThemeContext";
+import { ThemeProvider } from "../src/contexts/ThemeContext";
 
-const Header = dynamic(() => import("../components/Header"));
-const Footer = dynamic(() => import("../components/Footer"));
+const Header = dynamic(() => import("../src/components/Header"));
+const Footer = dynamic(() => import("../src/components/Footer"));
 
 /**
  * Preloads page components for smoother page transitions
