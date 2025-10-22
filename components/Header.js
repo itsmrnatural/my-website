@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ThemeToggle from "./ThemeToggle";
 
 /**
  * Social media links configuration
@@ -53,18 +54,19 @@ const Header = () => {
   const isActive = (href) => router.asPath === href;
 
   return (
-    <header className="w-full border-b-2 border-neutral-800/20 pb-3 mb-6">
+    <header className="w-full border-b-2 border-coffee-300 dark:border-neutral-800/20 pb-3 mb-6">
       {/* Name in Bold :D */}
       <div className="flex flex-col md:flex-row w-full items-center md:justify-between mb-2">
         <Link
           href="/"
-          className="font-bold text-xl tracking-tight hover:text-neutral-300 transition-colors py-2"
+          className="font-bold font-heading text-xl tracking-tight text-coffee-900 dark:text-white hover:text-coffee-700 dark:hover:text-neutral-300 transition-colors py-2"
         >
           Mr. Natural
         </Link>
 
-        {/* Social Links */}
+        {/* Social Links and Theme Toggle */}
         <div className="flex items-center space-x-1 sm:space-x-2">
+          <ThemeToggle />
           {socialLinks.map(({ link, icon, label }) => (
             <a
               key={link}
@@ -72,9 +74,11 @@ const Header = () => {
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center hover:bg-neutral-800/30 rounded-xl transition-all duration-200 p-2.5"
+              className="flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-200 p-2.5"
             >
-              <i className={`${icon} text-xl text-neutral-400 hover:text-white`} />
+              <i
+                className={`${icon} text-xl text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white`}
+              />
             </a>
           ))}
         </div>
@@ -88,8 +92,8 @@ const Header = () => {
             href={href}
             className={`flex items-center justify-center px-3 py-2 text-sm rounded-lg transition-all duration-200 ${
               isActive(href)
-                ? "bg-neutral-800/50 text-white font-medium"
-                : "text-neutral-400 hover:text-white hover:bg-neutral-800/40"
+                ? "bg-coffee-300 dark:bg-neutral-800/50 text-coffee-900 dark:text-white font-medium"
+                : "text-coffee-700 dark:text-neutral-400 hover:text-coffee-900 dark:hover:text-white hover:bg-coffee-200 dark:hover:bg-neutral-800/40"
             }`}
           >
             <i className={`${isActive(href) ? active : icon} mr-2`} />
@@ -106,8 +110,8 @@ const Header = () => {
             href={href}
             className={`flex items-center justify-start px-4 py-3 text-sm rounded-lg transition-all duration-200 ${
               isActive(href)
-                ? "bg-neutral-800/50 text-white font-medium"
-                : "text-neutral-400 hover:text-white hover:bg-neutral-800/40"
+                ? "bg-coffee-300 dark:bg-neutral-800/50 text-coffee-900 dark:text-white font-medium"
+                : "text-coffee-700 dark:text-neutral-400 hover:text-coffee-900 dark:hover:text-white hover:bg-coffee-200 dark:hover:bg-neutral-800/40"
             }`}
           >
             <i className={`${isActive(href) ? active : icon} mr-3 w-5 text-center`} />

@@ -9,6 +9,7 @@ import "tippy.js/animations/shift-toward.css";
 import Router, { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 const Header = dynamic(() => import("../components/Header"));
 const Footer = dynamic(() => import("../components/Footer"));
@@ -107,7 +108,7 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <>
+    <ThemeProvider>
       <Head>
         <title>Mr. Natural • Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -124,32 +125,34 @@ function MyApp({ Component, pageProps }) {
       >
         <div
           style={{ zIndex: 99999 }}
-          className="fixed bg-black/75 w-full h-screen flex justify-center items-center pointer-events-none"
+          className="fixed bg-black/75 dark:bg-black/75 w-full h-screen flex justify-center items-center pointer-events-none"
         >
           <div className="flex items-center gap-x-6 animate-pulse">
             <div className="text-center">
-              <p className="text-6xl mb-5 font-semibold">Loading...</p>
-              <p className="uppercase text-xl font-semibold text-white">
+              <p className="text-6xl mb-5 font-semibold text-coffee-900 dark:text-white">
+                Loading...
+              </p>
+              <p className="uppercase text-xl font-semibold text-coffee-800 dark:text-white">
                 <i className="fal fa-spinner-third fa-spin" />
               </p>
             </div>
           </div>
         </div>
       </Transition>
-      <main className="border-b-[7px] border-t-[7px] h-full border-neutral-800/50 w-full">
+      <main className="border-b-[7px] border-t-[7px] h-full border-coffee-300 dark:border-neutral-800/50 w-full">
         <div className="min-h-screen max-w-screen-lg p-5 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
           <Header />
           <Component {...pageProps} />
         </div>
         <div className=" p-4 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
-          <div className="bg-neutral-800/5">
+          <div className="bg-coffee-100 dark:bg-neutral-800/5">
             <div className="flex flex-row mx-20">
               <Footer />
             </div>
           </div>
         </div>
       </main>
-    </>
+    </ThemeProvider>
   );
 }
 export default MyApp;
