@@ -151,7 +151,9 @@ const Home = () => {
           <div className="group border-l-2 border-fuchsia-500/30 pl-3.5 hover:border-fuchsia-500/70 transition-all">
             <div className="flex items-center">
               <i className="fas fa-books text-fuchsia-400 mr-2 text-xs"></i>
-              <h3 className="font-medium text-sm text-coffee-900 dark:text-white">Learning & Studying</h3>
+              <h3 className="font-medium text-sm text-coffee-900 dark:text-white">
+                Learning & Studying
+              </h3>
             </div>
             <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
               This year I'll get into the best university my country offers, and I'm excited and
@@ -162,7 +164,9 @@ const Home = () => {
           <div className="group border-l-2 border-violet-500/30 pl-3.5 hover:border-violet-500/70 transition-all">
             <div className="flex items-center">
               <i className="fas fa-coffee text-violet-400 mr-2 text-xs"></i>
-              <h3 className="font-medium text-sm text-coffee-900 dark:text-white">Coffee Explorations</h3>
+              <h3 className="font-medium text-sm text-coffee-900 dark:text-white">
+                Coffee Explorations
+              </h3>
             </div>
             <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
               I might need to try out other coffee type and variations too, but that's a rich man's
@@ -173,7 +177,9 @@ const Home = () => {
           <div className="group border-l-2 border-fuchsia-500/30 pl-3.5 hover:border-fuchsia-500/70 transition-all">
             <div className="flex items-center">
               <i className="fas fa-headphones text-fuchsia-400 mr-2 text-xs"></i>
-              <h3 className="font-medium text-sm text-coffee-900 dark:text-white">Music Interests</h3>
+              <h3 className="font-medium text-sm text-coffee-900 dark:text-white">
+                Music Interests
+              </h3>
             </div>
             <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
               You could view my music interest on my last.fm profile, that should be in the upper

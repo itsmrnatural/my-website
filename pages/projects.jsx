@@ -77,7 +77,9 @@ export default function Projects() {
         {!isValidating && repositories.length === 0 && (
           <div className="bg-coffee-100 dark:bg-neutral-800/20 rounded-lg p-8 text-center my-8">
             <p className="text-xl text-coffee-900 dark:text-white">No projects found</p>
-            <p className="text-coffee-700 dark:text-neutral-400 mt-2">Check back later for updates</p>
+            <p className="text-coffee-700 dark:text-neutral-400 mt-2">
+              Check back later for updates
+            </p>
           </div>
         )}
 

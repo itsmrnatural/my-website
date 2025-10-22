@@ -45,7 +45,10 @@ export default function Home() {
               </>
             )}
           </p>
-          <button className="text-coffee-700 dark:text-white underline mt-3" onClick={handleShowMore}>
+          <button
+            className="text-coffee-700 dark:text-white underline mt-3"
+            onClick={handleShowMore}
+          >
             {showMore ? "Show less" : "Show more"}
           </button>
         </div>
