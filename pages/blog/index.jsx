@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import BlogCard from "@components/BlogCard";
 import { getAllPosts, getAllTags } from "../../lib/mdx";
 
 /**
@@ -13,14 +14,27 @@ import { getAllPosts, getAllTags } from "../../lib/mdx";
 export default function Blog({ posts, tags }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
+  const [sortBy, setSortBy] = useState("date-desc"); // date-desc, date-asc, title
 
   // Filter posts based on search query and selected tag
-  const filteredPosts = posts.filter((post) => {
+  let filteredPosts = posts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.preview.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesTag = !selectedTag || (post.tags && post.tags.includes(selectedTag));
     return matchesSearch && matchesTag;
+  });
+
+  // Sort posts
+  filteredPosts = [...filteredPosts].sort((a, b) => {
+    if (sortBy === "date-desc") {
+      return new Date(b.date) - new Date(a.date);
+    } else if (sortBy === "date-asc") {
+      return new Date(a.date) - new Date(b.date);
+    } else if (sortBy === "title") {
+      return a.title.localeCompare(b.title);
+    }
+    return 0;
   });
 
   return (
@@ -38,14 +52,25 @@ export default function Blog({ posts, tags }) {
 
         {/* Search and Filter Section */}
         <div className="mb-8 space-y-4">
-          {/* Search Bar */}
-          <input
-            type="text"
-            placeholder="Search posts..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg bg-coffee-100 dark:bg-white/5 text-coffee-900 dark:text-white border-2 border-coffee-300 dark:border-white/10 focus:border-coffee-500 dark:focus:border-white/30 outline-none transition-colors"
-          />
+          {/* Search Bar and Sort */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              placeholder="Search posts..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="flex-1 px-4 py-3 rounded-lg bg-coffee-100 dark:bg-white/5 text-coffee-900 dark:text-white border-2 border-coffee-300 dark:border-white/10 focus:border-coffee-500 dark:focus:border-white/30 outline-none transition-colors"
+            />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-3 rounded-lg bg-coffee-100 dark:bg-white/5 text-coffee-900 dark:text-white border-2 border-coffee-300 dark:border-white/10 focus:border-coffee-500 dark:focus:border-white/30 outline-none transition-colors"
+            >
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="title">Title (A-Z)</option>
+            </select>
+          </div>
 
           {/* Tags Filter */}
           {tags.length > 0 && (
@@ -77,64 +102,20 @@ export default function Blog({ posts, tags }) {
           )}
         </div>
 
-        {/* Blog Posts Timeline */}
-        <div className="space-y-6">
-          {filteredPosts.length === 0 ? (
-            <p className="text-center text-coffee-600 dark:text-white/50 py-12">
-              No posts found matching your criteria.
-            </p>
-          ) : (
-            filteredPosts.map((post) => (
+        {/* Blog Posts Grid */}
+        {filteredPosts.length === 0 ? (
+          <p className="text-center text-coffee-600 dark:text-white/50 py-12">
+            No posts found matching your criteria.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+            {filteredPosts.map((post) => (
               <Link href={`/blog/${post.slug}`} key={post.slug}>
-                <article className="block group cursor-pointer bg-coffee-100 dark:bg-white/5 hover:bg-coffee-200 dark:hover:bg-white/10 rounded-lg overflow-hidden transition-all duration-200 border border-coffee-300 dark:border-white/10">
-                  <div className="md:flex">
-                    {/* Image */}
-                    <div className="md:w-1/3">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-48 md:h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 md:w-2/3">
-                      <div className="flex items-center gap-3 mb-3 text-sm text-coffee-600 dark:text-white/60">
-                        <time>{new Date(post.date).toLocaleDateString()}</time>
-                        <span>•</span>
-                        <span>{post.readingTime}</span>
-                        <span>•</span>
-                        <span>{post.author}</span>
-                      </div>
-
-                      <h2 className="text-2xl font-heading font-bold text-coffee-900 dark:text-white mb-3 group-hover:text-coffee-700 dark:group-hover:text-white/80 transition-colors">
-                        {post.title}
-                      </h2>
-
-                      <p className="text-coffee-700 dark:text-white/70 mb-4 line-clamp-2">
-                        {post.preview}
-                      </p>
-
-                      {/* Tags */}
-                      {post.tags && post.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          {post.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 text-xs font-medium bg-coffee-200 dark:bg-white/10 text-coffee-800 dark:text-white/80 rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </article>
+                <BlogCard blog={post} />
               </Link>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

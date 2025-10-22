@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Karla", "ui-sans-serif", "system-ui"],
-      heading: ["Philosopher", "ui-serif", "serif"],
+      heading: ["Playfair Display", "ui-serif", "serif"],
       subheading: ["Lora", "ui-serif", "serif"],
       mono: ["JetBrains Mono", "ui-monospace", "monospace"],
     },
@@ -68,6 +68,7 @@ module.exports = {
               borderRadius: "0.25rem",
               padding: "0.25rem 0.5rem",
               fontFamily: theme("fontFamily.mono").join(", "),
+              fontWeight: "400",
             },
             "code::before": {
               content: '""',
@@ -115,12 +116,14 @@ module.exports = {
             code: {
               color: theme("colors.coffee.50"),
               backgroundColor: theme("colors.coffee.800"),
+              fontWeight: "400",
             },
             pre: {
               backgroundColor: theme("colors.coffee.900"),
               code: {
                 backgroundColor: "transparent",
                 color: theme("colors.coffee.50"),
+                fontWeight: "400",
               },
             },
             blockquote: {

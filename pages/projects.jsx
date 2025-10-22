@@ -52,15 +52,17 @@ export default function Projects() {
       </Head>
 
       <div className="py-8 md:py-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">My Projects</h1>
-        <p className="text-xl text-neutral-400 mb-8">
+        <h1 className="text-3xl md:text-4xl font-heading font-bold text-coffee-900 dark:text-white mb-2">
+          My Projects
+        </h1>
+        <p className="text-xl font-subheading text-coffee-700 dark:text-neutral-400 mb-8">
           Explore my open source repositories and personal projects
         </p>
 
         {/* Loading state */}
         {isValidating && repositories.length === 0 && (
           <div className="flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-coffee-600 dark:border-white"></div>
           </div>
         )}
 
@@ -73,9 +75,9 @@ export default function Projects() {
 
         {/* Empty state */}
         {!isValidating && repositories.length === 0 && (
-          <div className="bg-neutral-800/20 rounded-lg p-8 text-center my-8">
-            <p className="text-xl">No projects found</p>
-            <p className="text-neutral-400 mt-2">Check back later for updates</p>
+          <div className="bg-coffee-100 dark:bg-neutral-800/20 rounded-lg p-8 text-center my-8">
+            <p className="text-xl text-coffee-900 dark:text-white">No projects found</p>
+            <p className="text-coffee-700 dark:text-neutral-400 mt-2">Check back later for updates</p>
           </div>
         )}
 
