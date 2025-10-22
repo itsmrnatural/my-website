@@ -9,16 +9,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-neutral-800/10 py-6 px-3">
+    <footer className="w-full bg-coffee-100 dark:bg-neutral-800/10 py-6 px-3">
       <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Left side - Copyright */}
-          <div className="text-neutral-400 text-sm text-center md:text-left">
+          <div className="text-coffee-600 dark:text-neutral-400 text-sm text-center md:text-left">
             {/* Desktop version (side by side) */}
             <div className="hidden md:flex md:items-center">
               <span className="font-medium">Mr. Natural</span>
               <span>&nbsp;&copy; {currentYear}</span>
-              <span className="mx-2 text-neutral-600">|</span>
+              <span className="mx-2 text-coffee-400 dark:text-neutral-600">|</span>
               <span>Design rights reserved</span>
             </div>
 
@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="flex flex-wrap justify-center md:justify-end gap-y-0 gap-x-3 md:gap-6">
             <Link
               href="https://github.com/itsmrnatural/my-website"
-              className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2"
+              className="text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-colors flex items-center gap-2"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -42,7 +42,7 @@ const Footer = () => {
             </Link>
             <Link
               href="https://linkedin.com/in/imdhananjay"
-              className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2"
+              className="text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-colors flex items-center gap-2"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -52,10 +52,11 @@ export default function BlogPost({ post, mdxSource }) {
         <div className="max-w-3xl mx-auto">
           {/* Back Button */}
           <div className="mb-6">
-            <Link href="/blog">
-              <button className="bg-coffee-200 dark:bg-white/10 hover:bg-coffee-300 dark:hover:bg-white/20 text-coffee-900 dark:text-white text-sm px-4 py-2 rounded-lg transition-colors">
-                ← Back to Blog
-              </button>
+            <Link
+              href="/blog"
+              className="inline-block bg-coffee-200 dark:bg-white/10 hover:bg-coffee-300 dark:hover:bg-white/20 text-coffee-900 dark:text-white text-sm px-4 py-2 rounded-lg transition-colors"
+            >
+              ← Back to Blog
             </Link>
           </div>
 

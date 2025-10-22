@@ -86,53 +86,51 @@ export default function Blog({ posts, tags }) {
           ) : (
             filteredPosts.map((post) => (
               <Link href={`/blog/${post.slug}`} key={post.slug}>
-                <a className="block group">
-                  <article className="bg-coffee-100 dark:bg-white/5 hover:bg-coffee-200 dark:hover:bg-white/10 rounded-lg overflow-hidden transition-all duration-200 border border-coffee-300 dark:border-white/10">
-                    <div className="md:flex">
-                      {/* Image */}
-                      <div className="md:w-1/3">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-48 md:h-full object-cover"
-                        />
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-6 md:w-2/3">
-                        <div className="flex items-center gap-3 mb-3 text-sm text-coffee-600 dark:text-white/60">
-                          <time>{new Date(post.date).toLocaleDateString()}</time>
-                          <span>•</span>
-                          <span>{post.readingTime}</span>
-                          <span>•</span>
-                          <span>{post.author}</span>
-                        </div>
-
-                        <h2 className="text-2xl font-heading font-bold text-coffee-900 dark:text-white mb-3 group-hover:text-coffee-700 dark:group-hover:text-white/80 transition-colors">
-                          {post.title}
-                        </h2>
-
-                        <p className="text-coffee-700 dark:text-white/70 mb-4 line-clamp-2">
-                          {post.preview}
-                        </p>
-
-                        {/* Tags */}
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2">
-                            {post.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-3 py-1 text-xs font-medium bg-coffee-200 dark:bg-white/10 text-coffee-800 dark:text-white/80 rounded-full"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                <article className="block group cursor-pointer bg-coffee-100 dark:bg-white/5 hover:bg-coffee-200 dark:hover:bg-white/10 rounded-lg overflow-hidden transition-all duration-200 border border-coffee-300 dark:border-white/10">
+                  <div className="md:flex">
+                    {/* Image */}
+                    <div className="md:w-1/3">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-48 md:h-full object-cover"
+                      />
                     </div>
-                  </article>
-                </a>
+
+                    {/* Content */}
+                    <div className="p-6 md:w-2/3">
+                      <div className="flex items-center gap-3 mb-3 text-sm text-coffee-600 dark:text-white/60">
+                        <time>{new Date(post.date).toLocaleDateString()}</time>
+                        <span>•</span>
+                        <span>{post.readingTime}</span>
+                        <span>•</span>
+                        <span>{post.author}</span>
+                      </div>
+
+                      <h2 className="text-2xl font-heading font-bold text-coffee-900 dark:text-white mb-3 group-hover:text-coffee-700 dark:group-hover:text-white/80 transition-colors">
+                        {post.title}
+                      </h2>
+
+                      <p className="text-coffee-700 dark:text-white/70 mb-4 line-clamp-2">
+                        {post.preview}
+                      </p>
+
+                      {/* Tags */}
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 text-xs font-medium bg-coffee-200 dark:bg-white/10 text-coffee-800 dark:text-white/80 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </article>
               </Link>
             ))
           )}
