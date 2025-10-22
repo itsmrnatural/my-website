@@ -21,10 +21,12 @@ export default function Home() {
         <title>Mr. Natural • About Me</title>
       </Head>
       <div className="py-20 px-5">
-        <p className="text-3xl text-white font-semibold">About Me</p>
-        <p className="text-xl text-white/50 font-normal mb-5">Here's a little bit about me.</p>
+        <p className="text-3xl font-heading font-bold text-coffee-900 dark:text-white">About Me</p>
+        <p className="text-xl font-subheading text-coffee-700 dark:text-white/50 font-normal mb-5">
+          Here's a little bit about me.
+        </p>
         <div className="max-w-lg w-full mt-5">
-          <p className="text-white">
+          <p className="text-coffee-800 dark:text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum quis nisi ac
             ullamcorper. Vestibulum commodo nisi vel nisl rhoncus, ut iaculis ex semper. Vivamus
             laoreet suscipit fermentum. Nullam sit amet turpis at tortor vulputate aliquam. Etiam
@@ -43,7 +45,10 @@ export default function Home() {
               </>
             )}
           </p>
-          <button className="text-white underline mt-3" onClick={handleShowMore}>
+          <button
+            className="text-coffee-700 dark:text-white underline mt-3"
+            onClick={handleShowMore}
+          >
             {showMore ? "Show less" : "Show more"}
           </button>
         </div>

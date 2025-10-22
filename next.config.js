@@ -1,4 +1,17 @@
-module.exports = {
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [require("remark-gfm"), require("remark-footnotes")],
+    rehypePlugins: [
+      require("rehype-slug"),
+      require("rehype-autolink-headings"),
+      require("rehype-highlight"),
+    ],
+  },
+});
+
+module.exports = withMDX({
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   images: {
     domains: ["i.imgur.com", "localhost", "cdn.discordapp.com", "avatars.githubusercontent.com"],
   },
@@ -23,7 +36,6 @@ module.exports = {
 
     return config;
   },
-  swcMinify: true,
   reactStrictMode: true,
   poweredByHeader: false,
-};
+});

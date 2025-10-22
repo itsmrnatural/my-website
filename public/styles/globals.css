@@ -2,39 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import highlight.js Monokai theme */
+@import "highlight.js/styles/monokai.css";
+
 html {
-  background: rgb(0, 0, 0);
-  color: #fff;
-  /* Add smooth scrolling behavior */
   scroll-behavior: smooth;
 }
 
-/* Firefox scrollbar styling */
-* {
+/* Light theme (coffee palette) - default */
+html:not(.dark) {
+  background: #faf8f5;
+  color: #352a1a;
+}
+
+/* Dark theme - opt-in */
+html.dark {
+  background: rgb(0, 0, 0);
+  color: #fff;
+}
+
+/* Firefox scrollbar styling - Light theme */
+html:not(.dark) * {
+  scrollbar-width: thin;
+  scrollbar-color: #d4c4a8 #f5f0e8;
+}
+
+/* Firefox scrollbar styling - Dark theme */
+html.dark * {
   scrollbar-width: thin;
   scrollbar-color: #101010 #000000;
 }
 
-::-webkit-scrollbar {
+/* Webkit scrollbar - Light theme */
+html:not(.dark) ::-webkit-scrollbar {
   width: 14px;
   height: 18px;
-  background: #000000; /* change the background color to black */
-  border-radius: 10px; /* add border radius to make corners rounded */
+  background: #f5f0e8;
+  border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb {
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background-color: #d4c4a8;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 2px;
+  background-clip: padding-box;
+  border-radius: 10px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background-color: #b8a080;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:active {
+  background-color: #8b6f47;
+}
+
+/* Webkit scrollbar - Dark theme */
+html.dark ::-webkit-scrollbar {
+  width: 14px;
+  height: 18px;
+  background: #000000;
+  border-radius: 10px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
   background-color: #101010;
   border-color: transparent;
   border-style: solid;
   border-width: 2px;
   background-clip: padding-box;
-  border-radius: 10px; /* add border radius to make corners rounded */
+  border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+html.dark ::-webkit-scrollbar-thumb:hover {
   background-color: #212121;
 }
-::-webkit-scrollbar-thumb:active {
+
+html.dark ::-webkit-scrollbar-thumb:active {
   background-color: #2e2e2e;
 }
 
