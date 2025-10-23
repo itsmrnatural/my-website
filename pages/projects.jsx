@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import swr from "../public/js/swr";
 import Repositories from "@components/Repositories";
 import Pagination from "@components/Pagination";
@@ -11,6 +12,27 @@ import Pagination from "@components/Pagination";
 export default function Projects() {
   const PAGE_SIZE = 6;
   const [currentPage, setCurrentPage] = useState(1);
+  const [headerTransform, setHeaderTransform] = useState({ y: 0, opacity: 1 });
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY;
+      const threshold = window.innerHeight * 0.25;
+      
+      if (scrollPos > threshold) {
+        const translateY = -(scrollPos - threshold) * 0.3;
+        const opacity = Math.max(0.2, 1 - (scrollPos - threshold) / 500);
+        setHeaderTransform({ y: translateY, opacity });
+      } else {
+        setHeaderTransform({ y: 0, opacity: 1 });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Fetch repositories data
   const { data: _repositories, error, isValidating } = swr("/api/repos");
@@ -51,13 +73,20 @@ export default function Projects() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <div className="py-8 md:py-12">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">
-          My Projects
-        </h1>
-        <p className="text-lg text-coffee-600 dark:text-gray-400 mb-8">
-          Explore my open source repositories and personal projects
-        </p>
+      <div ref={containerRef} className="py-8 md:py-12">
+        <motion.div
+          style={{ 
+            transform: `translateY(${headerTransform.y}px)`,
+            opacity: headerTransform.opacity
+          }}
+        >
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">
+            My Projects
+          </h1>
+          <p className="text-lg text-coffee-600 dark:text-gray-400 mb-8">
+            Explore my open source repositories and personal projects
+          </p>
+        </motion.div>
 
         {/* Loading state */}
         {isValidating && repositories.length === 0 && (

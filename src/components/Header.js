@@ -84,7 +84,7 @@ const Header = () => {
             href="/"
             className="font-bold font-heading text-xl tracking-tight text-coffee-900 dark:text-white hover:text-coffee-700 dark:hover:text-neutral-300 transition-colors"
           >
-            Mr. Natural
+          Natural 
           </Link>
 
           <ThemeToggle />

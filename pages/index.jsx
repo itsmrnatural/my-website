@@ -35,12 +35,12 @@ const Home = () => {
     <>
       <CustomCursor />
       <Head>
-        <title>Mr. Natural • Home</title>
+        <title>Dhananjay • Home</title>
         <meta name="description" content="Student, programmer, and severe coffee addict." />
-        <meta property="og:title" content="Mr. Natural • Personal Website" />
+        <meta property="og:title" content="Dhananjay • Personal Website" />
         <meta
           property="og:description"
-          content="Personal portfolio and blog of Mr. Natural - Student, programmer, and severe coffee addict."
+          content="Personal portfolio and blog of Dhananjay - Student, programmer, and severe coffee addict."
         />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://i.imgur.com/isKXF9Q.gif" />
@@ -70,7 +70,7 @@ const Home = () => {
               transition={{ delay: 0.3 }}
               className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading text-coffee-900 dark:text-white"
             >
-              Hey, I'm Mr. Natural 👋
+              Hey, I'm Dhananjay 👋
             </motion.h1>
 
             <motion.p
@@ -97,7 +97,7 @@ const Home = () => {
               <Tippy content="@itsmrnatural" placement="bottom" arrow={true}>
                 <div className="relative w-full h-full">
                   <Image
-                    alt="Mr. Natural's profile"
+                    alt="Dhananjay's profile"
                     src="https://i.imgur.com/isKXF9Q.gif"
                     fill
                     sizes="150px"
@@ -143,13 +143,13 @@ const Home = () => {
       >
         <h2 className="text-lg font-subheading font-semibold text-coffee-900 dark:text-white mb-5 flex items-center">
           <i className="fas fa-code text-coffee-600 dark:text-coffee-400 mr-2.5 text-sm"></i>
-          Tech Arsenal
+          Biscuits I enjoy with my Coffee
         </h2>
 
         <div className="space-y-6">
           <div>
             <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
-              Fluent In
+              Love these
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
@@ -157,25 +157,25 @@ const Home = () => {
                   name: "Python",
                   icon: "https://cdn.simpleicons.org/python/white",
                   link: "https://www.python.org/",
-                  color: "from-coffee-600/90 to-coffee-700/90"
+                  color: "from-coffee-600/90 to-coffee-700/90",
                 },
                 {
                   name: "JavaScript",
                   icon: "https://cdn.simpleicons.org/javascript/black",
                   link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-                  color: "from-amber-500/90 to-amber-600/90"
+                  color: "from-amber-500/90 to-amber-600/90",
                 },
                 {
                   name: "HTML5",
                   icon: "https://cdn.simpleicons.org/html5/white",
                   link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-                  color: "from-orange-600/90 to-orange-700/90"
+                  color: "from-orange-600/90 to-orange-700/90",
                 },
                 {
                   name: "CSS3",
                   icon: "https://cdn.simpleicons.org/css/white",
                   link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-                  color: "from-amber-700/90 to-amber-800/90"
+                  color: "from-amber-700/90 to-amber-800/90",
                 },
               ].map((tech, index) => (
                 <motion.div
@@ -183,10 +183,10 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.05, duration: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Tippy content={tech.name} placement="top" animation="scale-subtle">
@@ -196,10 +196,14 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
                       style={{
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
                       }}
                     >
-                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
+                      />
                     </a>
                   </Tippy>
                 </motion.div>
@@ -209,7 +213,7 @@ const Home = () => {
 
           <div>
             <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
-              Currently Learning
+              Currently trying
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
@@ -217,13 +221,13 @@ const Home = () => {
                   name: "C",
                   icon: "https://cdn.simpleicons.org/c/white",
                   link: "https://en.cppreference.com/w/c/language",
-                  color: "from-stone-600/90 to-stone-700/90"
+                  color: "from-stone-600/90 to-stone-700/90",
                 },
                 {
                   name: "Haskell",
                   icon: "https://cdn.simpleicons.org/haskell/white",
                   link: "https://www.haskell.org/",
-                  color: "from-amber-600/90 to-amber-700/90"
+                  color: "from-amber-600/90 to-amber-700/90",
                 },
               ].map((tech, index) => (
                 <motion.div
@@ -231,10 +235,10 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.0 + index * 0.05, duration: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Tippy content={tech.name} placement="top" animation="scale-subtle">
@@ -244,10 +248,14 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
                       style={{
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
                       }}
                     >
-                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
+                      />
                       <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
                     </a>
                   </Tippy>
@@ -258,7 +266,7 @@ const Home = () => {
 
           <div>
             <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
-              Tools & Platforms
+              Special
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
@@ -266,25 +274,25 @@ const Home = () => {
                   name: "Git",
                   icon: "https://cdn.simpleicons.org/git/white",
                   link: "https://git-scm.com/",
-                  color: "from-orange-600/90 to-orange-700/90"
+                  color: "from-orange-600/90 to-orange-700/90",
                 },
                 {
                   name: "GitHub",
                   icon: "https://cdn.simpleicons.org/github/white",
                   link: "https://github.com/",
-                  color: "from-stone-700/90 to-stone-800/90"
+                  color: "from-stone-700/90 to-stone-800/90",
                 },
                 {
                   name: "VS Code",
-                  icon: "https://cdn.simpleicons.org/visualstudio/white",
+                  icon: "https://cdn.simpleicons.org/visualstudiocode/white",
                   link: "https://code.visualstudio.com/",
-                  color: "from-coffee-500/90 to-coffee-600/90"
+                  color: "from-coffee-500/90 to-coffee-600/90",
                 },
                 {
                   name: "Helix",
                   icon: "https://cdn.simpleicons.org/helix/white",
                   link: "https://helix-editor.com/",
-                  color: "from-amber-800/90 to-amber-900/90"
+                  color: "from-amber-800/90 to-amber-900/90",
                 },
               ].map((tech, index) => (
                 <motion.div
@@ -292,10 +300,10 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 + index * 0.05, duration: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Tippy content={tech.name} placement="top" animation="scale-subtle">
@@ -305,10 +313,14 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
                       style={{
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
                       }}
                     >
-                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
+                      />
                     </a>
                   </Tippy>
                 </motion.div>
@@ -398,19 +410,6 @@ const Home = () => {
             <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
               This year I'll get into the best university my country offers, and I'm excited and
               nervous at the same time. I'm studying hard to get into the university.
-            </p>
-          </div>
-
-          <div className="group border-l-2 border-coffee-500/30 pl-3.5 hover:border-coffee-600/70 transition-all">
-            <div className="flex items-center">
-              <i className="fas fa-coffee text-coffee-600 dark:text-coffee-400 mr-2 text-xs"></i>
-              <h3 className="font-subheading font-medium text-sm text-coffee-900 dark:text-white">
-                Coffee Explorations
-              </h3>
-            </div>
-            <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
-              I might need to try out other coffee type and variations too, but that's a rich man's
-              luxury.
             </p>
           </div>
 

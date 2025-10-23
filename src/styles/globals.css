@@ -275,29 +275,98 @@ html.dark ::-webkit-scrollbar-thumb:active {
 .custom-cursor {
   pointer-events: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: white;
   mix-blend-mode: difference;
   z-index: 9999;
-  transition: transform 0.15s ease-out;
   transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out;
 }
 
-.custom-cursor-dot {
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-  mix-blend-mode: difference;
-  z-index: 10000;
-  transition: transform 0.05s ease-out;
-  transform: translate(-50%, -50%);
+/* Show default cursor */
+body {
+  cursor: auto;
+}
+
+a, button, input, textarea, select {
+  cursor: none !important;
+}
+
+/* Coffee blob cursor */
+.coffee-blob {
+  transition: opacity 0.3s ease;
+}
+
+.coffee-blob.hidden {
+  opacity: 0 !important;
+  transform: translate(-50%, -50%) scale(0.3);
+}
+
+.coffee-blob.splashing {
+  animation: splash-pulse 0.4s ease-out;
+}
+
+/* Liquid morphing animation */
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 55% 45% 35% 65% / 40% 70% 60% 50%;
+  }
+  75% {
+    border-radius: 45% 55% 65% 35% / 65% 35% 50% 60%;
+  }
+}
+
+/* Subtle floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Splash pulse effect */
+@keyframes splash-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Coffee splash animation */
+@keyframes splash-fade {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(calc(-50% + var(--end-x) * 0.6), calc(-50% + var(--end-y) * 0.6)) scale(1.1) rotate(180deg);
+  }
+  100% {
+    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0.2) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Hide on touch devices */
+@media (pointer: coarse) {
+  .coffee-blob,
+  .coffee-splash {
+    display: none !important;
+  }
 }

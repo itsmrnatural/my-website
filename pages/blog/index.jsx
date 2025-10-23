@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import BlogCard from "@components/BlogCard";
 import { getAllPosts, getAllTags } from "@lib/mdx";
 
@@ -15,6 +16,27 @@ export default function Blog({ posts, tags }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
   const [sortBy, setSortBy] = useState("date-desc"); // date-desc, date-asc, title
+  const [headerTransform, setHeaderTransform] = useState({ y: 0, opacity: 1 });
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY;
+      const threshold = window.innerHeight * 0.25;
+      
+      if (scrollPos > threshold) {
+        const translateY = -(scrollPos - threshold) * 0.3;
+        const opacity = Math.max(0.2, 1 - (scrollPos - threshold) / 500);
+        setHeaderTransform({ y: translateY, opacity });
+      } else {
+        setHeaderTransform({ y: 0, opacity: 1 });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Filter posts based on search query and selected tag
   let filteredPosts = posts.filter((post) => {
@@ -42,13 +64,20 @@ export default function Blog({ posts, tags }) {
       <Head>
         <title>Mr. Natural • Blog</title>
       </Head>
-      <div className="py-20 px-5">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white text-left mb-4">
-          Blog
-        </h1>
-        <p className="text-lg text-coffee-600 dark:text-gray-400 font-normal text-left mb-8">
-          Here are some of the blog posts I have written.
-        </p>
+      <div ref={containerRef} className="py-20 px-5">
+        <motion.div
+          style={{ 
+            transform: `translateY(${headerTransform.y}px)`,
+            opacity: headerTransform.opacity
+          }}
+        >
+          <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white text-left mb-4">
+            Blog
+          </h1>
+          <p className="text-lg text-coffee-600 dark:text-gray-400 font-normal text-left mb-8">
+            Here are some of the blog posts I have written.
+          </p>
+        </motion.div>
 
         {/* Search and Filter Section */}
         <div className="mb-8 space-y-4">

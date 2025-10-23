@@ -15,10 +15,9 @@ const Footer = () => {
           {/* Left side - Copyright */}
           <div className="text-coffee-700 dark:text-gray-300 text-sm text-center md:text-left">
             <div className="flex items-center flex-wrap justify-center md:justify-start gap-2">
-              <span className="font-semibold font-heading">Mr. Natural</span>
-              <span className="text-coffee-500 dark:text-gray-500">•</span>
+              <span className="font-semibold font-heading">Dhananjay</span>
+              <span className="text-coffee-500 dark:text-gray-500">|</span>
               <span>&copy; {currentYear}</span>
-              <span className="text-coffee-500 dark:text-gray-500">•</span>
               <span className="text-coffee-600 dark:text-gray-400">All rights reserved</span>
             </div>
           </div>
@@ -54,7 +53,7 @@ const Footer = () => {
 
         {/* Made with love message */}
         <div className="mt-6 text-center text-xs text-coffee-500 dark:text-gray-500">
-          Made with <span className="text-red-500 animate-pulse">❤️</span> and ☕
+          Made with <span className="animate-pulse text-coffee-600/90 to-coffee-800/90">❤️</span> and ☕
         </div>
       </div>
     </footer>
