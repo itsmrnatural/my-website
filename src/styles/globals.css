@@ -285,6 +285,13 @@ html.dark ::-webkit-scrollbar-thumb:active {
   transition: transform 0.15s ease-out;
 }
 
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
 /* Show default cursor */
 body {
   cursor: auto;
