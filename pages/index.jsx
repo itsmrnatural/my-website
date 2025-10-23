@@ -146,116 +146,172 @@ const Home = () => {
           Tech Arsenal
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
-            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-3">
+            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
               Fluent In
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
                 {
                   name: "Python",
-                  icon: "https://skillicons.dev/icons?i=py",
+                  icon: "https://cdn.simpleicons.org/python/white",
                   link: "https://www.python.org/",
+                  color: "from-coffee-600/90 to-coffee-700/90"
                 },
                 {
                   name: "JavaScript",
-                  icon: "https://skillicons.dev/icons?i=js",
+                  icon: "https://cdn.simpleicons.org/javascript/black",
                   link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                  color: "from-amber-500/90 to-amber-600/90"
                 },
                 {
-                  name: "HTML",
-                  icon: "https://skillicons.dev/icons?i=html",
+                  name: "HTML5",
+                  icon: "https://cdn.simpleicons.org/html5/white",
                   link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                  color: "from-orange-600/90 to-orange-700/90"
                 },
                 {
-                  name: "CSS",
-                  icon: "https://skillicons.dev/icons?i=css",
+                  name: "CSS3",
+                  icon: "https://cdn.simpleicons.org/css/white",
                   link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+                  color: "from-amber-700/90 to-amber-800/90"
                 },
-              ].map((tech) => (
-                <Tippy key={tech.name} content={tech.name} placement="top">
-                  <a
-                    href={tech.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-2 px-3 py-2 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-coffee-500/50 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-lg"
-                  >
-                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
-                  </a>
-                </Tippy>
+              ].map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.05, duration: 0.3 }}
+                  whileHover={{ 
+                    y: -4,
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <Tippy content={tech.name} placement="top" animation="scale-subtle">
+                    <a
+                      href={tech.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
+                      style={{
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                      }}
+                    >
+                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                    </a>
+                  </Tippy>
+                </motion.div>
               ))}
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-3">
+            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
               Currently Learning
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
                 {
                   name: "C",
-                  icon: "https://skillicons.dev/icons?i=c",
+                  icon: "https://cdn.simpleicons.org/c/white",
                   link: "https://en.cppreference.com/w/c/language",
+                  color: "from-stone-600/90 to-stone-700/90"
                 },
                 {
                   name: "Haskell",
-                  icon: "https://skillicons.dev/icons?i=haskell",
+                  icon: "https://cdn.simpleicons.org/haskell/white",
                   link: "https://www.haskell.org/",
+                  color: "from-amber-600/90 to-amber-700/90"
                 },
-              ].map((tech) => (
-                <Tippy key={tech.name} content={tech.name} placement="top">
-                  <a
-                    href={tech.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-2 px-3 py-2 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-coffee-500/50 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-lg"
-                  >
-                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
-                  </a>
-                </Tippy>
+              ].map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0 + index * 0.05, duration: 0.3 }}
+                  whileHover={{ 
+                    y: -4,
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <Tippy content={tech.name} placement="top" animation="scale-subtle">
+                    <a
+                      href={tech.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
+                      style={{
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                      }}
+                    >
+                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
+                    </a>
+                  </Tippy>
+                </motion.div>
               ))}
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-3">
+            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
               Tools & Platforms
             </h3>
             <div className="flex flex-wrap gap-3">
               {[
                 {
                   name: "Git",
-                  icon: "https://skillicons.dev/icons?i=git",
+                  icon: "https://cdn.simpleicons.org/git/white",
                   link: "https://git-scm.com/",
+                  color: "from-orange-600/90 to-orange-700/90"
                 },
                 {
                   name: "GitHub",
-                  icon: "https://skillicons.dev/icons?i=github",
+                  icon: "https://cdn.simpleicons.org/github/white",
                   link: "https://github.com/",
+                  color: "from-stone-700/90 to-stone-800/90"
                 },
                 {
                   name: "VS Code",
-                  icon: "https://skillicons.dev/icons?i=vscode",
+                  icon: "https://cdn.simpleicons.org/visualstudio/white",
                   link: "https://code.visualstudio.com/",
+                  color: "from-coffee-500/90 to-coffee-600/90"
                 },
                 {
                   name: "Helix",
-                  icon: "https://go-skill-icons.vercel.app/api/icons?i=helix",
+                  icon: "https://cdn.simpleicons.org/helix/white",
                   link: "https://helix-editor.com/",
+                  color: "from-amber-800/90 to-amber-900/90"
                 },
-              ].map((tech) => (
-                <Tippy key={tech.name} content={tech.name} placement="top">
-                  <a
-                    href={tech.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-2 px-3 py-2 bg-coffee-100 dark:bg-white/5 border border-coffee-300 dark:border-white/10 hover:border-coffee-500/50 hover:bg-coffee-200 dark:hover:bg-white/10 transition-all duration-300 rounded-lg"
-                  >
-                    <img src={tech.icon} alt={tech.name} className="w-6 h-6" />
-                  </a>
-                </Tippy>
+              ].map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1 + index * 0.05, duration: 0.3 }}
+                  whileHover={{ 
+                    y: -4,
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <Tippy content={tech.name} placement="top" animation="scale-subtle">
+                    <a
+                      href={tech.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
+                      style={{
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                      }}
+                    >
+                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                    </a>
+                  </Tippy>
+                </motion.div>
               ))}
             </div>
           </div>
