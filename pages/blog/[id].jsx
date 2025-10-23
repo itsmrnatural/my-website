@@ -2,18 +2,22 @@ import Head from "next/head";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import { getAllPosts, getPostBySlug } from "../../lib/mdx";
+import { getAllPosts, getPostBySlug } from "@lib/mdx";
 import remarkGfm from "remark-gfm";
 import remarkFootnotes from "remark-footnotes";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import Giscus from "@giscus/react";
-import { useTheme } from "../../contexts/ThemeContext";
+import { useTheme } from "@contexts/ThemeContext";
+import CodeBlock from "@components/CodeBlock";
+import { useEffect, useState } from "react";
 
 // MDX Components
 const components = {
-  // You can add custom components here
+  // Custom code block with copy button
+  pre: (props) => <CodeBlock {...props} />,
+  // Custom link styling
   a: (props) => (
     <a
       {...props}
@@ -31,6 +35,42 @@ const components = {
  */
 export default function BlogPost({ post, mdxSource }) {
   const { theme } = useTheme();
+  const [headings, setHeadings] = useState([]);
+  const [activeId, setActiveId] = useState("");
+
+  // Extract headings for table of contents
+  useEffect(() => {
+    const articleElement = document.querySelector("article");
+    if (articleElement) {
+      const headingElements = articleElement.querySelectorAll("h2, h3");
+      const headingData = Array.from(headingElements).map((heading) => ({
+        id: heading.id,
+        text: heading.textContent,
+        level: parseInt(heading.tagName.charAt(1)),
+      }));
+      setHeadings(headingData);
+
+      // Intersection Observer for active heading
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "-80px 0px -80% 0px" }
+      );
+
+      headingElements.forEach((heading) => {
+        if (heading.id) {
+          observer.observe(heading);
+        }
+      });
+
+      return () => observer.disconnect();
+    }
+  }, [post]);
 
   if (!post) {
     return (
@@ -49,79 +89,121 @@ export default function BlogPost({ post, mdxSource }) {
         <meta name="description" content={post.preview} />
       </Head>
       <div className="py-20 px-5">
-        <div className="max-w-3xl mx-auto">
-          {/* Back Button */}
-          <div className="mb-6">
-            <Link
-              href="/blog"
-              className="inline-block bg-coffee-200 dark:bg-white/10 hover:bg-coffee-300 dark:hover:bg-white/20 text-coffee-900 dark:text-white text-sm px-4 py-2 rounded-lg transition-colors"
-            >
-              ← Back to Blog
-            </Link>
-          </div>
+        <div className="max-w-7xl mx-auto flex gap-8">
+          {/* Left spacer */}
+          <div className="hidden xl:block flex-1"></div>
 
-          {/* Banner Image */}
-          <img
-            alt={post.title}
-            src={post.image}
-            className="w-full h-64 object-cover rounded-lg mb-8 border border-coffee-300 dark:border-white/10"
-          />
-
-          {/* Blog Post Header */}
-          <article>
-            <header className="mb-8">
-              <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">
-                {post.title}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-3 text-coffee-600 dark:text-white/60 mb-4">
-                <time>{new Date(post.date).toLocaleDateString()}</time>
-                <span>•</span>
-                <span>{post.author}</span>
-                <span>•</span>
-                <span>{post.readingTime}</span>
-              </div>
-
-              {/* Tags */}
-              {post.tags && post.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-sm font-medium bg-coffee-200 dark:bg-white/10 text-coffee-800 dark:text-white/80 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </header>
-
-            {/* MDX Content */}
-            <div className="prose prose-coffee dark:prose-dark max-w-none mb-12">
-              <MDXRemote {...mdxSource} components={components} />
+          {/* Main Content - Centered */}
+          <div className="max-w-3xl flex-shrink-0 w-full">
+            {/* Back Button */}
+            <div className="mb-6">
+              <Link
+                href="/blog"
+                className="inline-block bg-coffee-200 dark:bg-white/10 hover:bg-coffee-300 dark:hover:bg-white/20 text-coffee-900 dark:text-white text-sm px-4 py-2 rounded-lg transition-colors"
+              >
+                ← Back to Blog
+              </Link>
             </div>
-          </article>
 
-          {/* Comments Section */}
-          <div className="mt-12 pt-8 border-t-2 border-coffee-300 dark:border-white/10">
-            <h2 className="text-2xl font-heading font-bold text-coffee-900 dark:text-white mb-6">
-              Comments
-            </h2>
-            <Giscus
-              repo="itsmrnatural/my-website"
-              repoId="YOUR_REPO_ID"
-              category="General"
-              categoryId="YOUR_CATEGORY_ID"
-              mapping="pathname"
-              reactionsEnabled="1"
-              emitMetadata="0"
-              inputPosition="top"
-              theme={theme === "dark" ? "dark" : "light"}
-              lang="en"
-              loading="lazy"
+            {/* Banner Image */}
+            <img
+              alt={post.title}
+              src={post.image}
+              className="w-full h-64 object-cover rounded-lg mb-8 border border-coffee-300 dark:border-white/10"
             />
+
+            {/* Blog Post Header */}
+            <article>
+              <header className="mb-8">
+                <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">
+                  {post.title}
+                </h1>
+
+                <div className="flex flex-wrap items-center gap-2 text-sm text-coffee-600 dark:text-white/50 mb-3">
+                  <time>{new Date(post.date).toLocaleDateString()}</time>
+                  <span>•</span>
+                  <span>{post.author}</span>
+                  <span>•</span>
+                  <span>{post.readingTime}</span>
+                </div>
+
+                {/* Tags */}
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 text-xs font-medium bg-coffee-200 dark:bg-white/10 text-coffee-700 dark:text-white/70 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </header>
+
+              {/* MDX Content */}
+              <div className="prose prose-coffee dark:prose-dark max-w-none mb-12 prose-compact">
+                <MDXRemote {...mdxSource} components={components} />
+              </div>
+            </article>
+
+            {/* Comments Section */}
+            <div className="mt-12 pt-8 border-t-2 border-coffee-300 dark:border-white/10">
+              <h2 className="text-2xl font-subheading font-bold text-coffee-900 dark:text-white mb-6">
+                Comments
+              </h2>
+              <Giscus
+                repo="itsmrnatural/my-website"
+                repoId="YOUR_REPO_ID"
+                category="General"
+                categoryId="YOUR_CATEGORY_ID"
+                mapping="pathname"
+                reactionsEnabled="1"
+                emitMetadata="0"
+                inputPosition="top"
+                theme={theme === "dark" ? "dark" : "light"}
+                lang="en"
+                loading="lazy"
+              />
+            </div>
           </div>
+
+          {/* Table of Contents Sidebar */}
+          {headings.length > 0 && (
+            <aside className="hidden xl:block w-64 flex-shrink-0">
+              <div className="sticky top-20">
+                <nav className="bg-coffee-100 dark:bg-white/5 rounded-lg p-4 border border-coffee-300 dark:border-white/10 shadow-sm">
+                  <h3 className="text-sm font-subheading font-semibold text-coffee-900 dark:text-white mb-3 pb-2 border-b border-coffee-300 dark:border-white/10">
+                    On This Page
+                  </h3>
+                  <ul className="space-y-1">
+                    {headings.map((heading) => (
+                      <li key={heading.id} className={heading.level === 3 ? "ml-3" : ""}>
+                        <a
+                          href={`#${heading.id}`}
+                          className={`text-xs block py-1.5 px-2 rounded transition-all ${
+                            activeId === heading.id
+                              ? "bg-coffee-200 dark:bg-white/10 text-coffee-900 dark:text-white font-medium"
+                              : "text-coffee-600 dark:text-gray-400 hover:text-coffee-800 dark:hover:text-gray-200 hover:bg-coffee-50 dark:hover:bg-white/5"
+                          }`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById(heading.id)?.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }}
+                        >
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </aside>
+          )}
         </div>
       </div>
     </>

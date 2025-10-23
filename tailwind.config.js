@@ -5,14 +5,14 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
     "./content/**/*.{md,mdx}",
   ],
   darkMode: "class",
   theme: {
     fontFamily: {
       sans: ["Karla", "ui-sans-serif", "system-ui"],
-      heading: ["Playfair Display", "ui-serif", "serif"],
+      heading: ["Inter", "ui-sans-serif", "system-ui"],
       subheading: ["Lora", "ui-serif", "serif"],
       mono: ["JetBrains Mono", "ui-monospace", "monospace"],
     },

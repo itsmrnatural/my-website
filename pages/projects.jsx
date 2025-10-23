@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
 import swr from "../public/js/swr";
-import Repositories from "../components/Repositories";
-import Pagination from "../components/Pagination";
+import Repositories from "@components/Repositories";
+import Pagination from "@components/Pagination";
 
 /**
  * Projects page component displaying GitHub repositories with pagination

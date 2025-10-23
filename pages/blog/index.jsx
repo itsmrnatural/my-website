@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import BlogCard from "@components/BlogCard";
-import { getAllPosts, getAllTags } from "../../lib/mdx";
+import { getAllPosts, getAllTags } from "@lib/mdx";
 
 /**
  * Blog listing page component displaying all blog posts

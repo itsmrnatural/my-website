@@ -2,8 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import highlight.js Monokai theme */
-@import "highlight.js/styles/monokai.css";
+/* Import highlight.js theme - using Atom One Dark for better readability */
+@import "highlight.js/styles/atom-one-dark.css";
+
+/* Custom code block styling for transparent and relaxing appearance */
+pre code.hljs {
+  background: rgba(40, 44, 52, 0.85) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 1.5rem !important;
+}
+
+html.dark pre code.hljs {
+  background: rgba(20, 22, 26, 0.7) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Compact prose styling for blog posts */
+.prose-compact p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-compact h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-compact h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-compact ul,
+.prose-compact ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-compact li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-compact pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose-compact blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
 html {
   scroll-behavior: smooth;
@@ -226,4 +276,35 @@ html.dark ::-webkit-scrollbar-thumb:active {
 }
 .text-online {
   color: #46f154;
+}
+
+/* Custom cursor with negative blend mode */
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
+  mix-blend-mode: difference;
+  z-index: 9999;
+  transition: transform 0.15s ease-out;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor-dot {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  mix-blend-mode: difference;
+  z-index: 10000;
+  transition: transform 0.05s ease-out;
+  transform: translate(-50%, -50%);
 }

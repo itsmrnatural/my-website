@@ -1,5 +1,5 @@
-import "../public/styles/globals.css";
-import "../public/styles/tooltip.css";
+import "../src/styles/globals.css";
+import "../src/styles/tooltip.css";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import "tippy.js/animations/scale-subtle.css";
@@ -9,10 +9,10 @@ import "tippy.js/animations/shift-toward.css";
 import Router, { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
-import { ThemeProvider } from "../contexts/ThemeContext";
+import { ThemeProvider } from "../src/contexts/ThemeContext";
 
-const Header = dynamic(() => import("../components/Header"));
-const Footer = dynamic(() => import("../components/Footer"));
+const Header = dynamic(() => import("../src/components/Header"));
+const Footer = dynamic(() => import("../src/components/Footer"));
 
 /**
  * Preloads page components for smoother page transitions
@@ -144,13 +144,7 @@ function MyApp({ Component, pageProps }) {
           <Header />
           <Component {...pageProps} />
         </div>
-        <div className=" p-4 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
-          <div className="bg-coffee-100 dark:bg-neutral-800/5">
-            <div className="flex flex-row mx-20">
-              <Footer />
-            </div>
-          </div>
-        </div>
+        <Footer />
       </main>
     </ThemeProvider>
   );
