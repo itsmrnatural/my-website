@@ -11,17 +11,17 @@ const Pagination = ({ currentPage, totalPages, handlePreviousPage, handleNextPag
   return (
     <div className="flex justify-between items-center w-full mt-5">
       <button
-        className="bg-white/5 hover:bg-white/10 border border-transparent hover:border-white text-white text-sm px-3 py-2 rounded-lg"
+        className="bg-coffee-200 dark:bg-white/5 hover:bg-coffee-300 dark:hover:bg-white/10 border border-coffee-300 dark:border-transparent hover:border-coffee-400 dark:hover:border-white text-coffee-900 dark:text-white text-sm px-4 py-2 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={handlePreviousPage}
         disabled={currentPage === 1}
       >
         ← Back
       </button>
-      <p className="text-white">
+      <p className="text-coffee-900 dark:text-white font-medium">
         Page {currentPage}/{totalPages}
       </p>
       <button
-        className="bg-white/5 hover:bg-white/10 border border-transparent hover:border-white text-white text-sm px-3 py-2 rounded-lg"
+        className="bg-coffee-200 dark:bg-white/5 hover:bg-coffee-300 dark:hover:bg-white/10 border border-coffee-300 dark:border-transparent hover:border-coffee-400 dark:hover:border-white text-coffee-900 dark:text-white text-sm px-4 py-2 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={handleNextPage}
         disabled={currentPage === totalPages}
       >

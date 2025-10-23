@@ -27,7 +27,7 @@ const languageColors = {
   python: "#3572A5",
   java: "#b07219",
   html: "#e34c26",
-  css: "#563d7c",
+  css: "#663399",
   php: "#4F5D95",
   ruby: "#701516",
   go: "#00ADD8",
@@ -148,20 +148,20 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
           <div className="flex flex-col w-full sm:w-auto relative" ref={filterRef}>
             <button
               onClick={() => setShowLanguageFilter(!showLanguageFilter)}
-              className="flex items-center text-sm bg-neutral-800/30 hover:bg-neutral-800/50 text-neutral-300 rounded-lg px-3 py-2 transition-all duration-200"
+              className="flex items-center text-sm bg-coffee-200 dark:bg-neutral-800/30 hover:bg-coffee-300 dark:hover:bg-neutral-800/50 text-coffee-900 dark:text-neutral-300 rounded-lg px-3 py-2 transition-all duration-200 border border-coffee-300 dark:border-transparent"
             >
-              <i className={`fas fa-filter mr-2 text-neutral-400`} />
+              <i className={`fas fa-filter mr-2 text-coffee-700 dark:text-neutral-400`} />
               {filterLanguage === "all" ? "Filter by Language" : `Language: ${filterLanguage}`}
               <i
                 className={`fas fa-chevron-${
                   showLanguageFilter ? "up" : "down"
-                } ml-2 text-neutral-400`}
+                } ml-2 text-coffee-700 dark:text-neutral-400`}
               />
             </button>
 
             {/* Expandable Language Filter */}
             {showLanguageFilter && (
-              <div className="absolute top-full left-0 z-10 mt-2 p-3 rounded-lg bg-neutral-800/90 border border-neutral-700/50 w-72 max-h-64 overflow-y-auto backdrop-blur shadow-lg">
+              <div className="absolute top-full left-0 z-10 mt-2 p-3 rounded-lg bg-white dark:bg-neutral-800/90 border border-coffee-300 dark:border-neutral-700/50 w-72 max-h-64 overflow-y-auto backdrop-blur shadow-lg">
                 <div className="flex flex-wrap gap-2">
                   {availableLanguages.map((language) => (
                     <button
@@ -172,8 +172,8 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                       }}
                       className={`flex items-center px-2 py-1 rounded-md text-xs ${
                         filterLanguage === language
-                          ? "bg-neutral-700/80 text-white"
-                          : "bg-neutral-800/50 text-neutral-400 hover:bg-neutral-700/50 hover:text-neutral-200"
+                          ? "bg-coffee-300 dark:bg-neutral-700/80 text-coffee-900 dark:text-white"
+                          : "bg-coffee-100 dark:bg-neutral-800/50 text-coffee-700 dark:text-neutral-400 hover:bg-coffee-200 dark:hover:bg-neutral-700/50 hover:text-coffee-900 dark:hover:text-neutral-200"
                       }`}
                     >
                       {language !== "all" && (
@@ -197,20 +197,20 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
           <div className="flex flex-col w-full sm:w-auto relative" ref={sortRef}>
             <button
               onClick={() => setShowSortOptions(!showSortOptions)}
-              className="flex items-center text-sm bg-neutral-800/30 hover:bg-neutral-800/50 text-neutral-300 rounded-lg px-3 py-2 transition-all duration-200"
+              className="flex items-center text-sm bg-coffee-200 dark:bg-neutral-800/30 hover:bg-coffee-300 dark:hover:bg-neutral-800/50 text-coffee-900 dark:text-neutral-300 rounded-lg px-3 py-2 transition-all duration-200 border border-coffee-300 dark:border-transparent"
             >
-              <i className={`fas fa-sort mr-2 text-neutral-400`} />
+              <i className={`fas fa-sort mr-2 text-coffee-700 dark:text-neutral-400`} />
               {`Sort: ${currentSortLabel}`}
               <i
                 className={`fas fa-chevron-${
                   showSortOptions ? "up" : "down"
-                } ml-2 text-neutral-400`}
+                } ml-2 text-coffee-700 dark:text-neutral-400`}
               />
             </button>
 
             {/* Sort Options Dropdown */}
             {showSortOptions && (
-              <div className="absolute top-full right-0 z-10 mt-2 p-2 rounded-lg bg-neutral-800/90 border border-neutral-700/50 w-56 overflow-hidden backdrop-blur shadow-lg">
+              <div className="absolute top-full right-0 z-10 mt-2 p-2 rounded-lg bg-white dark:bg-neutral-800/90 border border-coffee-300 dark:border-neutral-700/50 w-56 overflow-hidden backdrop-blur shadow-lg">
                 {sortOptions.map((option) => (
                   <button
                     key={option.value}
@@ -220,8 +220,8 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                     }}
                     className={`flex items-center px-3 py-2 w-full text-left rounded-md text-sm ${
                       sortBy === option.value
-                        ? "bg-neutral-700/80 text-white"
-                        : "text-neutral-300 hover:bg-neutral-700/50 hover:text-neutral-200"
+                        ? "bg-coffee-300 dark:bg-neutral-700/80 text-coffee-900 dark:text-white"
+                        : "text-coffee-700 dark:text-neutral-300 hover:bg-coffee-200 dark:hover:bg-neutral-700/50 hover:text-coffee-900 dark:hover:text-neutral-200"
                     }`}
                   >
                     <i
@@ -233,7 +233,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                           : option.value === "updated"
                           ? "clock"
                           : "calendar-plus"
-                      } mr-2 ${sortBy === option.value ? "text-white" : "text-neutral-400"}`}
+                      } mr-2 ${sortBy === option.value ? "text-coffee-800 dark:text-white" : "text-coffee-600 dark:text-neutral-400"}`}
                     />
                     {option.label}
                   </button>
@@ -245,7 +245,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
       )}
 
       {/* Repository Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full auto-rows-auto">
         {repositories ? (
           filteredSortedRepos.length > 0 ? (
             filteredSortedRepos.slice(startIndex, endIndex).map((repo, index) => {
@@ -259,37 +259,44 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                   href={`https://github.com/${repo.owner.login}/${repo.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-white/20 hover:bg-white/8 transition-all duration-200 flex flex-col h-[160px]"
+                  className="relative bg-gradient-to-br from-white via-coffee-50 to-coffee-100 dark:from-white/[0.08] dark:via-white/[0.04] dark:to-white/[0.02] p-3.5 rounded-xl border-2 border-coffee-300/60 dark:border-white/10 hover:border-coffee-500 dark:hover:border-coffee-400/40 hover:shadow-2xl hover:shadow-coffee-300/20 dark:hover:shadow-white/5 dark:shadow-none hover:scale-[1.01] transition-all duration-300 flex flex-col min-h-[130px] shadow-lg backdrop-blur-sm group overflow-hidden"
                 >
+                  {/* Decorative corner accent */}
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-coffee-400/10 to-transparent dark:from-white/5 dark:to-transparent rounded-bl-full" />
+                  
                   {/* Header */}
-                  <div className="flex items-center justify-between mb-1.5 w-full">
+                  <div className="relative flex items-center justify-between mb-1.5 w-full">
                     <div className="flex items-center flex-1 min-w-0 mr-2">
-                      <div className="w-6 h-6 rounded-full overflow-hidden mr-2 flex-shrink-0">
-                        <Image
-                          src={repo.owner.avatar_url}
-                          alt={`${repo.owner.login} avatar`}
-                          width={24}
-                          height={24}
-                          className="rounded-full"
-                        />
-                      </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-md font-medium text-white truncate">
-                          {`${repo.owner.login}/${repo.name}`}
+                        <div className="flex items-center gap-1.5">
+                          <p className="text-sm font-bold text-coffee-900 dark:text-white group-hover:text-coffee-700 dark:group-hover:text-coffee-300 truncate transition-all">
+                            {`${repo.name}`}
+                          </p>
+                          {repo.isContributor && (
+                            <Tippy content="Contributor">
+                              <span className="flex-shrink-0 text-[10px] px-1.5 py-0.5 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-500/20 dark:to-blue-600/20 text-blue-800 dark:text-blue-300 rounded font-bold border border-blue-300 dark:border-blue-500/30">
+                                <i className="fas fa-code-branch mr-0.5 text-[8px]" />
+                                CONTRIB
+                              </span>
+                            </Tippy>
+                          )}
+                        </div>
+                        <p className="text-[10px] text-coffee-600 dark:text-gray-500 truncate font-medium mt-0.5">
+                          {repo.owner.login}
                         </p>
                       </div>
                     </div>
 
                     {/* Language indicator */}
                     {repo.language && (
-                      <div className="flex-shrink-0">
+                      <div className="flex-shrink-0 relative">
                         <Tippy content={`Written in ${repo.language}`}>
-                          <div className="flex items-center">
+                          <div className="flex items-center bg-gradient-to-r from-coffee-300/80 to-coffee-200/70 dark:from-white/15 dark:to-white/10 px-2 py-0.5 rounded-lg border border-coffee-500/40 dark:border-white/10 shadow-sm group-hover:shadow-md transition-all">
                             <span
-                              className="h-4 w-4 rounded-full mr-1"
+                              className="h-2 w-2 rounded-full mr-1 ring-1 ring-white/60 dark:ring-black/20 shadow-sm"
                               style={{ backgroundColor: langColor }}
                             />
-                            <span className="text-xs text-gray-300 font-medium hidden sm:inline">
+                            <span className="text-[10px] text-coffee-900 dark:text-gray-200 font-bold hidden sm:inline uppercase tracking-wide">
                               {repo.language}
                             </span>
                           </div>
@@ -299,45 +306,49 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                   </div>
 
                   {/* Description */}
-                  <div className="flex-grow overflow-hidden">
-                    <p className="text-sm text-gray-400 line-clamp-2">
+                  <div className="relative flex-grow overflow-hidden mb-2 bg-coffee-100/40 dark:bg-white/[0.02] rounded-lg p-2 border border-coffee-200/50 dark:border-white/5">
+                    <p className="text-xs text-coffee-800 dark:text-gray-300 line-clamp-2 leading-relaxed font-medium">
                       {repo.description || "No description provided"}
                     </p>
                   </div>
 
                   {/* Stats row */}
-                  <div className="mt-auto pt-1.5 flex justify-between w-full items-center">
-                    <div className="flex items-center flex-wrap">
+                  <div className="relative mt-auto pt-2 border-t-2 border-coffee-300/60 dark:border-white/10 flex justify-between w-full items-center bg-gradient-to-r from-coffee-200/30 to-transparent dark:from-white/[0.03] dark:to-transparent -mx-3.5 px-3.5 pb-0 -mb-3.5">
+                    <div className="flex items-center gap-2 py-2">
                       <Tippy content={`${repo.stargazers_count} stars`}>
-                        <div className="flex items-center mr-3 mb-1">
-                          <i className="fas fa-star text-yellow-400 mr-1" />
-                          <p className="text-gray-400">{formatNumber(repo.stargazers_count)}</p>
+                        <div className="flex items-center bg-yellow-100/60 dark:bg-yellow-500/10 px-1.5 py-0.5 rounded-md hover:bg-yellow-200/80 dark:hover:bg-yellow-500/20 transition-all cursor-default shadow-sm">
+                          <i className="fas fa-star text-yellow-600 dark:text-yellow-400 mr-1 text-[10px]" />
+                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">{formatNumber(repo.stargazers_count)}</p>
                         </div>
                       </Tippy>
                       <Tippy content={`${repo.forks} forks`}>
-                        <div className="flex items-center mr-3 mb-1">
-                          <i className="fas fa-code-branch text-white/70 mr-1" />
-                          <p className="text-gray-400">{formatNumber(repo.forks)}</p>
+                        <div className="flex items-center bg-coffee-200/60 dark:bg-white/10 px-1.5 py-0.5 rounded-md hover:bg-coffee-300/80 dark:hover:bg-white/20 transition-all cursor-default shadow-sm">
+                          <i className="fas fa-code-branch text-coffee-800 dark:text-white/70 mr-1 text-[10px]" />
+                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">{formatNumber(repo.forks)}</p>
                         </div>
                       </Tippy>
 
                       {repo.watchers_count > 0 && repo.watchers_count !== repo.stargazers_count && (
                         <Tippy content={`${repo.watchers_count} watchers`}>
-                          <div className="flex items-center mb-1">
-                            <i className="fas fa-eye text-white/70 mr-1" />
-                            <p className="text-gray-400">{formatNumber(repo.watchers_count)}</p>
+                          <div className="flex items-center bg-coffee-200/60 dark:bg-white/10 px-1.5 py-0.5 rounded-md hover:bg-coffee-300/80 dark:hover:bg-white/20 transition-all cursor-default shadow-sm">
+                            <i className="fas fa-eye text-coffee-800 dark:text-white/70 mr-1 text-[10px]" />
+                            <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">{formatNumber(repo.watchers_count)}</p>
                           </div>
                         </Tippy>
                       )}
                     </div>
-                    <div className="flex items-center">
-                      <p className="text-xs text-gray-400">
-                        {new Date(repo.updated_at).toLocaleDateString("en-GB", {
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </p>
-                    </div>
+                    <Tippy content="Last updated">
+                      <div className="flex items-center bg-coffee-200/50 dark:bg-white/5 px-2 py-0.5 rounded-md border border-coffee-300/50 dark:border-white/10 shadow-sm">
+                        <i className="far fa-clock text-coffee-700 dark:text-gray-400 mr-1 text-[9px]" />
+                        <p className="text-[10px] text-coffee-800 dark:text-gray-300 font-bold leading-none whitespace-nowrap">
+                          {new Date(repo.updated_at).toLocaleDateString("en-GB", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </p>
+                      </div>
+                    </Tippy>
                   </div>
                 </a>
               );
