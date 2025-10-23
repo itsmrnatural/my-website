@@ -114,14 +114,14 @@ const Header = () => {
                 key={label}
                 href={href}
                 className={`flex items-center justify-center transition-all duration-500 text-sm rounded-lg border ${
-                  collapsed ? "px-2.5 py-2" : "px-3 py-2"
+                  collapsed ? "w-10 h-10 p-0" : "px-3 py-2"
                 } ${
                   isActive(href)
                     ? "bg-coffee-300 dark:bg-neutral-800/50 text-coffee-900 dark:text-white font-medium shadow-sm border-coffee-400 dark:border-neutral-700"
                     : "text-coffee-700 dark:text-neutral-400 hover:text-coffee-900 dark:hover:text-white hover:bg-coffee-200 dark:hover:bg-neutral-800/40 border-coffee-200 dark:border-neutral-800/50 hover:border-coffee-300 dark:hover:border-neutral-700"
                 }`}
               >
-                <i className={`${isActive(href) ? active : icon} ${collapsed ? "text-base" : "mr-2"}`} />
+                <i className={`${isActive(href) ? active : icon} text-base ${collapsed ? "" : "mr-2"}`} />
                 <span
                   className={`overflow-hidden transition-all duration-500 ${
                     collapsed ? "max-w-0 opacity-0" : "max-w-[100px] opacity-100"
@@ -133,10 +133,10 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Social Links - Compact when collapsed */}
+          {/* Social Links - Compact when collapsed, hidden on mobile when collapsed */}
           <div
-            className={`flex items-center transition-all duration-500 ${
-              collapsed ? "space-x-1" : "space-x-1"
+            className={`items-center transition-all duration-500 ${
+              collapsed ? "hidden md:flex space-x-1" : "flex space-x-1"
             }`}
           >
             {socialLinks.map(({ link, icon, label }) => (
@@ -147,12 +147,12 @@ const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-500 ${
-                  collapsed ? "p-2" : "p-2.5"
+                  collapsed ? "w-10 h-10 p-0" : "p-2.5"
                 }`}
               >
                 <i
                   className={`${icon} text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-all duration-500 ${
-                    collapsed ? "text-lg" : "text-xl"
+                    collapsed ? "text-base" : "text-xl"
                   }`}
                 />
               </a>
@@ -160,7 +160,32 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation - Hidden when collapsed */}
+        {/* Mobile Navigation - Shown when collapsed, hidden when expanded */}
+        <div
+          className={`md:hidden w-full overflow-hidden transition-all duration-500 ${
+            collapsed 
+              ? "max-h-[60px] opacity-100 mt-2" 
+              : "max-h-0 opacity-0 mt-0"
+          }`}
+        >
+          <div className="flex items-center justify-center gap-2">
+            {navItems.map(({ label, href, icon, active }) => (
+              <Link
+                key={label}
+                href={href}
+                className={`flex items-center justify-center w-12 h-12 text-sm rounded-lg transition-all duration-200 border ${
+                  isActive(href)
+                    ? "bg-coffee-300 dark:bg-neutral-800/50 text-coffee-900 dark:text-white font-medium shadow-sm border-coffee-400 dark:border-neutral-700"
+                    : "text-coffee-700 dark:text-neutral-400 hover:text-coffee-900 dark:hover:text-white hover:bg-coffee-200 dark:hover:bg-neutral-800/40 border-coffee-200 dark:border-neutral-800/50 hover:border-coffee-300 dark:hover:border-neutral-700"
+                }`}
+              >
+                <i className={`${isActive(href) ? active : icon} text-base`} />
+              </Link>
+            ))}
+          </div>
+        </div>
+        
+        {/* Mobile Navigation Grid - Shown when NOT collapsed */}
         <div
           className={`md:hidden grid grid-cols-2 gap-2 w-full overflow-hidden transition-all duration-500 ${
             collapsed ? "max-h-0 opacity-0 mt-0" : "max-h-[200px] opacity-100 mt-3"
