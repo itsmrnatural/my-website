@@ -52,10 +52,10 @@ export default function Projects() {
       </Head>
 
       <div className="py-8 md:py-12">
-        <h1 className="text-3xl md:text-4xl font-heading font-bold text-coffee-900 dark:text-white mb-2">
+        <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">
           My Projects
         </h1>
-        <p className="text-xl font-subheading text-coffee-700 dark:text-neutral-400 mb-8">
+        <p className="text-lg text-coffee-600 dark:text-gray-400 mb-8">
           Explore my open source repositories and personal projects
         </p>
 

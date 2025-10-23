@@ -43,10 +43,10 @@ export default function Blog({ posts, tags }) {
         <title>Mr. Natural • Blog</title>
       </Head>
       <div className="py-20 px-5">
-        <h1 className="text-4xl font-heading font-bold text-coffee-900 dark:text-white text-left mb-3">
+        <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white text-left mb-4">
           Blog
         </h1>
-        <p className="text-xl font-subheading text-coffee-700 dark:text-white/50 font-normal text-left mb-8">
+        <p className="text-lg text-coffee-600 dark:text-gray-400 font-normal text-left mb-8">
           Here are some of the blog posts I have written.
         </p>
 
