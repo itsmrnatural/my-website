@@ -15,7 +15,7 @@ export default function AboutMe() {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
       const threshold = window.innerHeight * 0.25;
-      
+
       if (scrollPos > threshold) {
         const translateY = -(scrollPos - threshold) * 0.3;
         const opacity = Math.max(0.2, 1 - (scrollPos - threshold) / 500);

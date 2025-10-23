@@ -53,7 +53,8 @@ const Footer = () => {
 
         {/* Made with love message */}
         <div className="mt-6 text-center text-xs text-coffee-500 dark:text-gray-500">
-          Made with <span className="animate-pulse text-coffee-600/90 to-coffee-800/90">❤️</span> and ☕
+          Made with <span className="animate-pulse text-coffee-600/90 to-coffee-800/90">❤️</span>{" "}
+          and ☕
         </div>
       </div>
     </footer>
