@@ -37,6 +37,7 @@
     "swr": "^1.2.1",
     "terser-webpack-plugin": "^5.3.7",
     "tippy.js": "^6.3.7",
+    "use-lanyard": "^1.7.0",
     "webpack": "^5.98.0"
   },
   "devDependencies": {

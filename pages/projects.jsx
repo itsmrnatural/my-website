@@ -19,7 +19,7 @@ export default function Projects() {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
       const threshold = window.innerHeight * 0.25;
-      
+
       if (scrollPos > threshold) {
         const translateY = -(scrollPos - threshold) * 0.3;
         const opacity = Math.max(0.2, 1 - (scrollPos - threshold) / 500);
@@ -75,9 +75,9 @@ export default function Projects() {
 
       <div ref={containerRef} className="py-8 md:py-12">
         <motion.div
-          style={{ 
+          style={{
             transform: `translateY(${headerTransform.y}px)`,
-            opacity: headerTransform.opacity
+            opacity: headerTransform.opacity,
           }}
         >
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">

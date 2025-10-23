@@ -288,7 +288,8 @@ html.dark ::-webkit-scrollbar-thumb:active {
 }
 
 /* Ensure cursor container doesn't create isolation */
-body, #__next {
+body,
+#__next {
   isolation: auto;
 }
 

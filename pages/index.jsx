@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import CustomCursor from "@components/CustomCursor";
+import LanyardStatus from "@components/LanyardStatus";
 
 /**
  * Home page component displaying personal introduction and information
@@ -34,6 +35,7 @@ const Home = () => {
   return (
     <>
       <CustomCursor />
+      <LanyardStatus />
       <Head>
         <title>Dhananjay • Home</title>
         <meta name="description" content="Student, programmer, and severe coffee addict." />
