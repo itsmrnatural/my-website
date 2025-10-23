@@ -1,16 +1,24 @@
-const withMDX = require("@next/mdx")({
+import mdx from "@next/mdx";
+import remarkGfm from "remark-gfm";
+import remarkFootnotes from "remark-footnotes";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeHighlight from "rehype-highlight";
+import TerserPlugin from "terser-webpack-plugin";
+
+const withMDX = mdx({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [require("remark-gfm"), require("remark-footnotes")],
+    remarkPlugins: [remarkGfm, remarkFootnotes],
     rehypePlugins: [
-      require("rehype-slug"),
-      require("rehype-autolink-headings"),
-      require("rehype-highlight"),
+      rehypeSlug,
+      rehypeAutolinkHeadings,
+      rehypeHighlight,
     ],
   },
 });
 
-module.exports = withMDX({
+export default withMDX({
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   images: {
     domains: ["i.imgur.com", "localhost", "cdn.discordapp.com", "avatars.githubusercontent.com"],
@@ -19,7 +27,6 @@ module.exports = withMDX({
     config.mode = "production";
 
     if (!isServer) {
-      const TerserPlugin = require("terser-webpack-plugin");
       config.optimization.minimizer.push(
         new TerserPlugin({
           terserOptions: {
