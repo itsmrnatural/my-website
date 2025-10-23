@@ -121,7 +121,9 @@ const Header = () => {
                     : "text-coffee-700 dark:text-neutral-400 hover:text-coffee-900 dark:hover:text-white hover:bg-coffee-200 dark:hover:bg-neutral-800/40 border-coffee-200 dark:border-neutral-800/50 hover:border-coffee-300 dark:hover:border-neutral-700"
                 }`}
               >
-                <i className={`${isActive(href) ? active : icon} text-base ${collapsed ? "" : "mr-2"}`} />
+                <i
+                  className={`${isActive(href) ? active : icon} text-base ${collapsed ? "" : "mr-2"}`}
+                />
                 <span
                   className={`overflow-hidden transition-all duration-500 ${
                     collapsed ? "max-w-0 opacity-0" : "max-w-[100px] opacity-100"
@@ -163,9 +165,7 @@ const Header = () => {
         {/* Mobile Navigation - Shown when collapsed, hidden when expanded */}
         <div
           className={`md:hidden w-full overflow-hidden transition-all duration-500 ${
-            collapsed 
-              ? "max-h-[60px] opacity-100 mt-2" 
-              : "max-h-0 opacity-0 mt-0"
+            collapsed ? "max-h-[60px] opacity-100 mt-2" : "max-h-0 opacity-0 mt-0"
           }`}
         >
           <div className="flex items-center justify-center gap-2">
@@ -184,7 +184,7 @@ const Header = () => {
             ))}
           </div>
         </div>
-        
+
         {/* Mobile Navigation Grid - Shown when NOT collapsed */}
         <div
           className={`md:hidden grid grid-cols-2 gap-2 w-full overflow-hidden transition-all duration-500 ${
