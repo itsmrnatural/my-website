@@ -48,10 +48,13 @@ const navItems = [
 const Header = () => {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 20);
+      setCollapsed(scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -69,17 +72,21 @@ const Header = () => {
     <header
       className={`sticky top-0 z-50 w-full backdrop-blur-xl transition-all duration-500 ${
         scrolled
-          ? "bg-gradient-to-b from-coffee-50/98 via-coffee-50/95 to-coffee-50/90 dark:from-black/98 dark:via-black/95 dark:to-black/90 shadow-lg shadow-coffee-300/20 dark:shadow-black/40 py-3"
+          ? "bg-gradient-to-b from-coffee-50/98 via-coffee-50/95 to-coffee-50/90 dark:from-black/98 dark:via-black/95 dark:to-black/90 shadow-lg shadow-coffee-300/20 dark:shadow-black/40 py-2"
           : "bg-gradient-to-b from-coffee-50/80 via-coffee-50/70 to-coffee-50/60 dark:from-black/80 dark:via-black/70 dark:to-black/60 shadow-md shadow-coffee-300/10 dark:shadow-black/20 py-4"
       }`}
     >
       <div
         className={`max-w-screen-lg px-5 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-500 ${
-          scrolled ? "scale-[0.98]" : "scale-100"
+          collapsed ? "scale-[0.95]" : scrolled ? "scale-[0.98]" : "scale-100"
         }`}
       >
-        {/* Name and Theme Toggle Row */}
-        <div className="flex w-full items-center justify-between mb-4">
+        {/* Name and Theme Toggle Row - Hidden when collapsed */}
+        <div
+          className={`flex w-full items-center justify-between overflow-hidden transition-all duration-500 ${
+            collapsed ? "max-h-0 opacity-0 mb-0" : "max-h-20 opacity-100 mb-4"
+          }`}
+        >
           <Link
             href="/"
             className="font-bold font-heading text-xl tracking-tight text-coffee-900 dark:text-white hover:text-coffee-700 dark:hover:text-neutral-300 transition-colors"
@@ -91,27 +98,47 @@ const Header = () => {
         </div>
 
         {/* Navigation and Social Links Row */}
-        <div className="flex flex-col md:flex-row w-full items-center md:justify-between gap-3">
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1">
+        <div
+          className={`flex flex-col md:flex-row w-full items-center md:justify-between transition-all duration-500 ${
+            collapsed ? "gap-2" : "gap-3"
+          }`}
+        >
+          {/* Desktop Navigation Links - Compact when collapsed */}
+          <nav
+            className={`hidden md:flex items-center transition-all duration-500 ${
+              collapsed ? "space-x-1" : "space-x-1"
+            }`}
+          >
             {navItems.map(({ label, href, icon, active }) => (
               <Link
                 key={label}
                 href={href}
-                className={`flex items-center justify-center px-3 py-2 text-sm rounded-lg transition-all duration-200 border ${
+                className={`flex items-center justify-center transition-all duration-500 text-sm rounded-lg border ${
+                  collapsed ? "px-2.5 py-2" : "px-3 py-2"
+                } ${
                   isActive(href)
                     ? "bg-coffee-300 dark:bg-neutral-800/50 text-coffee-900 dark:text-white font-medium shadow-sm border-coffee-400 dark:border-neutral-700"
                     : "text-coffee-700 dark:text-neutral-400 hover:text-coffee-900 dark:hover:text-white hover:bg-coffee-200 dark:hover:bg-neutral-800/40 border-coffee-200 dark:border-neutral-800/50 hover:border-coffee-300 dark:hover:border-neutral-700"
                 }`}
               >
-                <i className={`${isActive(href) ? active : icon} mr-2`} />
-                {label}
+                <i className={`${isActive(href) ? active : icon} ${collapsed ? "text-base" : "mr-2"}`} />
+                <span
+                  className={`overflow-hidden transition-all duration-500 ${
+                    collapsed ? "max-w-0 opacity-0" : "max-w-[100px] opacity-100"
+                  }`}
+                >
+                  {label}
+                </span>
               </Link>
             ))}
           </nav>
 
-          {/* Social Links */}
-          <div className="flex items-center space-x-1">
+          {/* Social Links - Compact when collapsed */}
+          <div
+            className={`flex items-center transition-all duration-500 ${
+              collapsed ? "space-x-1" : "space-x-1"
+            }`}
+          >
             {socialLinks.map(({ link, icon, label }) => (
               <a
                 key={link}
@@ -119,18 +146,26 @@ const Header = () => {
                 aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-200 p-2.5"
+                className={`flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-500 ${
+                  collapsed ? "p-2" : "p-2.5"
+                }`}
               >
                 <i
-                  className={`${icon} text-xl text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white`}
+                  className={`${icon} text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-all duration-500 ${
+                    collapsed ? "text-lg" : "text-xl"
+                  }`}
                 />
               </a>
             ))}
           </div>
         </div>
 
-        {/* Mobile Navigation - 2x2 Grid */}
-        <div className="md:hidden grid grid-cols-2 gap-2 w-full mt-3">
+        {/* Mobile Navigation - Hidden when collapsed */}
+        <div
+          className={`md:hidden grid grid-cols-2 gap-2 w-full overflow-hidden transition-all duration-500 ${
+            collapsed ? "max-h-0 opacity-0 mt-0" : "max-h-[200px] opacity-100 mt-3"
+          }`}
+        >
           {navItems.map(({ label, href, icon, active }) => (
             <Link
               key={label}
