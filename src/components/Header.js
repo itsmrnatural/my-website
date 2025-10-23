@@ -66,14 +66,18 @@ const Header = () => {
   const isActive = (href) => router.asPath === href;
 
   return (
-    <header className={`sticky top-0 z-50 w-full backdrop-blur-xl transition-all duration-500 ${
-      scrolled 
-        ? "bg-gradient-to-b from-coffee-50/98 via-coffee-50/95 to-coffee-50/90 dark:from-black/98 dark:via-black/95 dark:to-black/90 shadow-lg shadow-coffee-300/20 dark:shadow-black/40 py-3" 
-        : "bg-gradient-to-b from-coffee-50/80 via-coffee-50/70 to-coffee-50/60 dark:from-black/80 dark:via-black/70 dark:to-black/60 shadow-md shadow-coffee-300/10 dark:shadow-black/20 py-4"
-    }`}>
-      <div className={`max-w-screen-lg px-5 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-500 ${
-        scrolled ? "scale-[0.98]" : "scale-100"
-      }`}>
+    <header
+      className={`sticky top-0 z-50 w-full backdrop-blur-xl transition-all duration-500 ${
+        scrolled
+          ? "bg-gradient-to-b from-coffee-50/98 via-coffee-50/95 to-coffee-50/90 dark:from-black/98 dark:via-black/95 dark:to-black/90 shadow-lg shadow-coffee-300/20 dark:shadow-black/40 py-3"
+          : "bg-gradient-to-b from-coffee-50/80 via-coffee-50/70 to-coffee-50/60 dark:from-black/80 dark:via-black/70 dark:to-black/60 shadow-md shadow-coffee-300/10 dark:shadow-black/20 py-4"
+      }`}
+    >
+      <div
+        className={`max-w-screen-lg px-5 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-500 ${
+          scrolled ? "scale-[0.98]" : "scale-100"
+        }`}
+      >
         {/* Name and Theme Toggle Row */}
         <div className="flex w-full items-center justify-between mb-4">
           <Link
@@ -82,7 +86,7 @@ const Header = () => {
           >
             Mr. Natural
           </Link>
-          
+
           <ThemeToggle />
         </div>
 
