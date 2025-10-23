@@ -43,22 +43,23 @@ export default function AboutMe() {
             >
               {/* Torn Photo Effect */}
               <div className="relative mb-6">
-                <div 
+                <div
                   className="w-64 h-80 bg-gradient-to-br from-coffee-400 to-coffee-600 dark:from-coffee-600 dark:to-coffee-800 relative overflow-hidden"
                   style={{
-                    clipPath: "polygon(0% 0%, 100% 0%, 100% 95%, 95% 97%, 90% 95%, 85% 98%, 80% 96%, 75% 99%, 70% 97%, 65% 99%, 60% 96%, 55% 98%, 50% 97%, 45% 99%, 40% 96%, 35% 98%, 30% 97%, 25% 99%, 20% 96%, 15% 98%, 10% 96%, 5% 98%, 0% 97%)",
-                    boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
+                    clipPath:
+                      "polygon(0% 0%, 100% 0%, 100% 95%, 95% 97%, 90% 95%, 85% 98%, 80% 96%, 75% 99%, 70% 97%, 65% 99%, 60% 96%, 55% 98%, 50% 97%, 45% 99%, 40% 96%, 35% 98%, 30% 97%, 25% 99%, 20% 96%, 15% 98%, 10% 96%, 5% 98%, 0% 97%)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
                   }}
                 >
                   {/* Placeholder for photo - replace with actual image */}
                   <div className="w-full h-full flex items-center justify-center text-white/30 text-6xl">
                     <i className="fas fa-user"></i>
                   </div>
-                  
+
                   {/* Tape effect on top */}
                   <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-8 bg-yellow-100/40 dark:bg-yellow-200/20 rotate-2 blur-[0.5px]"></div>
                 </div>
-                
+
                 {/* Shadow underneath torn edge */}
                 <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-black/20 to-transparent blur-sm"></div>
               </div>
@@ -81,8 +82,8 @@ export default function AboutMe() {
               className="flex-1 text-coffee-800 dark:text-gray-300 text-lg leading-relaxed space-y-4"
             >
               <p>
-                So, I don't have much to write here. But I guess welcome to my site.
-                I'll fix this section one day, hopefully.
+                So, I don't have much to write here. But I guess welcome to my site. I'll fix this
+                section one day, hopefully.
               </p>
             </motion.div>
           </div>
@@ -103,8 +104,9 @@ export default function AboutMe() {
               {
                 title: "Personal Projects",
                 period: "2019 - Present",
-                description: "Developed multiple applications using python, this web stack, etc. Experimenting with different technologies and frameworks."
-              }
+                description:
+                  "Developed multiple applications using python, this web stack, etc. Experimenting with different technologies and frameworks.",
+              },
             ].map((exp, i) => (
               <motion.div
                 key={i}
@@ -121,9 +123,7 @@ export default function AboutMe() {
                     {exp.period}
                   </span>
                 </div>
-                <p className="text-coffee-700 dark:text-gray-300">
-                  {exp.description}
-                </p>
+                <p className="text-coffee-700 dark:text-gray-300">{exp.description}</p>
               </motion.div>
             ))}
           </div>
@@ -145,14 +145,16 @@ export default function AboutMe() {
                 institution: "National Institute Of Technology, Delhi",
                 degree: "B.Eng. — Computer Science & Engineering",
                 period: "2025 - Present",
-                description: "Pursuing my engineering course from this institution. Let's see what this journey entails."
+                description:
+                  "Pursuing my engineering course from this institution. Let's see what this journey entails.",
               },
               {
                 institution: "Self-taught Developer",
                 degree: "Web Development & Programming",
                 period: "2019 - Present",
-                description: "Self-learnt through online courses, documentation, and hands-on approach. Trying and learning strange languages."
-              }
+                description:
+                  "Self-learnt through online courses, documentation, and hands-on approach. Trying and learning strange languages.",
+              },
             ].map((edu, i) => (
               <motion.div
                 key={i}
@@ -166,17 +168,13 @@ export default function AboutMe() {
                     <h3 className="text-xl font-semibold text-coffee-900 dark:text-white">
                       {edu.institution}
                     </h3>
-                    <p className="text-coffee-600 dark:text-coffee-400 mt-1">
-                      {edu.degree}
-                    </p>
+                    <p className="text-coffee-600 dark:text-coffee-400 mt-1">{edu.degree}</p>
                   </div>
                   <span className="text-coffee-600 dark:text-coffee-400 font-medium mt-2 md:mt-0">
                     {edu.period}
                   </span>
                 </div>
-                <p className="text-coffee-700 dark:text-gray-300">
-                  {edu.description}
-                </p>
+                <p className="text-coffee-700 dark:text-gray-300">{edu.description}</p>
               </motion.div>
             ))}
           </div>
@@ -189,11 +187,9 @@ export default function AboutMe() {
           transition={{ delay: 1 }}
           className="bg-gradient-to-br from-coffee-600 to-coffee-800 dark:from-coffee-800 dark:to-coffee-950 rounded-xl p-8 md:p-12 text-center"
         >
-          <h2 className="text-3xl font-heading font-bold text-white mb-4">
-            Let's Connect
-          </h2>
+          <h2 className="text-3xl font-heading font-bold text-white mb-4">Let's Connect</h2>
           <p className="text-coffee-100 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
-            I'm always open to discussing new opportunities, collaborations, or just having a 
+            I'm always open to discussing new opportunities, collaborations, or just having a
             conversation about technology and development.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

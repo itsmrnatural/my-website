@@ -157,25 +157,25 @@ const Home = () => {
                   name: "Python",
                   icon: "https://cdn.simpleicons.org/python/white",
                   link: "https://www.python.org/",
-                  color: "from-coffee-600/90 to-coffee-700/90"
+                  color: "from-coffee-600/90 to-coffee-700/90",
                 },
                 {
                   name: "JavaScript",
                   icon: "https://cdn.simpleicons.org/javascript/black",
                   link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-                  color: "from-amber-500/90 to-amber-600/90"
+                  color: "from-amber-500/90 to-amber-600/90",
                 },
                 {
                   name: "HTML5",
                   icon: "https://cdn.simpleicons.org/html5/white",
                   link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-                  color: "from-orange-600/90 to-orange-700/90"
+                  color: "from-orange-600/90 to-orange-700/90",
                 },
                 {
                   name: "CSS3",
                   icon: "https://cdn.simpleicons.org/css/white",
                   link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-                  color: "from-amber-700/90 to-amber-800/90"
+                  color: "from-amber-700/90 to-amber-800/90",
                 },
               ].map((tech, index) => (
                 <motion.div
@@ -183,10 +183,10 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.05, duration: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Tippy content={tech.name} placement="top" animation="scale-subtle">
@@ -196,10 +196,14 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
                       style={{
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
                       }}
                     >
-                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
+                      />
                     </a>
                   </Tippy>
                 </motion.div>
@@ -217,13 +221,13 @@ const Home = () => {
                   name: "C",
                   icon: "https://cdn.simpleicons.org/c/white",
                   link: "https://en.cppreference.com/w/c/language",
-                  color: "from-stone-600/90 to-stone-700/90"
+                  color: "from-stone-600/90 to-stone-700/90",
                 },
                 {
                   name: "Haskell",
                   icon: "https://cdn.simpleicons.org/haskell/white",
                   link: "https://www.haskell.org/",
-                  color: "from-amber-600/90 to-amber-700/90"
+                  color: "from-amber-600/90 to-amber-700/90",
                 },
               ].map((tech, index) => (
                 <motion.div
@@ -231,10 +235,10 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.0 + index * 0.05, duration: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Tippy content={tech.name} placement="top" animation="scale-subtle">
@@ -244,10 +248,14 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
                       style={{
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
                       }}
                     >
-                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
+                      />
                       <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
                     </a>
                   </Tippy>
@@ -266,25 +274,25 @@ const Home = () => {
                   name: "Git",
                   icon: "https://cdn.simpleicons.org/git/white",
                   link: "https://git-scm.com/",
-                  color: "from-orange-600/90 to-orange-700/90"
+                  color: "from-orange-600/90 to-orange-700/90",
                 },
                 {
                   name: "GitHub",
                   icon: "https://cdn.simpleicons.org/github/white",
                   link: "https://github.com/",
-                  color: "from-stone-700/90 to-stone-800/90"
+                  color: "from-stone-700/90 to-stone-800/90",
                 },
                 {
                   name: "VS Code",
                   icon: "https://cdn.simpleicons.org/visualstudio/white",
                   link: "https://code.visualstudio.com/",
-                  color: "from-coffee-500/90 to-coffee-600/90"
+                  color: "from-coffee-500/90 to-coffee-600/90",
                 },
                 {
                   name: "Helix",
                   icon: "https://cdn.simpleicons.org/helix/white",
                   link: "https://helix-editor.com/",
-                  color: "from-amber-800/90 to-amber-900/90"
+                  color: "from-amber-800/90 to-amber-900/90",
                 },
               ].map((tech, index) => (
                 <motion.div
@@ -292,10 +300,10 @@ const Home = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 + index * 0.05, duration: 0.3 }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Tippy content={tech.name} placement="top" animation="scale-subtle">
@@ -305,10 +313,14 @@ const Home = () => {
                       rel="noopener noreferrer"
                       className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
                       style={{
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
                       }}
                     >
-                      <img src={tech.icon} alt={tech.name} className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
+                      />
                     </a>
                   </Tippy>
                 </motion.div>

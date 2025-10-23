@@ -10,11 +10,7 @@ const withMDX = mdx({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkGfm, remarkFootnotes],
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeAutolinkHeadings,
-      rehypeHighlight,
-    ],
+    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeHighlight],
   },
 });
 
