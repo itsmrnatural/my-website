@@ -12,8 +12,8 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Karla", "ui-sans-serif", "system-ui"],
-      heading: ["Inter", "ui-sans-serif", "system-ui"],
-      subheading: ["Lora", "ui-serif", "serif"],
+      heading: ["Karla", "ui-sans-serif", "system-ui"],
+      subheading: ["Karla", "ui-serif", "serif"],
       mono: ["JetBrains Mono", "ui-monospace", "monospace"],
     },
     extend: {
