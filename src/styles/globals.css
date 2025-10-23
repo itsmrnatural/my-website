@@ -192,7 +192,10 @@ html.dark ::-webkit-scrollbar-thumb:active {
   font-size: 9rem;
   font-weight: bold;
   position: relative;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffff00;
+  text-shadow:
+    0 0 10px #ff00ff,
+    0 0 20px #00ffff,
+    0 0 30px #ffff00;
 }
 
 .glitch:before,
@@ -205,14 +208,18 @@ html.dark ::-webkit-scrollbar-thumb:active {
 
 .glitch:before {
   top: 2px;
-  text-shadow: 0 2px 2px #ff00ff, 0 4px 4px #00ffff;
+  text-shadow:
+    0 2px 2px #ff00ff,
+    0 4px 4px #00ffff;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
   animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch:after {
   top: -2px;
-  text-shadow: 0 -2px 2px #ffff00, 0 -4px 4px #ff00ff;
+  text-shadow:
+    0 -2px 2px #ffff00,
+    0 -4px 4px #ff00ff;
   clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
   animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
@@ -297,7 +304,11 @@ body {
   cursor: auto;
 }
 
-a, button, input, textarea, select {
+a,
+button,
+input,
+textarea,
+select {
   cursor: none !important;
 }
 
@@ -317,7 +328,8 @@ a, button, input, textarea, select {
 
 /* Liquid morphing animation */
 @keyframes morph {
-  0%, 100% {
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
   25% {
@@ -333,7 +345,8 @@ a, button, input, textarea, select {
 
 /* Subtle floating animation */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -362,10 +375,12 @@ a, button, input, textarea, select {
   }
   50% {
     opacity: 0.9;
-    transform: translate(calc(-50% + var(--end-x) * 0.6), calc(-50% + var(--end-y) * 0.6)) scale(1.1) rotate(180deg);
+    transform: translate(calc(-50% + var(--end-x) * 0.6), calc(-50% + var(--end-y) * 0.6))
+      scale(1.1) rotate(180deg);
   }
   100% {
-    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0.2) rotate(360deg);
+    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0.2)
+      rotate(360deg);
     opacity: 0;
   }
 }
