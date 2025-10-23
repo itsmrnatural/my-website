@@ -139,9 +139,9 @@ function MyApp({ Component, pageProps }) {
           </div>
         </div>
       </Transition>
+      <Header />
       <main className="border-b-[7px] border-t-[7px] h-full border-coffee-300 dark:border-neutral-800/50 w-full">
         <div className="min-h-screen max-w-screen-lg p-5 w-full md:w-10/12 lg:w-8/12 mx-auto transition-all duration-300">
-          <Header />
           <Component {...pageProps} />
         </div>
         <Footer />
