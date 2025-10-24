@@ -23,7 +23,7 @@ export default function ThemeToggle() {
   const handleToggle = () => {
     const wasLight = theme === "light";
     toggleTheme();
-    
+
     // Show toast when switching to dark mode
     if (wasLight) {
       setShowToast(true);
@@ -57,30 +57,28 @@ export default function ThemeToggle() {
             initial={{ opacity: 0, x: -20, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -20, scale: 0.8 }}
-            transition={{ 
+            transition={{
               type: "spring",
               stiffness: 500,
-              damping: 30
+              damping: 30,
             }}
             className="absolute left-full ml-3 top-1/2 -translate-y-1/2 z-50 px-4 py-2 bg-gradient-to-r from-coffee-700 to-coffee-800 text-white rounded-xl shadow-2xl border border-coffee-600 whitespace-nowrap"
             style={{
-              boxShadow: '0 10px 40px rgba(101, 67, 33, 0.4), 0 0 20px rgba(200, 150, 100, 0.3)'
+              boxShadow: "0 10px 40px rgba(101, 67, 33, 0.4), 0 0 20px rgba(200, 150, 100, 0.3)",
             }}
           >
             <div className="flex items-center gap-2">
               <motion.span
-                animate={{ 
+                animate={{
                   rotate: [0, -15, 15, -10, 0],
-                  y: [0, -2, 0, -1, 0]
+                  y: [0, -2, 0, -1, 0],
                 }}
                 transition={{ duration: 0.6 }}
                 className="text-xl"
               >
                 ☕
               </motion.span>
-              <span className="font-bold text-base tracking-wide">
-                Cheers!
-              </span>
+              <span className="font-bold text-base tracking-wide">Cheers!</span>
             </div>
           </motion.div>
         )}

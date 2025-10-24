@@ -55,7 +55,7 @@ const preloadPages = () => {
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  
+
   // Add smooth scroll behavior
   useSmoothScroll();
 

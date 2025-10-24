@@ -77,8 +77,8 @@ function Error({ statusCode }) {
             {is500
               ? "Oops! Looks like the server spilled its coffee."
               : is404
-              ? "Looks like this page took a coffee break and never came back."
-              : "Something unexpected happened. Please try again."}
+                ? "Looks like this page took a coffee break and never came back."
+                : "Something unexpected happened. Please try again."}
           </motion.p>
 
           {/* Action buttons */}

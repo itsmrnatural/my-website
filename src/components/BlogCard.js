@@ -51,15 +51,15 @@ export default function BlogCard(props) {
           <div className={`w-full h-full ${grad} relative overflow-hidden`}>
             {/* Large faint background emoji - tilted on the right, overflowing */}
             <div className="absolute -right-8 top-1/2 -translate-y-1/2 opacity-15 dark:opacity-8">
-              <span 
-                className="text-[10rem] md:text-[12rem] block transform rotate-12" 
+              <span
+                className="text-[10rem] md:text-[12rem] block transform rotate-12"
                 aria-hidden
-                style={{ filter: 'blur(2px)' }}
+                style={{ filter: "blur(2px)" }}
               >
                 {emoji}
               </span>
             </div>
-            
+
             {/* Small solid foreground emoji - bottom left */}
             <div className="absolute bottom-2 left-2">
               <span className="text-4xl md:text-5xl drop-shadow-lg" aria-hidden>
