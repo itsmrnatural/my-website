@@ -12,7 +12,7 @@ export default function NotFound() {
       <Head>
         <title>Mr. Natural • 404</title>
       </Head>
-      <div className="min-h-screen flex flex-col justify-center items-center bg-coffee-50 dark:bg-neutral-900 py-20 px-5">
+      <div className="min-h-screen flex flex-col justify-center items-center bg-coffee-50 dark:bg-black py-20 px-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -31,12 +31,36 @@ export default function NotFound() {
 
           {/* Coffee cup illustration */}
           <motion.div
-            initial={{ opacity: 0, rotate: -10 }}
-            animate={{ opacity: 1, rotate: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-8xl mb-6"
+            initial={{ opacity: 0, rotate: -10, y: -50 }}
+            animate={{ 
+              opacity: 1, 
+              rotate: [-10, 0, 10, 0, -5, 0, -10],
+              y: [0, -15, 0, -8, 0, 0]
+            }}
+            transition={{ 
+              delay: 0.4,
+              opacity: { duration: 0.5 },
+              rotate: { 
+                repeat: Infinity, 
+                duration: 6, 
+                ease: "easeInOut",
+                repeatType: "loop"
+              },
+              y: { 
+                repeat: Infinity, 
+                duration: 4, 
+                ease: "easeInOut",
+                repeatType: "loop"
+              }
+            }}
+            className="text-8xl mb-6 relative"
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(130, 98, 75, 0.4)) drop-shadow(0 0 40px rgba(101, 67, 33, 0.3))',
+            }}
           >
-            ☕
+            <span className="dark:drop-shadow-[0_0_30px_rgba(200,150,100,0.7)] dark:drop-shadow-[0_0_50px_rgba(150,100,50,0.5)]">
+              ☕
+            </span>
           </motion.div>
 
           {/* Error message */}
@@ -55,7 +79,7 @@ export default function NotFound() {
             transition={{ delay: 0.8 }}
             className="text-lg text-coffee-700 dark:text-gray-400 mb-8 max-w-md"
           >
-            Looks like this page took a coffee break and never came back.
+            Looks like this page took a break and never came back.
           </motion.p>
 
           {/* Back to home button */}
