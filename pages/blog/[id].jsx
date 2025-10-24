@@ -167,10 +167,11 @@ export default function BlogPost({ post, mdxSource }) {
               </h2>
               <Giscus
                 repo="itsmrnatural/my-website"
-                repoId="YOUR_REPO_ID"
+                repoId="R_kgDOJIewxA"
                 category="General"
-                categoryId="YOUR_CATEGORY_ID"
+                categoryId="DIC_kwDOJIewxM4CndAM"
                 mapping="pathname"
+                strict="0"
                 reactionsEnabled="1"
                 emitMetadata="0"
                 inputPosition="top"
