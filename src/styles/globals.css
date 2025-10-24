@@ -80,7 +80,7 @@ pre::-webkit-scrollbar-thumb:hover {
   overflow: hidden;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   background: rgba(250, 248, 245, 0.5);
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 html.dark .prose table {
@@ -106,6 +106,8 @@ html.dark .prose thead {
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 html.dark .prose th {
@@ -116,6 +118,8 @@ html.dark .prose th {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid rgba(139, 92, 46, 0.1);
   color: #4a3620;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 html.dark .prose td {
