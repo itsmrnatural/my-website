@@ -11,6 +11,8 @@ import { Fragment, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { ThemeProvider } from "../src/contexts/ThemeContext";
 import useSmoothScroll from "../src/hooks/useSmoothScroll";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const Header = dynamic(() => import("../src/components/Header"));
 const Footer = dynamic(() => import("../src/components/Footer"));
@@ -150,6 +152,8 @@ function MyApp({ Component, pageProps }) {
         </div>
         <Footer />
       </main>
+      <Analytics />
+      <SpeedInsights />
     </ThemeProvider>
   );
 }
