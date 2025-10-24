@@ -105,12 +105,20 @@ export default function BlogPost({ post, mdxSource }) {
               </Link>
             </div>
 
-            {/* Banner Image */}
-            <img
-              alt={post.title}
-              src={post.image}
-              className="w-full h-64 object-cover rounded-lg mb-8 border border-coffee-300 dark:border-white/10"
-            />
+            {/* Banner Image or Emoji Gradient */}
+            {post.image ? (
+              <img
+                alt={post.title}
+                src={post.image}
+                className="w-full h-64 object-cover rounded-lg mb-8 border border-coffee-300 dark:border-white/10"
+              />
+            ) : (
+              <div className="w-full h-64 rounded-lg mb-8 border border-coffee-300 dark:border-white/10 bg-gradient-to-br from-coffee-200 via-coffee-300 to-coffee-400 dark:from-coffee-800 dark:via-coffee-700 dark:to-coffee-600 flex items-center justify-center">
+                <span className="text-8xl filter drop-shadow-lg">
+                  {post.emoji || "✍️"}
+                </span>
+              </div>
+            )}
 
             {/* Blog Post Header */}
             <article>
@@ -256,6 +264,7 @@ export async function getStaticProps({ params }) {
         date: post.date,
         author: post.author,
         image: post.image,
+        emoji: post.emoji,
         preview: post.preview,
         tags: post.tags,
         readingTime: post.readingTime,
