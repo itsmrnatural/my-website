@@ -43,11 +43,17 @@ export default function BlogPost({ post, mdxSource }) {
     const articleElement = document.querySelector("article");
     if (articleElement) {
       const headingElements = articleElement.querySelectorAll("h2, h3, h4, h5");
-      const headingData = Array.from(headingElements).map((heading) => ({
-        id: heading.id,
-        text: heading.textContent,
-        level: parseInt(heading.tagName.charAt(1)),
-      }));
+      const headingData = Array.from(headingElements).map((heading) => {
+        // Clone the heading to manipulate it
+        const clone = heading.cloneNode(true);
+        // Remove footnote references (sup elements)
+        clone.querySelectorAll('sup').forEach(sup => sup.remove());
+        return {
+          id: heading.id,
+          text: clone.textContent,
+          level: parseInt(heading.tagName.charAt(1)),
+        };
+      });
       setHeadings(headingData);
 
       // Intersection Observer for active heading
@@ -114,9 +120,7 @@ export default function BlogPost({ post, mdxSource }) {
               />
             ) : (
               <div className="w-full h-64 rounded-lg mb-8 border border-coffee-300 dark:border-white/10 bg-gradient-to-br from-coffee-200 via-coffee-300 to-coffee-400 dark:from-coffee-800 dark:via-coffee-700 dark:to-coffee-600 flex items-center justify-center">
-                <span className="text-8xl filter drop-shadow-lg">
-                  {post.emoji || "✍️"}
-                </span>
+                <span className="text-8xl filter drop-shadow-lg">{post.emoji || "✍️"}</span>
               </div>
             )}
 
@@ -188,12 +192,17 @@ export default function BlogPost({ post, mdxSource }) {
                   <ul className="space-y-1">
                     {headings.map((heading) => {
                       // Calculate indentation based on heading level
-                      const indentClass = 
-                        heading.level === 2 ? "" : 
-                        heading.level === 3 ? "ml-3" : 
-                        heading.level === 4 ? "ml-6" : 
-                        heading.level === 5 ? "ml-9" : "";
-                      
+                      const indentClass =
+                        heading.level === 2
+                          ? ""
+                          : heading.level === 3
+                          ? "ml-3"
+                          : heading.level === 4
+                          ? "ml-6"
+                          : heading.level === 5
+                          ? "ml-9"
+                          : "";
+
                       return (
                         <li key={heading.id} className={indentClass}>
                           <a
@@ -209,11 +218,12 @@ export default function BlogPost({ post, mdxSource }) {
                               if (element) {
                                 const headerOffset = 100; // Account for sticky header
                                 const elementPosition = element.getBoundingClientRect().top;
-                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                                
+                                const offsetPosition =
+                                  elementPosition + window.pageYOffset - headerOffset;
+
                                 window.scrollTo({
                                   top: offsetPosition,
-                                  behavior: "smooth"
+                                  behavior: "smooth",
                                 });
                               }
                             }}

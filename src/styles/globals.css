@@ -7,15 +7,225 @@
 
 /* Custom code block styling for transparent and relaxing appearance */
 pre code.hljs {
-  background: rgba(40, 44, 52, 0.85) !important;
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
-  padding: 1.5rem !important;
+  background: transparent !important;
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 0.813rem !important;
+  line-height: 1.25rem !important;
 }
 
 html.dark pre code.hljs {
-  background: rgba(20, 22, 26, 0.7) !important;
-  backdrop-filter: blur(10px);
+  background: transparent !important;
+}
+
+/* Ensure all code elements use JetBrains Mono */
+pre,
+code,
+pre *,
+code * {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+/* Fix comments in code blocks to use monospace font */
+.hljs-comment,
+.hljs-quote,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  font-family: "JetBrains Mono", monospace !important;
+  font-style: italic;
+}
+
+/* Ensure inline code also uses JetBrains Mono */
+:not(pre) > code {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+/* Ensure code blocks have consistent line height */
+pre code.hljs * {
+  line-height: 1.25rem !important;
+}
+
+/* Improve code block scroll behavior */
+pre {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 46, 0.5) rgba(40, 44, 52, 0.3);
+}
+
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: rgba(40, 44, 52, 0.3);
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 46, 0.5);
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 46, 0.7);
+}
+
+/* Beautiful table styling for blog posts */
+.prose table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background: rgba(250, 248, 245, 0.5);
+  table-layout: fixed;
+}
+
+html.dark .prose table {
+  background: rgba(20, 20, 20, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.prose thead {
+  background: linear-gradient(to bottom, rgba(139, 92, 46, 0.15), rgba(139, 92, 46, 0.08));
+  border-bottom: 2px solid rgba(139, 92, 46, 0.3);
+}
+
+html.dark .prose thead {
+  background: linear-gradient(to bottom, rgba(160, 115, 70, 0.2), rgba(160, 115, 70, 0.1));
+  border-bottom: 2px solid rgba(160, 115, 70, 0.3);
+}
+
+.prose th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #654321;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+html.dark .prose th {
+  color: #e2c4a5;
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(139, 92, 46, 0.1);
+  color: #4a3620;
+}
+
+html.dark .prose td {
+  border-bottom: 1px solid rgba(160, 115, 70, 0.15);
+  color: #d4c4a8;
+}
+
+.prose tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.prose tbody tr:hover {
+  background: rgba(139, 92, 46, 0.08);
+}
+
+html.dark .prose tbody tr:hover {
+  background: rgba(160, 115, 70, 0.12);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Right align numeric columns */
+.prose td:nth-child(3),
+.prose td:nth-child(4),
+.prose th:nth-child(3),
+.prose th:nth-child(4) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Alternate row background for better readability */
+.prose tbody tr:nth-child(odd) {
+  background: rgba(139, 92, 46, 0.03);
+}
+
+html.dark .prose tbody tr:nth-child(odd) {
+  background: rgba(160, 115, 70, 0.05);
+}
+
+/* Make table responsive */
+.prose-compact table {
+  display: table;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.prose-compact table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.prose-compact table::-webkit-scrollbar-track {
+  background: rgba(139, 92, 46, 0.1);
+  border-radius: 4px;
+}
+
+.prose-compact table::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 46, 0.3);
+  border-radius: 4px;
+}
+
+.prose-compact table::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 46, 0.5);
+}
+
+/* Beautiful horizontal rule styling */
+.prose hr {
+  border: none;
+  height: 3px;
+  margin: 3rem auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(139, 92, 46, 0.15) 15%,
+    rgba(139, 92, 46, 0.5) 50%,
+    rgba(139, 92, 46, 0.15) 85%,
+    transparent
+  );
+  border-radius: 2px;
+  position: relative;
+  overflow: visible;
+}
+
+html.dark .prose hr {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(160, 115, 70, 0.2) 15%,
+    rgba(160, 115, 70, 0.6) 50%,
+    rgba(160, 115, 70, 0.2) 85%,
+    transparent
+  );
+}
+
+.prose hr::before {
+  content: "☕";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-primary);
+  padding: 0 0.75rem;
+  font-size: 1.25rem;
+  opacity: 0.7;
+}
+
+html.dark .prose hr::before {
+  background: var(--bg-primary);
 }
 
 /* Compact prose styling for blog posts */
@@ -57,6 +267,49 @@ html.dark pre code.hljs {
 
 html {
   scroll-behavior: smooth;
+}
+
+:root {
+  --code-line-number-color: rgba(139, 92, 46, 0.55);
+  --code-line-number-border: rgba(139, 92, 46, 0.25);
+}
+
+html.dark {
+  --code-line-number-color: rgba(226, 196, 165, 0.65);
+  --code-line-number-border: rgba(226, 196, 165, 0.25);
+}
+
+.code-block pre {
+  background: transparent !important;
+}
+
+.code-block code {
+  display: block;
+}
+
+.code-block .code-line {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.code-block .line-number {
+  width: 2.25rem;
+  text-align: right;
+  padding-right: 0.625rem;
+  color: var(--code-line-number-color);
+  font-size: 0.688rem;
+  user-select: none;
+  border-right: 1px solid var(--code-line-number-border);
+  margin-right: 0.625rem;
+  opacity: 0.8;
+}
+
+.code-block .line-content {
+  flex: 1;
+  display: block;
+  min-height: 1.25rem;
+  white-space: pre;
 }
 
 /* Add scroll offset for anchor links to account for sticky header */
@@ -159,14 +412,15 @@ html.dark ::-webkit-scrollbar-thumb:active {
   :root {
     scroll-behavior: smooth;
   }
-  
+
   * {
     scroll-behavior: smooth;
   }
 }
 
 /* Improve scroll performance and momentum */
-body, html {
+body,
+html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
