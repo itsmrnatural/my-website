@@ -405,9 +405,9 @@ For a perfectly sorted array results differ hugely:
 |       | Lomuto-inplace |     1.007733 | 200,009,999 | ~2.9× faster                      |
 |       | Hoare-inplace  |     0.162970 |           0 | ~18× faster                       |
 
-That's a serious improvement for the Hoare Partition case. 
+That's a serious improvement for the Hoare Partition case, but not for Lomuto...
 
-That's because a pre-sorted array is the worst case, O(n<sup>2</sup>), also called a *pathologically* input (yep, that's not something medical here) for quicksort.
+That's because a pre-sorted array is its worst case, O(n<sup>2</sup>), also called a *pathological* input (yep, that's not something medical here) for quicksort.
 
 Mergesort might be better at this than quicksort.
 

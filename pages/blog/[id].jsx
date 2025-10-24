@@ -184,7 +184,7 @@ export default function BlogPost({ post, mdxSource }) {
           {/* Table of Contents Sidebar */}
           {headings.length > 0 && (
             <aside className="hidden xl:block w-64 flex-shrink-0">
-              <div className="sticky top-20">
+              <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
                 <nav className="bg-coffee-100 dark:bg-white/5 rounded-lg p-4 border border-coffee-300 dark:border-white/10 shadow-sm">
                   <h3 className="text-sm font-subheading font-semibold text-coffee-900 dark:text-white mb-3 pb-2 border-b border-coffee-300 dark:border-white/10">
                     On This Page
@@ -207,7 +207,7 @@ export default function BlogPost({ post, mdxSource }) {
                         <li key={heading.id} className={indentClass}>
                           <a
                             href={`#${heading.id}`}
-                            className={`text-xs block py-1.5 px-2 rounded transition-all ${
+                            className={`text-xs block py-1.5 px-2 rounded transition-all break-words ${
                               activeId === heading.id
                                 ? "bg-coffee-200 dark:bg-white/10 text-coffee-900 dark:text-white font-medium"
                                 : "text-coffee-600 dark:text-gray-400 hover:text-coffee-800 dark:hover:text-gray-200 hover:bg-coffee-50 dark:hover:bg-white/5"
