@@ -59,6 +59,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Smooth scroll momentum for better UX */
+body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Add smooth deceleration for all scrollable elements */
+* {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Light theme (coffee palette) - default */
 html:not(.dark) {
   background: #faf8f5;
@@ -135,6 +147,24 @@ html.dark ::-webkit-scrollbar-thumb:active {
 
 * {
   font-family: "Karla", sans-serif;
+}
+
+/* Smooth scroll performance optimization */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+  
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Improve scroll performance and momentum */
+body, html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Add CSS for the gradient heading that was previously inline */

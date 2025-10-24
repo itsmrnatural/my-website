@@ -10,6 +10,7 @@ import Router, { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { ThemeProvider } from "../src/contexts/ThemeContext";
+import useSmoothScroll from "../src/hooks/useSmoothScroll";
 
 const Header = dynamic(() => import("../src/components/Header"));
 const Footer = dynamic(() => import("../src/components/Footer"));
@@ -52,6 +53,9 @@ const preloadPages = () => {
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  
+  // Add smooth scroll behavior
+  useSmoothScroll();
 
   useEffect(() => {
     // Intial page load
