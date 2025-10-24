@@ -42,7 +42,7 @@ export default function BlogPost({ post, mdxSource }) {
   useEffect(() => {
     const articleElement = document.querySelector("article");
     if (articleElement) {
-      const headingElements = articleElement.querySelectorAll("h2, h3");
+      const headingElements = articleElement.querySelectorAll("h2, h3, h4, h5");
       const headingData = Array.from(headingElements).map((heading) => ({
         id: heading.id,
         text: heading.textContent,
@@ -186,27 +186,43 @@ export default function BlogPost({ post, mdxSource }) {
                     On This Page
                   </h3>
                   <ul className="space-y-1">
-                    {headings.map((heading) => (
-                      <li key={heading.id} className={heading.level === 3 ? "ml-3" : ""}>
-                        <a
-                          href={`#${heading.id}`}
-                          className={`text-xs block py-1.5 px-2 rounded transition-all ${
-                            activeId === heading.id
-                              ? "bg-coffee-200 dark:bg-white/10 text-coffee-900 dark:text-white font-medium"
-                              : "text-coffee-600 dark:text-gray-400 hover:text-coffee-800 dark:hover:text-gray-200 hover:bg-coffee-50 dark:hover:bg-white/5"
-                          }`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            document.getElementById(heading.id)?.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }}
-                        >
-                          {heading.text}
-                        </a>
-                      </li>
-                    ))}
+                    {headings.map((heading) => {
+                      // Calculate indentation based on heading level
+                      const indentClass = 
+                        heading.level === 2 ? "" : 
+                        heading.level === 3 ? "ml-3" : 
+                        heading.level === 4 ? "ml-6" : 
+                        heading.level === 5 ? "ml-9" : "";
+                      
+                      return (
+                        <li key={heading.id} className={indentClass}>
+                          <a
+                            href={`#${heading.id}`}
+                            className={`text-xs block py-1.5 px-2 rounded transition-all ${
+                              activeId === heading.id
+                                ? "bg-coffee-200 dark:bg-white/10 text-coffee-900 dark:text-white font-medium"
+                                : "text-coffee-600 dark:text-gray-400 hover:text-coffee-800 dark:hover:text-gray-200 hover:bg-coffee-50 dark:hover:bg-white/5"
+                            }`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const element = document.getElementById(heading.id);
+                              if (element) {
+                                const headerOffset = 100; // Account for sticky header
+                                const elementPosition = element.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                
+                                window.scrollTo({
+                                  top: offsetPosition,
+                                  behavior: "smooth"
+                                });
+                              }
+                            }}
+                          >
+                            {heading.text}
+                          </a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </nav>
               </div>
