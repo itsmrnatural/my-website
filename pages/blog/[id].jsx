@@ -47,7 +47,7 @@ export default function BlogPost({ post, mdxSource }) {
         // Clone the heading to manipulate it
         const clone = heading.cloneNode(true);
         // Remove footnote references (sup elements)
-        clone.querySelectorAll('sup').forEach(sup => sup.remove());
+        clone.querySelectorAll("sup").forEach((sup) => sup.remove());
         return {
           id: heading.id,
           text: clone.textContent,
@@ -197,12 +197,12 @@ export default function BlogPost({ post, mdxSource }) {
                         heading.level === 2
                           ? ""
                           : heading.level === 3
-                          ? "ml-3"
-                          : heading.level === 4
-                          ? "ml-6"
-                          : heading.level === 5
-                          ? "ml-9"
-                          : "";
+                            ? "ml-3"
+                            : heading.level === 4
+                              ? "ml-6"
+                              : heading.level === 5
+                                ? "ml-9"
+                                : "";
 
                       return (
                         <li key={heading.id} className={indentClass}>
