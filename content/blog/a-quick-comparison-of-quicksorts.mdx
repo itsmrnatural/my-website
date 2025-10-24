@@ -15,7 +15,7 @@ Let's get to how it works right away!!
 
 ## The Heart of The Algorithm
 
-*Quicksort by heart is a comparison-based sorting algorithm*, i.e. as long as it gets a way to compare two elements for being lesser or greater, it will do the job.
+_Quicksort by heart is a comparison-based sorting algorithm_, i.e. as long as it gets a way to compare two elements for being lesser or greater, it will do the job.
 
 As for the algorithm, let's go over it by example.
 
@@ -41,11 +41,11 @@ Now, we have two additional arrays, lesser and greater all filled up with the ap
 
 `greater: [9, 8]`
 
-Next we repeat the exact previous steps on these two divided arrays separately. 
+Next we repeat the exact previous steps on these two divided arrays separately.
 
 This is known as the divide-and-conquer approach to problem solving, where we divide the problem to smaller parts and solve them accordingly.
 
-I hear you say, *"But now we have two arrays to sort, and we don't have the either of them sorted!"*, I get you. You'll understand this in a sec. Continuing...
+I hear you say, _"But now we have two arrays to sort, and we don't have the either of them sorted!"_, I get you. You'll understand this in a sec. Continuing...
 
 That is choose a pivot `3` and `9` respectively, removing them from the parent list, creating sub-arrays and adding the elements to them appropriately.
 
@@ -54,7 +54,7 @@ Which will give us...
 ```c
 // For the lesser parent array i.e. all <= 7.
 // pivot = 3
-lesser = [2] 
+lesser = [2]
 greater = [6, 4]
 
 // and for the greater parent array i.e. all > 7.
@@ -73,7 +73,7 @@ For continuation we perform the same steps on the array `[6, 4]`, and reach to a
 
 Now let's come back to these fragments of sorted array we have.
 
-You might say, *"This is stupid. Now we have made a mess of array and the solution is no where in sight."*. Well, fair honestly.
+You might say, _"This is stupid. Now we have made a mess of array and the solution is no where in sight."_. Well, fair honestly.
 
 The next step is to take the pivot for each case. Let's say `6` from the last case and start joining them upwards.
 
@@ -159,7 +159,7 @@ int* quicksort(int* arr, int size) {
 }
 ```
 
-"Horrifying", yes I know, I swear this gets better. This code does the same thing we went over right now. 
+"Horrifying", yes I know, I swear this gets better. This code does the same thing we went over right now.
 
 So, it sorts the array faster than sorts like bubble (xD), insertion and selection\* sort. What's catch then?
 
@@ -175,13 +175,13 @@ It has the same algorithm heart of quicksort, but a different beat.
 
 We have pointers now, scary I know. Little babies can leave now.
 
-Two pointers, one before the beginning of the list ***partition***, `i = low - 1`, (here low = 0) and another at the first place of it `j = low`.
+Two pointers, one before the beginning of the list **_partition_**, `i = low - 1`, (here low = 0) and another at the first place of it `j = low`.
 
 You'll understand this in a minute.
 
 Now choose a pivot. The standard is the last element `pivot = arr[high]`, where high is the size of the array, `high = no. of elements - 1`.
 
-Let's take the previous example and go over it again. 
+Let's take the previous example and go over it again.
 First start traversing the array like this.
 
 Compare what is at `arr[j]` with the pivot, if greater move `j` one place forward, but if its less than or equals to pivot, move `i` one place forward, swap those two elements (i.e. pointed to by `i` and `j`). Then, move `j` forward and repeat.
@@ -194,7 +194,7 @@ Compare what is at `arr[j]` with the pivot, if greater move `j` one place forwar
 ^i ^j                ^pivot
 // Second run before swap
   [7, 3, 9, 2, 6, 8, 4]
-   ^i ^j 
+   ^i ^j
 // Second run after swap
   [3, 7, 9, 2, 6, 8, 4]
    ^i    ^j
@@ -212,7 +212,7 @@ We are at the pivot now, when we reach the pivot i.e. the last element we have t
 
 ```
   [3, 2, 4, 7, 6, 8, 9]
-         ^i+pivot    ^j 
+         ^i+pivot    ^j
 ```
 
 Works with duplicates in the array too, I might add. here we have a partially sorted array that is we have created two partition from the pivot, fulfilling the same purpose the arrays were filling in our naive approach.
@@ -220,7 +220,7 @@ Works with duplicates in the array too, I might add. here we have a partially so
 What we have to do now, is to recursively perform this same thing but on these two parts with different high and low values.
 `(1, 0)` and `(6, 3)` in this case.
 
-And soon enough you see we have a sorted array. ***This a special little ~snowflake~ array, sorted in-place that is.***
+And soon enough you see we have a sorted array. **_This a special little ~snowflake~ array, sorted in-place that is._**
 
 This is significantly faster and memory efficient than the previous method. ~4x times as fast as the naive approach, will show the benchmarks soon, but before that.
 
@@ -290,7 +290,7 @@ While the element pointed to by `i` is less than pivot and for `j` is greater th
          ^i          ^j
 
   [4, 3, 7, 2, 6, 8, 9]
-         ^i    ^j  
+         ^i    ^j
 
   [4, 3, 6, 2, 7, 8, 9]
                ^(i,j)
@@ -298,7 +298,7 @@ While the element pointed to by `i` is less than pivot and for `j` is greater th
 
 If the conditions are not satisfied that is, `i >= pivot` and `j <= pivot` we swap those two, that is because a element which should be on the right of the pivot was found by `i` on the left we swapped it with a converse but similar element `j` found.
 
-We terminate this process when `i >= j` that is `i` crosses `j`. By that point all elements less than pivot are on the left and more than pivot are on the right. 
+We terminate this process when `i >= j` that is `i` crosses `j`. By that point all elements less than pivot are on the left and more than pivot are on the right.
 
 Then we follow the same procedure like dividing the list like partition and passing the high and low values, accordingly. Just this time also including the pivot in the two parts to be sorted, well in one of them obviously.
 
@@ -306,23 +306,17 @@ Yes yes calm your horse down, I will give the reasoning here. That is over all o
 
 **Let's go over the differences**
 
-Lomuto Partition
-    - takes more swaps
-    - is slower comparitively
-    - the pivot ends up in correct position
-    and need not to be included in the recursive sort
-    after the divide
+Lomuto Partition - takes more swaps - is slower comparitively - the pivot ends up in correct position
+and need not to be included in the recursive sort
+after the divide
 
-Hoare Partition
-    - takes \~3x less swaps
-    - is faster
-    - the pivot is not at the correct position
-    and need to be included in the recursive
-    part afterwards
+Hoare Partition - takes \~3x less swaps - is faster - the pivot is not at the correct position
+and need to be included in the recursive
+part afterwards
 
 ### Final code?[^4]
 
-```c 
+```c
 void swap(int* a, int* b) {
     int tmp = *a;
     *a = *b;
@@ -391,7 +385,7 @@ Faster but only \~3x (thrice), and no real difference between Lomuto and Hoare? 
 
 ### Case 2: Perfectly sorted array
 
-For a perfectly sorted array results differ hugely: 
+For a perfectly sorted array results differ hugely:
 
 | **n** | **Version**    | **Time (s)** |   **Swaps** | **Relative Speed vs Non-inplace** |
 | :---- | :------------- | -----------: | ----------: | :-------------------------------- |
@@ -407,13 +401,13 @@ For a perfectly sorted array results differ hugely:
 
 That's a serious improvement for the Hoare Partition case, but not for Lomuto...
 
-That's because a pre-sorted array is its worst case, O(n<sup>2</sup>), also called a *pathological* input (yep, that's not something medical here) for quicksort.
+That's because a pre-sorted array is its worst case, O(n<sup>2</sup>), also called a _pathological_ input (yep, that's not something medical here) for quicksort.
 
 Mergesort might be better at this than quicksort.
 
 ### Case 3: Reversely sorted array
 
-Ah yes, let's conclude this before I blow my brains out, on this screen. 
+Ah yes, let's conclude this before I blow my brains out, on this screen.
 
 | **n** | **Version**    | **Time (s)** |   **Swaps** | **Relative Speed vs Non-inplace** |
 | :---- | :------------- | -----------: | ----------: | :-------------------------------- |
@@ -433,17 +427,20 @@ This is significantly faster for both partition approaches, \~5.5x for Lomuto an
 
 We went over three approaches to quicksort, each better than the last. "Is it the best way to Implement quicksort?", I hear you say, dear reader, to that I reply.
 
-"No, ofc not. Cause someone just had to find a better way." *\*God dammit*\*
+"No, ofc not. Cause someone just had to find a better way." _\*God dammit_\*
 
-Well, that's a talk for another eye hurting session, where I take another of your 15 minutes and my whole day. 
+Well, that's a talk for another eye hurting session, where I take another of your 15 minutes and my whole day.
 
-*\*My eyes are burning... ahhhh*\*
+_\*My eyes are burning... ahhhh_\*
 
 **Cheers, Dhananjay crying off**
 
 ---
 
 [^1]: [“It is still a commonly used algorithm for sorting.”](https://en.wikipedia.org/wiki/Quicksort)
+
 [^2]: [Naive approach to Quicksort](https://github.com/itsmrnatural/c-problems/blob/main/src/quicksort.c)
+
 [^3]: [Quicksort using Lomuto Partition](https://github.com/itsmrnatural/c-problems/blob/main/src/quicksortv2.c)
+
 [^4]: [Quicksort using Hoare Partition](https://github.com/itsmrnatural/c-problems/blob/main/src/quicksortv3.c)

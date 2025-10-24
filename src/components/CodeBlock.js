@@ -42,10 +42,11 @@ export default function CodeBlock({ children, className, ...props }) {
 
     try {
       // Try to get language, fallback to auto-detection
-      const result = language && hljs.getLanguage(language)
-        ? hljs.highlight(codeString, { language, ignoreIllegals: true })
-        : hljs.highlightAuto(codeString);
-      
+      const result =
+        language && hljs.getLanguage(language)
+          ? hljs.highlight(codeString, { language, ignoreIllegals: true })
+          : hljs.highlightAuto(codeString);
+
       return result.value.split("\n");
     } catch (error) {
       // Fallback to escaped plain text
@@ -81,7 +82,8 @@ export default function CodeBlock({ children, className, ...props }) {
   };
 
   const showCollapseButton = lineCount > 12;
-  const visibleLines = isCollapsed && showCollapseButton ? highlightedLines.slice(0, 7) : highlightedLines;
+  const visibleLines =
+    isCollapsed && showCollapseButton ? highlightedLines.slice(0, 7) : highlightedLines;
   const displayLineOffset = 0; // Start from line 1 always
 
   return (
@@ -94,7 +96,10 @@ export default function CodeBlock({ children, className, ...props }) {
             isCollapsed && showCollapseButton ? "max-h-[11.5rem] overflow-hidden" : ""
           }`}
         >
-          <pre className={`m-0 px-3 py-2.5 text-[0.813rem] leading-5 ${className || ""}`} {...props}>
+          <pre
+            className={`m-0 px-3 py-2.5 text-[0.813rem] leading-5 ${className || ""}`}
+            {...props}
+          >
             <code className="hljs">
               {visibleLines.map((line, idx) => (
                 <span className="code-line" key={displayLineOffset + idx}>
