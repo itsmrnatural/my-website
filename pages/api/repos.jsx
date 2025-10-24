@@ -24,7 +24,7 @@ const handler = async (req, res) => {
 
     if (allReposResponse.ok) {
       const allRepos = await allReposResponse.json();
-      
+
       // Mark repos where user is not the owner as contributor repos
       const reposWithContributorFlag = allRepos.map((repo) => {
         if (repo.owner.login.toLowerCase() !== GITHUB_USERNAME.toLowerCase()) {
@@ -38,8 +38,10 @@ const handler = async (req, res) => {
     }
 
     // If authenticated endpoint fails, fall back to public endpoint
-    console.warn(`Authenticated endpoint failed with ${allReposResponse.status}, falling back to public repos`);
-    
+    console.warn(
+      `Authenticated endpoint failed with ${allReposResponse.status}, falling back to public repos`
+    );
+
     const publicReposResponse = await fetch(
       `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
       {
@@ -56,7 +58,6 @@ const handler = async (req, res) => {
 
     const repositories = await publicReposResponse.json();
     res.send(repositories);
-    
   } catch (error) {
     console.error("Error fetching repositories:", error);
     res.status(500).send("Internal Server Error");

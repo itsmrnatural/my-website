@@ -32,30 +32,31 @@ export default function NotFound() {
           {/* Coffee cup illustration */}
           <motion.div
             initial={{ opacity: 0, rotate: -10, y: -50 }}
-            animate={{ 
-              opacity: 1, 
+            animate={{
+              opacity: 1,
               rotate: [-10, 0, 10, 0, -5, 0, -10],
-              y: [0, -15, 0, -8, 0, 0]
+              y: [0, -15, 0, -8, 0, 0],
             }}
-            transition={{ 
+            transition={{
               delay: 0.4,
               opacity: { duration: 0.5 },
-              rotate: { 
-                repeat: Infinity, 
-                duration: 6, 
+              rotate: {
+                repeat: Infinity,
+                duration: 6,
                 ease: "easeInOut",
-                repeatType: "loop"
+                repeatType: "loop",
               },
-              y: { 
-                repeat: Infinity, 
-                duration: 4, 
+              y: {
+                repeat: Infinity,
+                duration: 4,
                 ease: "easeInOut",
-                repeatType: "loop"
-              }
+                repeatType: "loop",
+              },
             }}
             className="text-8xl mb-6 relative"
             style={{
-              filter: 'drop-shadow(0 0 20px rgba(130, 98, 75, 0.4)) drop-shadow(0 0 40px rgba(101, 67, 33, 0.3))',
+              filter:
+                "drop-shadow(0 0 20px rgba(130, 98, 75, 0.4)) drop-shadow(0 0 40px rgba(101, 67, 33, 0.3))",
             }}
           >
             <span className="dark:drop-shadow-[0_0_30px_rgba(200,150,100,0.7)] dark:drop-shadow-[0_0_50px_rgba(150,100,50,0.5)]">

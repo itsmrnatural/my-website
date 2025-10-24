@@ -233,7 +233,11 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                           : option.value === "updated"
                           ? "clock"
                           : "calendar-plus"
-                      } mr-2 ${sortBy === option.value ? "text-coffee-800 dark:text-white" : "text-coffee-600 dark:text-neutral-400"}`}
+                      } mr-2 ${
+                        sortBy === option.value
+                          ? "text-coffee-800 dark:text-white"
+                          : "text-coffee-600 dark:text-neutral-400"
+                      }`}
                     />
                     {option.label}
                   </button>
@@ -263,7 +267,7 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                 >
                   {/* Decorative corner accent */}
                   <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-coffee-400/10 to-transparent dark:from-white/5 dark:to-transparent rounded-bl-full" />
-                  
+
                   {/* Header */}
                   <div className="relative flex items-center justify-between mb-1.5 w-full">
                     <div className="flex items-center flex-1 min-w-0 mr-2">
@@ -318,13 +322,17 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                       <Tippy content={`${repo.stargazers_count} stars`}>
                         <div className="flex items-center bg-yellow-100/60 dark:bg-yellow-500/10 px-1.5 py-0.5 rounded-md hover:bg-yellow-200/80 dark:hover:bg-yellow-500/20 transition-all cursor-default shadow-sm">
                           <i className="fas fa-star text-yellow-600 dark:text-yellow-400 mr-1 text-[10px]" />
-                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">{formatNumber(repo.stargazers_count)}</p>
+                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">
+                            {formatNumber(repo.stargazers_count)}
+                          </p>
                         </div>
                       </Tippy>
                       <Tippy content={`${repo.forks} forks`}>
                         <div className="flex items-center bg-coffee-200/60 dark:bg-white/10 px-1.5 py-0.5 rounded-md hover:bg-coffee-300/80 dark:hover:bg-white/20 transition-all cursor-default shadow-sm">
                           <i className="fas fa-code-branch text-coffee-800 dark:text-white/70 mr-1 text-[10px]" />
-                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">{formatNumber(repo.forks)}</p>
+                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">
+                            {formatNumber(repo.forks)}
+                          </p>
                         </div>
                       </Tippy>
 
@@ -332,7 +340,9 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                         <Tippy content={`${repo.watchers_count} watchers`}>
                           <div className="flex items-center bg-coffee-200/60 dark:bg-white/10 px-1.5 py-0.5 rounded-md hover:bg-coffee-300/80 dark:hover:bg-white/20 transition-all cursor-default shadow-sm">
                             <i className="fas fa-eye text-coffee-800 dark:text-white/70 mr-1 text-[10px]" />
-                            <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">{formatNumber(repo.watchers_count)}</p>
+                            <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">
+                              {formatNumber(repo.watchers_count)}
+                            </p>
                           </div>
                         </Tippy>
                       )}
