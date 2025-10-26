@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import highlight.js theme - using Atom One Dark for better readability */
-@import "highlight.js/styles/atom-one-dark.css";
+/* Import highlight.js theme - using GitHub Dark for better readability */
+@import "highlight.js/styles/github-dark.css";
 
 /* Custom code block styling for transparent and relaxing appearance */
 pre code.hljs {
@@ -230,6 +230,121 @@ html.dark .prose hr {
 
 html.dark .prose hr::before {
   background: var(--bg-primary);
+}
+
+/* Stylish heading anchors for h1 and h2 */
+.prose h1,
+.prose h2 {
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.prose h1 a,
+.prose h2 a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.prose h1 a::before,
+.prose h2 a::before {
+  content: "#";
+  position: absolute;
+  left: -1.5rem;
+  opacity: 0.3;
+  color: rgba(139, 92, 46, 0.35);
+  transition: opacity 0.2s ease;
+  font-weight: 400;
+}
+
+html.dark .prose h1 a::before,
+html.dark .prose h2 a::before {
+  color: rgba(160, 115, 70, 0.4);
+}
+
+.prose h1:hover a::before,
+.prose h2:hover a::before {
+  opacity: 1;
+  color: rgba(139, 92, 46, 0.6);
+}
+
+html.dark .prose h1:hover a::before,
+html.dark .prose h2:hover a::before {
+  color: rgba(160, 115, 70, 0.8);
+}
+
+/* TOC hierarchical tree lines */
+.toc-list {
+  position: relative;
+}
+
+.toc-child {
+  position: relative;
+}
+
+.toc-child::before {
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(139, 92, 46, 0.2),
+    rgba(139, 92, 46, 0.1)
+  );
+  border-radius: 1px;
+}
+
+html.dark .toc-child::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(160, 115, 70, 0.3),
+    rgba(160, 115, 70, 0.15)
+  );
+}
+
+/* Stylish strikethrough */
+.prose del,
+.prose s {
+  text-decoration: none;
+  position: relative;
+  color: rgba(74, 54, 32, 0.6);
+}
+
+html.dark .prose del,
+html.dark .prose s {
+  color: rgba(212, 196, 168, 0.6);
+}
+
+.prose del::after,
+.prose s::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(139, 92, 46, 0.7) 10%,
+    rgba(139, 92, 46, 0.7) 90%,
+    transparent
+  );
+  transform: translateY(-50%) rotate(-2deg);
+}
+
+html.dark .prose del::after,
+html.dark .prose s::after {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(160, 115, 70, 0.8) 10%,
+    rgba(160, 115, 70, 0.8) 90%,
+    transparent
+  );
 }
 
 /* Compact prose styling for blog posts */

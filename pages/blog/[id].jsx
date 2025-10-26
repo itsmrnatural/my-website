@@ -175,7 +175,7 @@ export default function BlogPost({ post, mdxSource }) {
                 reactionsEnabled="1"
                 emitMetadata="0"
                 inputPosition="top"
-                theme={theme === "dark" ? "dark" : "light"}
+                theme={theme === "dark" ? "transparent_dark" : "light"}
                 lang="en"
                 loading="lazy"
               />
@@ -190,18 +190,18 @@ export default function BlogPost({ post, mdxSource }) {
                   <h3 className="text-sm font-subheading font-semibold text-coffee-900 dark:text-white mb-3 pb-2 border-b border-coffee-300 dark:border-white/10">
                     On This Page
                   </h3>
-                  <ul className="space-y-1">
+                  <ul className="space-y-1 toc-list">
                     {headings.map((heading) => {
                       // Calculate indentation based on heading level
                       const indentClass =
                         heading.level === 2
                           ? ""
                           : heading.level === 3
-                          ? "ml-3"
+                          ? "ml-3 toc-child"
                           : heading.level === 4
-                          ? "ml-6"
+                          ? "ml-6 toc-child"
                           : heading.level === 5
-                          ? "ml-9"
+                          ? "ml-9 toc-child"
                           : "";
 
                       return (

@@ -2,18 +2,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 /**
  * Social media links configuration
  */
 const socialLinks = [
-  { icon: "fab fa-twitter", link: "https://twitter.com/itsmrnatural" },
+  { icon: "fab fa-linkedin", link: "https://linkedin.com/in/imdhananjay", label: "LinkedIn" },
+  { icon: "fab fa-github", link: "https://github.com/itsmrnatural", label: "Github" },
   {
     icon: "fab fa-discord",
     link: "https://discord.com/users/624572769484668938",
+    label: "Discord",
   },
-  { icon: "fab fa-github", link: "https://github.com/itsmrnatural" },
-  { icon: "fab fa-lastfm", link: "https://last.fm/user/itsmrnatural" },
+  { icon: "fab fa-lastfm", link: "https://last.fm/user/itsmrnatural", label: "Last.fm" },
 ];
 
 /**
@@ -144,22 +147,23 @@ const Header = () => {
             }`}
           >
             {socialLinks.map(({ link, icon, label }) => (
-              <a
-                key={link}
-                href={link}
-                aria-label={label}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-500 ${
-                  collapsed ? "w-10 h-10 p-0" : "p-2.5"
-                }`}
-              >
-                <i
-                  className={`${icon} text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-all duration-500 ${
-                    collapsed ? "text-base" : "text-xl"
+              <Tippy key={link} content={label} placement="bottom">
+                <a
+                  href={link}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-500 ${
+                    collapsed ? "w-10 h-10 p-0" : "p-2.5"
                   }`}
-                />
-              </a>
+                >
+                  <i
+                    className={`${icon} text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-all duration-500 ${
+                      collapsed ? "text-base" : "text-xl"
+                    }`}
+                  />
+                </a>
+              </Tippy>
             ))}
           </div>
         </div>
