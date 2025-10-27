@@ -15,6 +15,12 @@ export default function Projects() {
   const [headerTransform, setHeaderTransform] = useState({ y: 0, opacity: 1 });
   const containerRef = useRef(null);
 
+  // Define featured repository names (customize these to your repos)
+  const featuredRepoNames = [
+    "my-website",
+    "c-problems",
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
@@ -38,7 +44,15 @@ export default function Projects() {
   const { data: _repositories, error, isValidating } = swr("/api/repos");
   const repositories = _repositories || [];
 
-  const totalPages = Math.ceil(repositories.length / PAGE_SIZE);
+  // Separate featured and regular repositories
+  const featuredRepos = repositories.filter(repo => 
+    featuredRepoNames.includes(repo.name)
+  );
+  const regularRepos = repositories.filter(repo => 
+    !featuredRepoNames.includes(repo.name)
+  );
+
+  const totalPages = Math.ceil(regularRepos.length / PAGE_SIZE);
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
 
@@ -115,13 +129,57 @@ export default function Projects() {
         {/* Repository list */}
         {repositories.length > 0 && (
           <>
-            <Repositories repositories={repositories} startIndex={startIndex} endIndex={endIndex} />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              handlePreviousPage={handlePreviousPage}
-              handleNextPage={handleNextPage}
-            />
+            {/* Featured Section */}
+            {featuredRepos.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-12"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-star text-yellow-500 dark:text-yellow-400 text-xl" />
+                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-coffee-900 dark:text-white">
+                      Featured Projects
+                    </h2>
+                  </div>
+                  <div className="flex-1 h-px bg-gradient-to-r from-coffee-300 via-coffee-200 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent" />
+                </div>
+                <Repositories 
+                  repositories={featuredRepos} 
+                  startIndex={0} 
+                  endIndex={featuredRepos.length}
+                  isFeatured={true}
+                />
+              </motion.div>
+            )}
+
+            {/* Regular Repositories Section */}
+            {regularRepos.length > 0 && (
+              <>
+                {featuredRepos.length > 0 && (
+                  <div className="flex items-center gap-3 mb-6">
+                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-coffee-900 dark:text-white">
+                      All Projects
+                    </h2>
+                    <div className="flex-1 h-px bg-gradient-to-r from-coffee-300 via-coffee-200 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent" />
+                  </div>
+                )}
+                <Repositories 
+                  repositories={regularRepos} 
+                  startIndex={startIndex} 
+                  endIndex={endIndex}
+                  isFeatured={false}
+                />
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  handlePreviousPage={handlePreviousPage}
+                  handleNextPage={handleNextPage}
+                />
+              </>
+            )}
           </>
         )}
       </div>

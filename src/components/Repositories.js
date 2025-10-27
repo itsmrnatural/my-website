@@ -72,9 +72,10 @@ const sortOptions = [
  * @param {Array} props.repositories - List of repository objects
  * @param {number} props.startIndex - Starting index for pagination
  * @param {number} props.endIndex - Ending index for pagination
+ * @param {boolean} props.isFeatured - Whether this is a featured repository section
  * @returns {JSX.Element} The repositories grid with controls
  */
-const Repositories = ({ repositories, startIndex, endIndex }) => {
+const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false }) => {
   const [sortBy, setSortBy] = useState("stars");
   const [filterLanguage, setFilterLanguage] = useState("all");
   const [showLanguageFilter, setShowLanguageFilter] = useState(false);
@@ -141,8 +142,8 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
 
   return (
     <>
-      {/* Control Panel - Sort and Filter */}
-      {repositories && repositories.length > 0 && (
+      {/* Control Panel - Sort and Filter (hidden for featured sections) */}
+      {!isFeatured && repositories && repositories.length > 0 && (
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-3 sm:space-y-0 sm:space-x-2">
           {/* Language Filter Button */}
           <div className="flex flex-col w-full sm:w-auto relative" ref={filterRef}>
@@ -249,7 +250,11 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
       )}
 
       {/* Repository Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full auto-rows-auto">
+      <div className={`grid gap-5 w-full ${
+        isFeatured 
+          ? "grid-cols-1 md:grid-cols-2" 
+          : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      }`}>
         {repositories ? (
           filteredSortedRepos.length > 0 ? (
             filteredSortedRepos.slice(startIndex, endIndex).map((repo, index) => {
@@ -263,119 +268,151 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
                   href={`https://github.com/${repo.owner.login}/${repo.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative bg-gradient-to-br from-white via-coffee-50 to-coffee-100 dark:from-white/[0.08] dark:via-white/[0.04] dark:to-white/[0.02] p-3.5 rounded-xl border-2 border-coffee-300/60 dark:border-white/10 hover:border-coffee-500 dark:hover:border-coffee-400/40 hover:shadow-2xl hover:shadow-coffee-300/20 dark:hover:shadow-white/5 dark:shadow-none hover:scale-[1.01] transition-all duration-300 flex flex-col min-h-[130px] shadow-lg backdrop-blur-sm group overflow-hidden"
+                  className={`group relative flex flex-col bg-white dark:bg-neutral-900/50 rounded-xl border-2 transition-all duration-300 hover:scale-[1.02] overflow-hidden shadow-lg hover:shadow-2xl ${
+                    isFeatured
+                      ? "border-yellow-400/70 dark:border-yellow-500/50 hover:border-yellow-500 dark:hover:border-yellow-400 hover:shadow-yellow-400/20 dark:hover:shadow-yellow-500/10"
+                      : "border-coffee-300/60 dark:border-neutral-700/60 hover:border-coffee-500 dark:hover:border-neutral-600 hover:shadow-coffee-400/20 dark:hover:shadow-neutral-800/50"
+                  }`}
                 >
-                  {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-coffee-400/10 to-transparent dark:from-white/5 dark:to-transparent rounded-bl-full" />
+                  {/* Background gradient overlay */}
+                  <div className={`absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none ${
+                    isFeatured
+                      ? "bg-gradient-to-br from-yellow-100 via-yellow-50 to-transparent dark:from-yellow-500/10 dark:via-yellow-500/5 dark:to-transparent"
+                      : "bg-gradient-to-br from-coffee-100 via-coffee-50 to-transparent dark:from-neutral-800/30 dark:via-neutral-800/10 dark:to-transparent"
+                  }`} />
 
-                  {/* Header */}
-                  <div className="relative flex items-center justify-between mb-1.5 w-full">
-                    <div className="flex items-center flex-1 min-w-0 mr-2">
+                  {/* Card content */}
+                  <div className="relative flex flex-col h-full p-4">
+                    {/* Header section */}
+                    <div className="flex items-start justify-between gap-3 mb-2.5">
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <p className="text-sm font-bold text-coffee-900 dark:text-white group-hover:text-coffee-700 dark:group-hover:text-coffee-300 truncate transition-all">
-                            {`${repo.name}`}
-                          </p>
+                        {/* Repository name */}
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-base font-bold text-coffee-900 dark:text-white group-hover:text-coffee-700 dark:group-hover:text-coffee-300 transition-colors truncate">
+                            {repo.name}
+                          </h3>
                           {repo.isContributor && (
                             <Tippy content="Contributor">
-                              <span className="flex-shrink-0 text-[10px] px-1.5 py-0.5 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-500/20 dark:to-blue-600/20 text-blue-800 dark:text-blue-300 rounded font-bold border border-blue-300 dark:border-blue-500/30">
-                                <i className="fas fa-code-branch mr-0.5 text-[8px]" />
+                              <span className="flex-shrink-0 text-[10px] px-2 py-0.5 bg-blue-100 dark:bg-blue-500/20 text-blue-800 dark:text-blue-300 rounded-full font-bold border border-blue-300 dark:border-blue-500/30">
                                 CONTRIB
                               </span>
                             </Tippy>
                           )}
                         </div>
-                        <p className="text-[10px] text-coffee-600 dark:text-gray-500 truncate font-medium mt-0.5">
+                        {/* Owner */}
+                        <p className="text-xs text-coffee-600 dark:text-neutral-400 font-medium truncate">
                           {repo.owner.login}
                         </p>
                       </div>
+
+                      {/* Badges container */}
+                      <div className="flex-shrink-0 flex flex-col items-end gap-1.5">
+                        {/* Featured badge */}
+                        {isFeatured && (
+                          <Tippy content="Featured Project">
+                            <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-yellow-500 dark:from-yellow-500 dark:to-yellow-600 px-2 py-0.5 rounded-full shadow-md">
+                              <i className="fas fa-star text-yellow-900 dark:text-yellow-50 text-[10px]" />
+                              <span className="text-[10px] font-bold text-yellow-900 dark:text-yellow-50 uppercase tracking-wide">
+                                Featured
+                              </span>
+                            </div>
+                          </Tippy>
+                        )}
+
+                        {/* Language badge */}
+                        {repo.language && (
+                          <Tippy content={`Written in ${repo.language}`}>
+                            <div className="flex items-center gap-1.5 bg-coffee-200/70 dark:bg-neutral-800/70 px-2 py-1 rounded-lg border border-coffee-300/50 dark:border-neutral-700/50 backdrop-blur-sm">
+                              <span
+                                className="h-2 w-2 rounded-full ring-2 ring-white/50 dark:ring-black/30"
+                                style={{ backgroundColor: langColor }}
+                              />
+                              <span className="text-[11px] text-coffee-900 dark:text-neutral-200 font-semibold uppercase tracking-wide">
+                                {repo.language}
+                              </span>
+                            </div>
+                          </Tippy>
+                        )}
+                      </div>
                     </div>
 
-                    {/* Language indicator */}
-                    {repo.language && (
-                      <div className="flex-shrink-0 relative">
-                        <Tippy content={`Written in ${repo.language}`}>
-                          <div className="flex items-center bg-gradient-to-r from-coffee-300/80 to-coffee-200/70 dark:from-white/15 dark:to-white/10 px-2 py-0.5 rounded-lg border border-coffee-500/40 dark:border-white/10 shadow-sm group-hover:shadow-md transition-all">
-                            <span
-                              className="h-2 w-2 rounded-full mr-1 ring-1 ring-white/60 dark:ring-black/20 shadow-sm"
-                              style={{ backgroundColor: langColor }}
-                            />
-                            <span className="text-[10px] text-coffee-900 dark:text-gray-200 font-bold hidden sm:inline uppercase tracking-wide">
-                              {repo.language}
+                    {/* Description */}
+                    <div className="flex-grow mb-3">
+                      <p className="text-sm text-coffee-700 dark:text-neutral-300 line-clamp-2 leading-relaxed">
+                        {repo.description || "No description provided"}
+                      </p>
+                    </div>
+
+                    {/* Stats footer */}
+                    <div className="flex items-center justify-between gap-3 pt-2.5 border-t-2 border-coffee-200/60 dark:border-neutral-800/60">
+                      {/* Left side - Stars and Forks */}
+                      <div className="flex items-center gap-2">
+                        <Tippy content={`${repo.stargazers_count} stars`}>
+                          <div className="flex items-center gap-1.5 bg-yellow-100/80 dark:bg-yellow-500/15 px-2 py-1 rounded-md hover:bg-yellow-200/90 dark:hover:bg-yellow-500/25 transition-colors">
+                            <i className="fas fa-star text-yellow-600 dark:text-yellow-400 text-xs" />
+                            <span className="text-xs font-bold text-coffee-900 dark:text-neutral-200">
+                              {formatNumber(repo.stargazers_count)}
                             </span>
                           </div>
                         </Tippy>
-                      </div>
-                    )}
-                  </div>
 
-                  {/* Description */}
-                  <div className="relative flex-grow overflow-hidden mb-2 bg-coffee-100/40 dark:bg-white/[0.02] rounded-lg p-2 border border-coffee-200/50 dark:border-white/5">
-                    <p className="text-xs text-coffee-800 dark:text-gray-300 line-clamp-2 leading-relaxed font-medium">
-                      {repo.description || "No description provided"}
-                    </p>
-                  </div>
-
-                  {/* Stats row */}
-                  <div className="relative mt-auto pt-2 border-t-2 border-coffee-300/60 dark:border-white/10 flex justify-between w-full items-center bg-gradient-to-r from-coffee-200/30 to-transparent dark:from-white/[0.03] dark:to-transparent -mx-3.5 px-3.5 pb-0 -mb-3.5">
-                    <div className="flex items-center gap-2 py-2">
-                      <Tippy content={`${repo.stargazers_count} stars`}>
-                        <div className="flex items-center bg-yellow-100/60 dark:bg-yellow-500/10 px-1.5 py-0.5 rounded-md hover:bg-yellow-200/80 dark:hover:bg-yellow-500/20 transition-all cursor-default shadow-sm">
-                          <i className="fas fa-star text-yellow-600 dark:text-yellow-400 mr-1 text-[10px]" />
-                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">
-                            {formatNumber(repo.stargazers_count)}
-                          </p>
-                        </div>
-                      </Tippy>
-                      <Tippy content={`${repo.forks} forks`}>
-                        <div className="flex items-center bg-coffee-200/60 dark:bg-white/10 px-1.5 py-0.5 rounded-md hover:bg-coffee-300/80 dark:hover:bg-white/20 transition-all cursor-default shadow-sm">
-                          <i className="fas fa-code-branch text-coffee-800 dark:text-white/70 mr-1 text-[10px]" />
-                          <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">
-                            {formatNumber(repo.forks)}
-                          </p>
-                        </div>
-                      </Tippy>
-
-                      {repo.watchers_count > 0 && repo.watchers_count !== repo.stargazers_count && (
-                        <Tippy content={`${repo.watchers_count} watchers`}>
-                          <div className="flex items-center bg-coffee-200/60 dark:bg-white/10 px-1.5 py-0.5 rounded-md hover:bg-coffee-300/80 dark:hover:bg-white/20 transition-all cursor-default shadow-sm">
-                            <i className="fas fa-eye text-coffee-800 dark:text-white/70 mr-1 text-[10px]" />
-                            <p className="text-coffee-900 dark:text-gray-200 font-bold text-[10px] leading-none">
-                              {formatNumber(repo.watchers_count)}
-                            </p>
+                        <Tippy content={`${repo.forks} forks`}>
+                          <div className="flex items-center gap-1.5 bg-coffee-200/80 dark:bg-neutral-800/80 px-2 py-1 rounded-md hover:bg-coffee-300/90 dark:hover:bg-neutral-700/90 transition-colors">
+                            <i className="fas fa-code-branch text-coffee-800 dark:text-neutral-300 text-xs" />
+                            <span className="text-xs font-bold text-coffee-900 dark:text-neutral-200">
+                              {formatNumber(repo.forks)}
+                            </span>
                           </div>
                         </Tippy>
-                      )}
-                    </div>
-                    <Tippy content="Last updated">
-                      <div className="flex items-center bg-coffee-200/50 dark:bg-white/5 px-2 py-0.5 rounded-md border border-coffee-300/50 dark:border-white/10 shadow-sm">
-                        <i className="far fa-clock text-coffee-700 dark:text-gray-400 mr-1 text-[9px]" />
-                        <p className="text-[10px] text-coffee-800 dark:text-gray-300 font-bold leading-none whitespace-nowrap">
-                          {new Date(repo.updated_at).toLocaleDateString("en-GB", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
-                        </p>
+
+                        {/* License badge (featured only) */}
+                        {isFeatured && repo.license && (
+                          <Tippy content={`Licensed under ${repo.license.name}`}>
+                            <div className="flex items-center gap-1.5 bg-green-100/80 dark:bg-green-500/15 px-2 py-1 rounded-md hover:bg-green-200/90 dark:hover:bg-green-500/25 transition-colors">
+                              <i className="fas fa-certificate text-green-700 dark:text-green-400 text-xs" />
+                              <span className="text-xs font-bold text-coffee-900 dark:text-neutral-200">
+                                {repo.license.spdx_id || repo.license.key.toUpperCase()}
+                              </span>
+                            </div>
+                          </Tippy>
+                        )}
                       </div>
-                    </Tippy>
+
+                      {/* Right side - Updated date */}
+                      <Tippy content={`Last updated: ${new Date(repo.updated_at).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                      })}`}>
+                        <div className="flex items-center gap-1 text-xs text-coffee-600 dark:text-neutral-400 font-medium">
+                          <i className="far fa-clock text-[10px]" />
+                          <span className="whitespace-nowrap">
+                            {new Date(repo.updated_at).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "2-digit"
+                            })}
+                          </span>
+                        </div>
+                      </Tippy>
+                    </div>
                   </div>
                 </a>
               );
             })
           ) : (
             // No repositories match filter
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col items-center justify-center py-10 px-4 bg-neutral-800/20 rounded-lg border border-neutral-700/30">
-              <i className="fas fa-filter text-4xl text-neutral-500 mb-3" />
-              <h3 className="text-lg font-medium text-neutral-300 mb-1">
+            <div className="col-span-full flex flex-col items-center justify-center py-12 px-6 bg-coffee-100/40 dark:bg-neutral-800/30 rounded-xl border-2 border-coffee-300/50 dark:border-neutral-700/50">
+              <i className="fas fa-filter text-5xl text-coffee-400 dark:text-neutral-500 mb-4" />
+              <h3 className="text-xl font-bold text-coffee-900 dark:text-neutral-200 mb-2">
                 No matching repositories
               </h3>
-              <p className="text-sm text-neutral-400 text-center">
+              <p className="text-sm text-coffee-700 dark:text-neutral-400 text-center mb-4">
                 No repositories found with the language "{filterLanguage}".
               </p>
               <button
                 onClick={() => setFilterLanguage("all")}
-                className="mt-3 px-4 py-2 bg-neutral-700/50 hover:bg-neutral-700 rounded-md text-sm transition-colors"
+                className="px-5 py-2.5 bg-coffee-500 hover:bg-coffee-600 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white rounded-lg text-sm font-medium transition-colors shadow-md hover:shadow-lg"
               >
                 Clear Filter
               </button>
@@ -386,31 +423,30 @@ const Repositories = ({ repositories, startIndex, endIndex }) => {
           Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="bg-white/10 p-4 rounded-lg border border-gray-600 animate-pulse h-[160px] flex flex-col"
+              className="bg-white dark:bg-neutral-900/50 p-4 rounded-xl border-2 border-coffee-300/40 dark:border-neutral-700/40 animate-pulse flex flex-col"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center">
-                  <div className="w-6 h-6 rounded-full overflow-hidden mr-2 bg-white/10" />
-                  <div className="bg-white/10 w-32 h-4 rounded-md" />
+              {/* Header skeleton */}
+              <div className="flex items-start justify-between gap-3 mb-2.5">
+                <div className="flex-1">
+                  <div className="bg-coffee-200 dark:bg-neutral-800 h-5 w-3/4 rounded-md mb-1" />
+                  <div className="bg-coffee-100 dark:bg-neutral-800/60 h-3 w-1/2 rounded-md" />
                 </div>
-                <div className="flex items-center">
-                  <div className="bg-white/10 h-4 w-4 rounded-full mr-1" />
-                  <div className="bg-white/10 w-16 h-3 rounded-md hidden sm:block" />
-                </div>
+                <div className="bg-coffee-200 dark:bg-neutral-800 h-7 w-20 rounded-lg" />
               </div>
-              <div className="bg-white/10 w-full h-16 rounded-md mb-auto" />
-              <div className="mt-auto pt-2 flex justify-between w-full">
-                <div className="flex items-center">
-                  <div className="flex items-center mr-3">
-                    <div className="bg-white/10 w-8 h-4 rounded-md" />
-                  </div>
-                  <div className="flex items-center">
-                    <div className="bg-white/10 w-8 h-4 rounded-md" />
-                  </div>
+
+              {/* Description skeleton */}
+              <div className="flex-grow mb-3">
+                <div className="bg-coffee-100 dark:bg-neutral-800/60 h-4 w-full rounded-md mb-1.5" />
+                <div className="bg-coffee-100 dark:bg-neutral-800/60 h-4 w-4/5 rounded-md" />
+              </div>
+
+              {/* Footer skeleton */}
+              <div className="flex items-center justify-between pt-2.5 border-t-2 border-coffee-200/40 dark:border-neutral-800/40">
+                <div className="flex items-center gap-2">
+                  <div className="bg-coffee-200 dark:bg-neutral-800 h-6 w-12 rounded-md" />
+                  <div className="bg-coffee-200 dark:bg-neutral-800 h-6 w-12 rounded-md" />
                 </div>
-                <div>
-                  <div className="bg-white/10 w-16 h-4 rounded-md" />
-                </div>
+                <div className="bg-coffee-100 dark:bg-neutral-800/60 h-4 w-20 rounded-md" />
               </div>
             </div>
           ))
