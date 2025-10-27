@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import swr from "../public/js/swr";
 import Repositories from "@components/Repositories";
@@ -12,6 +12,7 @@ import Pagination from "@components/Pagination";
 export default function Projects() {
   const PAGE_SIZE = 6;
   const [currentPage, setCurrentPage] = useState(1);
+  const [filteredCount, setFilteredCount] = useState(0);
   const [headerTransform, setHeaderTransform] = useState({ y: 0, opacity: 1 });
   const containerRef = useRef(null);
 
@@ -51,10 +52,28 @@ export default function Projects() {
   const regularRepos = repositories.filter(repo => 
     !featuredRepoNames.includes(repo.name)
   );
+  const regularRepoCount = regularRepos.length;
 
-  const totalPages = Math.ceil(regularRepos.length / PAGE_SIZE);
+  useEffect(() => {
+    setFilteredCount(regularRepoCount);
+  }, [regularRepoCount]);
+
+  const handleRepositoryFiltering = useCallback(({ count, resetPage }) => {
+    setFilteredCount(count);
+    if (resetPage) {
+      setCurrentPage(1);
+    }
+  }, []);
+
+  const totalPages = Math.max(1, Math.ceil((filteredCount || 0) / PAGE_SIZE));
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
 
   /**
    * Handles navigation to the previous page
@@ -171,13 +190,16 @@ export default function Projects() {
                   startIndex={startIndex} 
                   endIndex={endIndex}
                   isFeatured={false}
+                  onFilterChange={handleRepositoryFiltering}
                 />
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  handlePreviousPage={handlePreviousPage}
-                  handleNextPage={handleNextPage}
-                />
+                {filteredCount > PAGE_SIZE && (
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    handlePreviousPage={handlePreviousPage}
+                    handleNextPage={handleNextPage}
+                  />
+                )}
               </>
             )}
           </>

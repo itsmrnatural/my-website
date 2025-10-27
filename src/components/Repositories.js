@@ -75,14 +75,16 @@ const sortOptions = [
  * @param {boolean} props.isFeatured - Whether this is a featured repository section
  * @returns {JSX.Element} The repositories grid with controls
  */
-const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false }) => {
+const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, onFilterChange }) => {
   const [sortBy, setSortBy] = useState("stars");
   const [filterLanguage, setFilterLanguage] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [showLanguageFilter, setShowLanguageFilter] = useState(false);
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [availableLanguages, setAvailableLanguages] = useState([]);
   const filterRef = useRef(null);
   const sortRef = useRef(null);
+  const didMountRef = useRef(false);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -120,6 +122,18 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false }
           if (filterLanguage === "all") return true;
           return repo.language?.toLowerCase() === filterLanguage.toLowerCase();
         })
+        .filter((repo) => {
+          const query = searchQuery.trim().toLowerCase();
+          if (!query) return true;
+
+          const nameMatch = repo.name?.toLowerCase().includes(query);
+          const descriptionMatch = repo.description?.toLowerCase().includes(query);
+          const topicsMatch = Array.isArray(repo.topics)
+            ? repo.topics.join(" ").toLowerCase().includes(query)
+            : false;
+
+          return nameMatch || descriptionMatch || topicsMatch;
+        })
         .sort((a, b) => {
           switch (sortBy) {
             case "stars":
@@ -136,6 +150,22 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false }
         })
     : [];
 
+  const filteredLength = filteredSortedRepos.length;
+
+  // Surface filtered length and reset hints to parent for pagination syncing
+  useEffect(() => {
+    if (isFeatured || typeof onFilterChange !== "function") return;
+
+    onFilterChange({
+      count: filteredLength,
+      resetPage: didMountRef.current,
+    });
+
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+    }
+  }, [filteredLength, sortBy, filterLanguage, searchQuery, isFeatured, onFilterChange]);
+
   // Get current sort option label
   const currentSortLabel =
     sortOptions.find((option) => option.value === sortBy)?.label || "Most Stars";
@@ -144,7 +174,30 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false }
     <>
       {/* Control Panel - Sort and Filter (hidden for featured sections) */}
       {!isFeatured && repositories && repositories.length > 0 && (
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-3 sm:space-y-0 sm:space-x-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4 gap-2">
+          {/* Search Input */}
+          <div className="flex w-full sm:flex-1" style={{ maxWidth: "32rem" }}>
+            <div className="flex w-full items-center bg-white dark:bg-neutral-800 text-coffee-900 dark:text-white border-2 border-coffee-300 dark:border-neutral-700 rounded-lg px-3 py-2 transition-all duration-200 focus-within:ring-2 focus-within:ring-coffee-400/60 dark:focus-within:ring-white/40">
+              <i className="fas fa-search mr-2 text-coffee-700 dark:text-neutral-300" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Search repositories..."
+                className="w-full bg-transparent text-sm outline-none placeholder:text-coffee-400 dark:placeholder:text-neutral-500"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="ml-2 text-xs font-semibold text-coffee-700 dark:text-neutral-300 hover:text-coffee-900 dark:hover:text-white"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
+
           {/* Language Filter Button */}
           <div className="flex flex-col w-full sm:w-auto relative" ref={filterRef}>
             <button
@@ -410,12 +463,26 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false }
               <p className="text-sm text-coffee-700 dark:text-neutral-400 text-center mb-4">
                 No repositories found with the language "{filterLanguage}".
               </p>
-              <button
-                onClick={() => setFilterLanguage("all")}
-                className="px-5 py-2.5 bg-coffee-500 hover:bg-coffee-600 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white rounded-lg text-sm font-medium transition-colors shadow-md hover:shadow-lg"
-              >
-                Clear Filter
-              </button>
+              {(filterLanguage !== "all" || searchQuery) && (
+                <div className="flex flex-wrap justify-center gap-2">
+                  {filterLanguage !== "all" && (
+                    <button
+                      onClick={() => setFilterLanguage("all")}
+                      className="px-4 py-2 bg-coffee-500 hover:bg-coffee-600 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white rounded-lg text-xs font-medium transition-colors shadow-md hover:shadow-lg"
+                    >
+                      Clear Language
+                    </button>
+                  )}
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="px-4 py-2 bg-coffee-200 hover:bg-coffee-300 dark:bg-neutral-800/70 dark:hover:bg-neutral-700/70 text-coffee-900 dark:text-neutral-200 rounded-lg text-xs font-medium transition-colors"
+                    >
+                      Reset Search
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           )
         ) : (
