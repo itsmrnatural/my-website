@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /**
  * Lanyard Discord status component
@@ -10,9 +10,27 @@ export default function LanyardStatus() {
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [lastRefresh, setLastRefresh] = useState(null);
+  const [canRefresh, setCanRefresh] = useState(true);
+  const widgetRef = useRef(null);
 
+  // Load last refresh time from localStorage
   useEffect(() => {
-    // Fetch data directly from Lanyard API
+    const stored = localStorage.getItem("lanyard_last_refresh");
+    if (stored) {
+      const timestamp = parseInt(stored);
+      setLastRefresh(timestamp);
+      const elapsed = Date.now() - timestamp;
+      if (elapsed < 60000) {
+        setCanRefresh(false);
+        setTimeout(() => setCanRefresh(true), 60000 - elapsed);
+      }
+    }
+  }, []);
+
+  const fetchStatus = () => {
+    setRefreshing(true);
     fetch("https://api.lanyard.rest/v1/users/624572769484668938")
       .then((res) => res.json())
       .then((data) => {
@@ -21,12 +39,50 @@ export default function LanyardStatus() {
           setStatus(data.data);
         }
         setLoading(false);
+        setRefreshing(false);
       })
       .catch((err) => {
         console.error("Lanyard error:", err);
         setLoading(false);
+        setRefreshing(false);
       });
+  };
+
+  const handleRefresh = () => {
+    if (!canRefresh) return;
+    
+    const now = Date.now();
+    setLastRefresh(now);
+    localStorage.setItem("lanyard_last_refresh", now.toString());
+    setCanRefresh(false);
+    fetchStatus();
+    
+    setTimeout(() => setCanRefresh(true), 60000);
+  };
+
+  useEffect(() => {
+    fetchStatus();
   }, []);
+
+  // Close widget when clicking outside
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event) => {
+      if (widgetRef.current && !widgetRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add listener on next tick to avoid immediate close
+    setTimeout(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+    }, 0);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   if (loading || !status) {
     return null; // Hide while loading
@@ -40,7 +96,7 @@ export default function LanyardStatus() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50" ref={widgetRef}>
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
@@ -68,20 +124,47 @@ export default function LanyardStatus() {
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           className="absolute bottom-16 right-0 w-72 bg-white dark:bg-coffee-900 rounded-xl shadow-2xl border border-coffee-200 dark:border-coffee-700 p-4 space-y-3"
         >
-          <div className="flex items-center gap-3 pb-3 border-b border-coffee-200 dark:border-coffee-700">
-            <img
-              src={`https://cdn.discordapp.com/avatars/${status.discord_user.id}/${status.discord_user.avatar}.png?size=128`}
-              alt="Discord Avatar"
-              className="w-12 h-12 rounded-full"
-            />
-            <div>
-              <p className="font-semibold text-coffee-900 dark:text-white">
-                {status.discord_user.username}
-              </p>
-              <p className="text-sm text-coffee-600 dark:text-coffee-400 capitalize">
-                {status.discord_status}
-              </p>
+          {/* Header with Refresh Button */}
+          <div className="flex items-center justify-between pb-3 border-b border-coffee-200 dark:border-coffee-700">
+            <div className="flex items-center gap-3">
+              <img
+                src={`https://cdn.discordapp.com/avatars/${status.discord_user.id}/${status.discord_user.avatar}.png?size=128`}
+                alt="Discord Avatar"
+                className="w-12 h-12 rounded-full"
+              />
+              <div>
+                <p className="font-semibold text-coffee-900 dark:text-white">
+                  {status.discord_user.username}
+                </p>
+                <p className="text-sm text-coffee-600 dark:text-coffee-400 capitalize">
+                  {status.discord_status}
+                </p>
+              </div>
             </div>
+            <button
+              onClick={handleRefresh}
+              disabled={!canRefresh || refreshing}
+              className={`p-2 rounded-lg transition-all ${
+                canRefresh && !refreshing
+                  ? "text-coffee-600 dark:text-coffee-400 hover:bg-coffee-100 dark:hover:bg-coffee-800"
+                  : "text-coffee-300 dark:text-coffee-600 cursor-not-allowed"
+              }`}
+              title={canRefresh ? "Refresh status" : "Wait 1 minute between refreshes"}
+            >
+              <svg
+                className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </button>
           </div>
 
           {status.spotify && (
