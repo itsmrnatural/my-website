@@ -9,8 +9,10 @@ import { motion } from "framer-motion";
  * @returns {JSX.Element} The error page
  */
 function Error({ statusCode }) {
-  const is500 = statusCode === 500 || statusCode >= 500;
-  const is404 = statusCode === 404;
+  // Default to 500 if no status code
+  const actualStatusCode = statusCode || 500;
+  const is500 = actualStatusCode >= 500;
+  const is404 = actualStatusCode === 404;
 
   return (
     <>
@@ -31,7 +33,7 @@ function Error({ statusCode }) {
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
             className="text-9xl font-heading font-bold text-coffee-800 dark:text-coffee-300 mb-6"
           >
-            {statusCode || 500}
+            {actualStatusCode}
           </motion.div>
 
           {/* Error emoji illustration */}
