@@ -32,6 +32,15 @@ const Home = () => {
     }
   };
 
+  const downloadGPGKey = () => {
+    const link = document.createElement("a");
+    link.href = "/public-key.asc";
+    link.download = "public-key.asc";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <>
       <CustomCursor />
@@ -367,15 +376,13 @@ const Home = () => {
             </div>
           </div>
           <div className="mt-3 flex flex-wrap gap-2 text-xs">
-            <a
-              href="https://raw.githubusercontent.com/itsmrnatural/itsmrnatural/main/public-key.asc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-coffee-600 hover:text-coffee-800 dark:text-coffee-400 dark:hover:text-coffee-300 transition-colors"
+            <button
+              onClick={downloadGPGKey}
+              className="text-coffee-600 hover:text-coffee-800 dark:text-coffee-400 dark:hover:text-coffee-300 transition-colors cursor-pointer"
             >
               <i className="fas fa-download mr-1"></i>
               Download public key (.asc)
-            </a>
+            </button>
             <span className="text-coffee-500 dark:text-gray-500">•</span>
             <a
               href="https://keys.openpgp.org/search?q=92EA052E245766B4D8494D5B3D280550B702CBB9"
