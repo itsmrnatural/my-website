@@ -35,20 +35,11 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     if (mounted) {
       localStorage.setItem("theme", theme);
-      
-      // Add transition class before changing theme
-      document.documentElement.classList.add('theme-transition');
-      
       if (theme === "dark") {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
       }
-      
-      // Remove transition class after animation completes
-      setTimeout(() => {
-        document.documentElement.classList.remove('theme-transition');
-      }, 300);
     }
   }, [theme, mounted]);
 
