@@ -545,6 +545,28 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+/* Bug Fix: Prevent horizontal scrolling on mobile */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Bug Fix: Ensure tooltips appear above all content */
+.tippy-box {
+  z-index: 99999 !important;
+}
+
+/* Bug Fix: Smooth transitions for theme changes */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *:before,
+html.theme-transition *:after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
+  transition-delay: 0s !important;
+}
+
 /* Add CSS for the gradient heading that was previously inline */
 .gradient-heading {
   background: linear-gradient(to right, #ffffff, #d4d4d8);
