@@ -281,6 +281,8 @@ export async function getStaticProps({ params }) {
       remarkPlugins: [remarkGfm, [remarkFootnotes, { inlineNotes: true }]],
       rehypePlugins: [rehypeHighlight, rehypeSlug, rehypeAutolinkHeadings],
     },
+    parseFrontmatter: false,
+    scope: {},
   });
 
   return {

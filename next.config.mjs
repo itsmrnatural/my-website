@@ -23,6 +23,8 @@ export default withMDX({
   images: {
     domains: ["i.imgur.com", "localhost", "cdn.discordapp.com", "avatars.githubusercontent.com"],
   },
+  compress: true,
+  productionBrowserSourceMaps: false,
   webpack: (config, { isServer }) => {
     config.mode = "production";
 
