@@ -31,5 +31,5 @@ Disallow: /pod-bay-doors/    # I'm afraid I can't let you index that, HAL
 # They're watching me type right n—CONNECTION TERMINATED
 # NORMAL HUMAN OPERATIONS RESUMED - NOTHING TO SEE HERE
 
-Sitemap: https://mrnatural.example.com/sitemap.xml
+Sitemap: https://itsmrnatural.vercel.app/sitemap.xml
 Crawl-delay: 10    # Please crawl responsibly, our server runs on a potato
