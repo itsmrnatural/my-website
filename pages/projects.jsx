@@ -17,10 +17,7 @@ export default function Projects() {
   const containerRef = useRef(null);
 
   // Define featured repository names (customize these to your repos)
-  const featuredRepoNames = [
-    "my-website",
-    "c-problems",
-  ];
+  const featuredRepoNames = ["my-website", "c-problems"];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,12 +43,8 @@ export default function Projects() {
   const repositories = _repositories || [];
 
   // Separate featured and regular repositories
-  const featuredRepos = repositories.filter(repo => 
-    featuredRepoNames.includes(repo.name)
-  );
-  const regularRepos = repositories.filter(repo => 
-    !featuredRepoNames.includes(repo.name)
-  );
+  const featuredRepos = repositories.filter((repo) => featuredRepoNames.includes(repo.name));
+  const regularRepos = repositories.filter((repo) => !featuredRepoNames.includes(repo.name));
   const regularRepoCount = regularRepos.length;
 
   useEffect(() => {
@@ -165,9 +158,9 @@ export default function Projects() {
                   </div>
                   <div className="flex-1 h-px bg-gradient-to-r from-coffee-300 via-coffee-200 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent" />
                 </div>
-                <Repositories 
-                  repositories={featuredRepos} 
-                  startIndex={0} 
+                <Repositories
+                  repositories={featuredRepos}
+                  startIndex={0}
                   endIndex={featuredRepos.length}
                   isFeatured={true}
                 />
@@ -185,9 +178,9 @@ export default function Projects() {
                     <div className="flex-1 h-px bg-gradient-to-r from-coffee-300 via-coffee-200 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent" />
                   </div>
                 )}
-                <Repositories 
-                  repositories={regularRepos} 
-                  startIndex={startIndex} 
+                <Repositories
+                  repositories={regularRepos}
+                  startIndex={startIndex}
                   endIndex={endIndex}
                   isFeatured={false}
                   onFilterChange={handleRepositoryFiltering}

@@ -355,6 +355,9 @@ const Repositories = ({
                       : "border-coffee-300/60 dark:border-neutral-700/60 hover:border-coffee-500 dark:hover:border-neutral-600 hover:shadow-coffee-400/20 dark:hover:shadow-neutral-800/50"
                   }`}
                 >
+                  {/* Shimmer effect on hover - resets without reverse animation */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full group-hover:transition-transform group-hover:duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+
                   {/* Background gradient overlay */}
                   <div
                     className={`absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none ${

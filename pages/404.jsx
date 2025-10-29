@@ -53,7 +53,8 @@ export default function NotFound() {
                 repeatType: "loop",
               },
             }}
-            className="text-8xl mb-6 relative"
+            whileHover={{ scale: 1.1, rotate: 0 }}
+            className="text-8xl mb-6 relative cursor-pointer"
             style={{
               filter:
                 "drop-shadow(0 0 20px rgba(130, 98, 75, 0.4)) drop-shadow(0 0 40px rgba(101, 67, 33, 0.3))",

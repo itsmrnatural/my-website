@@ -47,7 +47,7 @@ export default function BlogPost({ post, mdxSource }) {
         // Clone the heading to manipulate it
         const clone = heading.cloneNode(true);
         // Remove footnote references (sup elements)
-        clone.querySelectorAll('sup').forEach(sup => sup.remove());
+        clone.querySelectorAll("sup").forEach((sup) => sup.remove());
         return {
           id: heading.id,
           text: clone.textContent,

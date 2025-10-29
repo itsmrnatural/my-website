@@ -161,7 +161,9 @@ export default function Blog({ posts, tags }) {
                   <i className="fas fa-tags mr-2 text-coffee-700 dark:text-neutral-400" />
                   {selectedTag ? `Tag: ${selectedTag}` : "Filter by Tag"}
                   <i
-                    className={`fas fa-chevron-${showTagFilter ? "up" : "down"} ml-2 text-coffee-700 dark:text-neutral-400`}
+                    className={`fas fa-chevron-${
+                      showTagFilter ? "up" : "down"
+                    } ml-2 text-coffee-700 dark:text-neutral-400`}
                   />
                 </button>
                 {showTagFilter && (
@@ -194,7 +196,9 @@ export default function Blog({ posts, tags }) {
                           }`}
                         >
                           <span className="font-semibold mr-1">{tag.name}</span>
-                          <span className="text-[10px] text-coffee-600 dark:text-neutral-400">{tag.count}</span>
+                          <span className="text-[10px] text-coffee-600 dark:text-neutral-400">
+                            {tag.count}
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -210,9 +214,13 @@ export default function Blog({ posts, tags }) {
                 className="flex items-center text-sm bg-coffee-200 dark:bg-neutral-800/30 hover:bg-coffee-300 dark:hover:bg-neutral-800/50 text-coffee-900 dark:text-neutral-300 rounded-lg px-3 py-2 transition-all duration-200 border border-coffee-300 dark:border-transparent"
               >
                 <i className="fas fa-sort mr-2 text-coffee-700 dark:text-neutral-400" />
-                {`Sort: ${sortOptions.find((option) => option.value === sortBy)?.label ?? "Newest First"}`}
+                {`Sort: ${
+                  sortOptions.find((option) => option.value === sortBy)?.label ?? "Newest First"
+                }`}
                 <i
-                  className={`fas fa-chevron-${showSortOptions ? "up" : "down"} ml-2 text-coffee-700 dark:text-neutral-400`}
+                  className={`fas fa-chevron-${
+                    showSortOptions ? "up" : "down"
+                  } ml-2 text-coffee-700 dark:text-neutral-400`}
                 />
               </button>
               {showSortOptions && (
@@ -251,7 +259,11 @@ export default function Blog({ posts, tags }) {
                 <span className="flex items-center bg-coffee-100 dark:bg-neutral-800/50 border border-coffee-200 dark:border-neutral-700 rounded-full px-3 py-1">
                   <i className="fas fa-search mr-1.5" />
                   <span className="mr-2">{searchQuery}</span>
-                  <button onClick={() => setSearchQuery("")} className="hover:text-coffee-900 dark:hover:text-neutral-200" aria-label="Clear search">
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="hover:text-coffee-900 dark:hover:text-neutral-200"
+                    aria-label="Clear search"
+                  >
                     x
                   </button>
                 </span>
@@ -260,7 +272,11 @@ export default function Blog({ posts, tags }) {
                 <span className="flex items-center bg-coffee-100 dark:bg-neutral-800/50 border border-coffee-200 dark:border-neutral-700 rounded-full px-3 py-1">
                   <i className="fas fa-tag mr-1.5" />
                   <span className="mr-2">{selectedTag}</span>
-                  <button onClick={() => setSelectedTag(null)} className="hover:text-coffee-900 dark:hover:text-neutral-200" aria-label="Clear tag filter">
+                  <button
+                    onClick={() => setSelectedTag(null)}
+                    className="hover:text-coffee-900 dark:hover:text-neutral-200"
+                    aria-label="Clear tag filter"
+                  >
                     x
                   </button>
                 </span>
@@ -276,10 +292,17 @@ export default function Blog({ posts, tags }) {
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-            {filteredPosts.map((post) => (
-              <Link href={`/blog/${post.slug}`} key={post.slug} passHref>
-                <BlogCard blog={post} />
-              </Link>
+            {filteredPosts.map((post, index) => (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
+              >
+                <Link href={`/blog/${post.slug}`} passHref>
+                  <BlogCard blog={post} />
+                </Link>
+              </motion.div>
             ))}
           </div>
         )}

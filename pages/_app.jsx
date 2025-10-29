@@ -16,6 +16,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const Header = dynamic(() => import("../src/components/Header"));
 const Footer = dynamic(() => import("../src/components/Footer"));
+const ScrollIndicator = dynamic(() => import("../src/components/ScrollIndicator"));
 
 /**
  * Preloads page components for smoother page transitions
@@ -115,6 +116,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider>
+      <ScrollIndicator />
       <Head>
         <title>Dhananjay • Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -142,6 +144,16 @@ function MyApp({ Component, pageProps }) {
                 <i className="fal fa-spinner-third fa-spin" />
               </p>
             </div>
+          </div>
+          {/* Progress bar */}
+          <div className="absolute bottom-0 w-full h-1 bg-coffee-200 dark:bg-neutral-800 overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-coffee-500 to-coffee-700 dark:from-coffee-400 dark:to-coffee-600 transition-all duration-300 ease-out"
+              style={{
+                width: "100%",
+                animation: "progressLoad 2s ease-in-out",
+              }}
+            />
           </div>
         </div>
       </Transition>

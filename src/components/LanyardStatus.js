@@ -50,13 +50,13 @@ export default function LanyardStatus() {
 
   const handleRefresh = () => {
     if (!canRefresh) return;
-    
+
     const now = Date.now();
     setLastRefresh(now);
     localStorage.setItem("lanyard_last_refresh", now.toString());
     setCanRefresh(false);
     fetchStatus();
-    
+
     setTimeout(() => setCanRefresh(true), 60000);
   };
 
