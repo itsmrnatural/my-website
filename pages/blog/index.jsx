@@ -22,6 +22,7 @@ export default function Blog({ posts, tags }) {
   const sortRef = useRef(null);
   const [showTagFilter, setShowTagFilter] = useState(false);
   const [showSortOptions, setShowSortOptions] = useState(false);
+  const searchInputRef = useRef(null);
 
   const sortOptions = [
     { value: "date-desc", label: "Newest First", icon: "clock" },
@@ -60,6 +61,19 @@ export default function Blog({ posts, tags }) {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Handle Ctrl+/ or Cmd+/ to focus search input
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "/") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Filter posts based on search query and selected tag
@@ -111,21 +125,29 @@ export default function Blog({ posts, tags }) {
               <div className="flex w-full items-center bg-white dark:bg-neutral-800 text-coffee-900 dark:text-white border-2 border-coffee-300 dark:border-neutral-700 rounded-lg px-3 py-2 transition-all duration-200 focus-within:ring-2 focus-within:ring-coffee-400/60 dark:focus-within:ring-white/40">
                 <i className="fas fa-search mr-2 text-coffee-700 dark:text-neutral-300" />
                 <input
+                  ref={searchInputRef}
                   type="text"
                   placeholder="Search posts..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-transparent text-sm outline-none placeholder:text-coffee-400 dark:placeholder:text-neutral-500"
                 />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => setSearchQuery("")}
-                    className="ml-2 text-xs font-semibold text-coffee-700 dark:text-neutral-300 hover:text-coffee-900 dark:hover:text-white"
-                  >
-                    Clear
-                  </button>
-                )}
+                <div className="flex items-center gap-2 ml-2">
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery("")}
+                      className="text-xs font-semibold text-coffee-700 dark:text-neutral-300 hover:text-coffee-900 dark:hover:text-white"
+                    >
+                      Clear
+                    </button>
+                  )}
+                  <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono font-medium text-coffee-500 dark:text-neutral-500 border border-coffee-300 dark:border-neutral-700 rounded">
+                    <span>Ctrl</span>
+                    <span className="text-coffee-400 dark:text-neutral-600">+</span>
+                    <span>/</span>
+                  </kbd>
+                </div>
               </div>
             </div>
 

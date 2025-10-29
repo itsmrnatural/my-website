@@ -75,7 +75,13 @@ const sortOptions = [
  * @param {boolean} props.isFeatured - Whether this is a featured repository section
  * @returns {JSX.Element} The repositories grid with controls
  */
-const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, onFilterChange }) => {
+const Repositories = ({
+  repositories,
+  startIndex,
+  endIndex,
+  isFeatured = false,
+  onFilterChange,
+}) => {
   const [sortBy, setSortBy] = useState("stars");
   const [filterLanguage, setFilterLanguage] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -84,6 +90,7 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, 
   const [availableLanguages, setAvailableLanguages] = useState([]);
   const filterRef = useRef(null);
   const sortRef = useRef(null);
+  const searchInputRef = useRef(null);
   const didMountRef = useRef(false);
 
   // Close dropdowns when clicking outside
@@ -101,6 +108,19 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
+
+  // Handle Ctrl+/ or Cmd+/ to focus search input
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "/") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Extract available languages from repositories
@@ -180,21 +200,29 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, 
             <div className="flex w-full items-center bg-white dark:bg-neutral-800 text-coffee-900 dark:text-white border-2 border-coffee-300 dark:border-neutral-700 rounded-lg px-3 py-2 transition-all duration-200 focus-within:ring-2 focus-within:ring-coffee-400/60 dark:focus-within:ring-white/40">
               <i className="fas fa-search mr-2 text-coffee-700 dark:text-neutral-300" />
               <input
+                ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder="Search repositories..."
                 className="w-full bg-transparent text-sm outline-none placeholder:text-coffee-400 dark:placeholder:text-neutral-500"
               />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  className="ml-2 text-xs font-semibold text-coffee-700 dark:text-neutral-300 hover:text-coffee-900 dark:hover:text-white"
-                >
-                  Clear
-                </button>
-              )}
+              <div className="flex items-center gap-2 ml-2">
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="text-xs font-semibold text-coffee-700 dark:text-neutral-300 hover:text-coffee-900 dark:hover:text-white"
+                  >
+                    Clear
+                  </button>
+                )}
+                <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono font-medium text-coffee-500 dark:text-neutral-500 border border-coffee-300 dark:border-neutral-700 rounded">
+                  <span>Ctrl</span>
+                  <span className="text-coffee-400 dark:text-neutral-600">+</span>
+                  <span>/</span>
+                </kbd>
+              </div>
             </div>
           </div>
 
@@ -303,11 +331,11 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, 
       )}
 
       {/* Repository Grid */}
-      <div className={`grid gap-5 w-full ${
-        isFeatured 
-          ? "grid-cols-1 md:grid-cols-2" 
-          : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      }`}>
+      <div
+        className={`grid gap-5 w-full ${
+          isFeatured ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        }`}
+      >
         {repositories ? (
           filteredSortedRepos.length > 0 ? (
             filteredSortedRepos.slice(startIndex, endIndex).map((repo, index) => {
@@ -328,11 +356,13 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, 
                   }`}
                 >
                   {/* Background gradient overlay */}
-                  <div className={`absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none ${
-                    isFeatured
-                      ? "bg-gradient-to-br from-yellow-100 via-yellow-50 to-transparent dark:from-yellow-500/10 dark:via-yellow-500/5 dark:to-transparent"
-                      : "bg-gradient-to-br from-coffee-100 via-coffee-50 to-transparent dark:from-neutral-800/30 dark:via-neutral-800/10 dark:to-transparent"
-                  }`} />
+                  <div
+                    className={`absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none ${
+                      isFeatured
+                        ? "bg-gradient-to-br from-yellow-100 via-yellow-50 to-transparent dark:from-yellow-500/10 dark:via-yellow-500/5 dark:to-transparent"
+                        : "bg-gradient-to-br from-coffee-100 via-coffee-50 to-transparent dark:from-neutral-800/30 dark:via-neutral-800/10 dark:to-transparent"
+                    }`}
+                  />
 
                   {/* Card content */}
                   <div className="relative flex flex-col h-full p-4">
@@ -432,18 +462,23 @@ const Repositories = ({ repositories, startIndex, endIndex, isFeatured = false, 
                       </div>
 
                       {/* Right side - Updated date */}
-                      <Tippy content={`Last updated: ${new Date(repo.updated_at).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                      })}`}>
+                      <Tippy
+                        content={`Last updated: ${new Date(repo.updated_at).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}`}
+                      >
                         <div className="flex items-center gap-1 text-xs text-coffee-600 dark:text-neutral-400 font-medium">
                           <i className="far fa-clock text-[10px]" />
                           <span className="whitespace-nowrap">
                             {new Date(repo.updated_at).toLocaleDateString("en-US", {
                               month: "short",
                               day: "numeric",
-                              year: "2-digit"
+                              year: "2-digit",
                             })}
                           </span>
                         </div>
