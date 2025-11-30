@@ -61,8 +61,8 @@ function MyApp({ Component, pageProps }) {
   useSmoothScroll();
 
   useEffect(() => {
-    // Intial page load
-    const intialLoadTimer = setTimeout(() => {
+    // Initial page load
+    const initialLoadTimer = setTimeout(() => {
       setIsLoading(false);
       document.documentElement.style = "pointer-events: all;";
     }, 300);
@@ -96,7 +96,7 @@ function MyApp({ Component, pageProps }) {
 
     // Clean up event listeners on unmount
     return () => {
-      clearTimeout(intialLoadTimer);
+      clearTimeout(initialLoadTimer);
       Router.events.off("routeChangeStart", handleStart);
       Router.events.off("routeChangeComplete", handleComplete);
       Router.events.off("routeChangeError", handleError);

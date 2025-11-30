@@ -1,5 +1,5 @@
 {
-  "name": "react",
+  "name": "my-website",
   "private": true,
   "scripts": {
     "dev": "next dev",
