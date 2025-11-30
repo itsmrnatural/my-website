@@ -26,6 +26,24 @@ const components = {
   ),
 };
 
+// Helper: simple hash to pick gradient deterministically (same as BlogCard)
+const hashString = (str) => {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (h << 5) - h + str.charCodeAt(i);
+    h |= 0;
+  }
+  return Math.abs(h);
+};
+
+const gradients = [
+  "bg-gradient-to-br from-pink-200 via-red-200 to-yellow-200",
+  "bg-gradient-to-br from-green-200 via-teal-200 to-blue-200",
+  "bg-gradient-to-br from-purple-200 via-pink-200 to-orange-200",
+  "bg-gradient-to-br from-indigo-200 via-blue-200 to-teal-200",
+  "bg-gradient-to-br from-amber-200 via-yellow-200 to-orange-200",
+];
+
 /**
  * Individual blog post page component
  * @param {Object} props - Component props
@@ -113,15 +131,41 @@ export default function BlogPost({ post, mdxSource }) {
 
             {/* Banner Image or Emoji Gradient */}
             {post.image ? (
-              <img
-                alt={post.title}
-                src={post.image}
-                className="w-full h-64 object-cover rounded-lg mb-8 border border-coffee-300 dark:border-white/10"
-              />
-            ) : (
-              <div className="w-full h-64 rounded-lg mb-8 border border-coffee-300 dark:border-white/10 bg-gradient-to-br from-coffee-200 via-coffee-300 to-coffee-400 dark:from-coffee-800 dark:via-coffee-700 dark:to-coffee-600 flex items-center justify-center">
-                <span className="text-8xl filter drop-shadow-lg">{post.emoji || "✍️"}</span>
+              <div className="w-full h-64 relative rounded-lg mb-8 border border-coffee-300 dark:border-white/10 overflow-hidden">
+                <img
+                  alt={post.title}
+                  src={post.image}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/10 to-black/30"></div>
               </div>
+            ) : (
+              (() => {
+                const key = post.slug || post.title || "default";
+                const grad = gradients[hashString(key.toString()) % gradients.length];
+                const emoji = post.emoji || "✍️";
+                return (
+                  <div className={`w-full h-64 rounded-lg mb-8 border border-coffee-300 dark:border-white/10 ${grad} relative overflow-hidden`}>
+                    {/* Large faint background emoji - tilted on the right, overflowing */}
+                    <div className="absolute -right-8 top-1/2 -translate-y-1/2 opacity-15 dark:opacity-8">
+                      <span
+                        className="text-[16rem] md:text-[20rem] block transform rotate-12"
+                        aria-hidden="true"
+                        style={{ filter: "blur(2px)" }}
+                      >
+                        {emoji}
+                      </span>
+                    </div>
+
+                    {/* Small solid foreground emoji - bottom left */}
+                    <div className="absolute bottom-4 left-4">
+                      <span className="text-6xl md:text-7xl drop-shadow-lg" aria-hidden="true">
+                        {emoji}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()
             )}
 
             {/* Blog Post Header */}
