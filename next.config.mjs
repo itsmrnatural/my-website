@@ -21,7 +21,24 @@ const withMDX = mdx({
 export default withMDX({
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   images: {
-    domains: ["i.imgur.com", "localhost", "cdn.discordapp.com", "avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.discordapp.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
   },
   compress: true,
   productionBrowserSourceMaps: false,
