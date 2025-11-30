@@ -34,7 +34,6 @@ export default function LanyardStatus() {
     fetch("https://api.lanyard.rest/v1/users/624572769484668938")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Lanyard response:", data);
         if (data.success) {
           setStatus(data.data);
         }
@@ -75,11 +74,12 @@ export default function LanyardStatus() {
     };
 
     // Add listener on next tick to avoid immediate close
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       document.addEventListener("mousedown", handleClickOutside);
     }, 0);
 
     return () => {
+      clearTimeout(timeoutId);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
