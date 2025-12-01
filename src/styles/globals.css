@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import highlight.js theme - using GitHub Dark for better readability */
-@import "highlight.js/styles/github-dark.css";
+/* Import highlight.js theme - using Tokyo Night for modern look */
+@import "highlight.js/styles/tokyo-night-dark.css";
 
 /* Loading progress bar animation */
 @keyframes progressLoad {
@@ -18,41 +18,49 @@
 /* Custom code block styling for transparent and relaxing appearance */
 pre code.hljs {
   background: transparent !important;
-  font-family: "JetBrains Mono", monospace !important;
-  font-size: 0.813rem !important;
-  line-height: 1.25rem !important;
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.6 !important;
 }
 
 html.dark pre code.hljs {
   background: transparent !important;
 }
 
-/* Ensure all code elements use JetBrains Mono */
+/* Ensure all code elements use proper monospace font */
 pre,
 code,
 pre *,
 code * {
-  font-family: "JetBrains Mono", monospace !important;
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
 }
 
-/* Fix comments in code blocks to use monospace font */
+/* Fix comments in code blocks styling */
 .hljs-comment,
-.hljs-quote,
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-  font-family: "JetBrains Mono", monospace !important;
+.hljs-quote {
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
   font-style: italic;
+  opacity: 0.7;
 }
 
-/* Ensure inline code also uses JetBrains Mono */
+/* Ensure inline code also uses proper monospace font */
 :not(pre) > code {
-  font-family: "JetBrains Mono", monospace !important;
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
+  background: rgba(139, 92, 46, 0.1);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  color: #a0522d;
+}
+
+html.dark :not(pre) > code {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0c674;
 }
 
 /* Ensure code blocks have consistent line height */
 pre code.hljs * {
-  line-height: 1.25rem !important;
+  line-height: 1.6 !important;
 }
 
 /* Improve code block scroll behavior */
@@ -88,53 +96,51 @@ pre::-webkit-scrollbar-thumb:hover {
   font-size: 0.875rem;
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  background: rgba(250, 248, 245, 0.5);
-  table-layout: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  background: #faf9f7;
+  border: 1px solid rgba(139, 92, 46, 0.2);
 }
 
 html.dark .prose table {
-  background: rgba(20, 20, 20, 0.5);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  background: #1a1b26;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .prose thead {
-  background: linear-gradient(to bottom, rgba(139, 92, 46, 0.15), rgba(139, 92, 46, 0.08));
-  border-bottom: 2px solid rgba(139, 92, 46, 0.3);
+  background: rgba(139, 92, 46, 0.08);
 }
 
 html.dark .prose thead {
-  background: linear-gradient(to bottom, rgba(160, 115, 70, 0.2), rgba(160, 115, 70, 0.1));
-  border-bottom: 2px solid rgba(160, 115, 70, 0.3);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .prose th {
-  padding: 0.75rem 1rem;
+  padding: 0.625rem 1rem;
   text-align: left;
   font-weight: 600;
-  color: #654321;
+  color: #5c4033;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(139, 92, 46, 0.15);
 }
 
 html.dark .prose th {
-  color: #e2c4a5;
+  color: #d4c8b8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .prose td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(139, 92, 46, 0.1);
-  color: #4a3620;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid rgba(139, 92, 46, 0.08);
+  color: #3d2b1f;
+  vertical-align: top;
 }
 
 html.dark .prose td {
-  border-bottom: 1px solid rgba(160, 115, 70, 0.15);
-  color: #d4c4a8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #c8c0b8;
 }
 
 .prose tbody tr {
@@ -142,59 +148,85 @@ html.dark .prose td {
 }
 
 .prose tbody tr:hover {
-  background: rgba(139, 92, 46, 0.08);
+  background: rgba(139, 92, 46, 0.06);
 }
 
 html.dark .prose tbody tr:hover {
-  background: rgba(160, 115, 70, 0.12);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .prose tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Right align numeric columns */
-.prose td:nth-child(3),
-.prose td:nth-child(4),
-.prose th:nth-child(3),
-.prose th:nth-child(4) {
+/* Zebra striping for better readability */
+.prose tbody tr:nth-child(even) {
+  background: rgba(139, 92, 46, 0.03);
+}
+
+html.dark .prose tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.prose tbody tr:nth-child(even):hover {
+  background: rgba(139, 92, 46, 0.08);
+}
+
+html.dark .prose tbody tr:nth-child(even):hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Numeric columns alignment */
+.prose td[align="right"],
+.prose th[align="right"] {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-/* Alternate row background for better readability */
-.prose tbody tr:nth-child(odd) {
-  background: rgba(139, 92, 46, 0.03);
+.prose td[align="center"],
+.prose th[align="center"] {
+  text-align: center;
 }
 
-html.dark .prose tbody tr:nth-child(odd) {
-  background: rgba(160, 115, 70, 0.05);
-}
-
-/* Make table responsive */
-.prose-compact table {
-  display: table;
+/* Make tables responsive with horizontal scroll */
+.prose .table-wrapper,
+.prose-compact .table-wrapper {
   overflow-x: auto;
-  white-space: nowrap;
-  width: 100%;
+  margin: 1.75rem 0;
+  border-radius: 0.75rem;
 }
 
-.prose-compact table::-webkit-scrollbar {
-  height: 8px;
+.prose .table-wrapper table,
+.prose-compact .table-wrapper table {
+  margin: 0;
 }
 
-.prose-compact table::-webkit-scrollbar-track {
+/* Responsive table wrapper scrollbar */
+.prose .table-wrapper::-webkit-scrollbar,
+.prose-compact .table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.prose .table-wrapper::-webkit-scrollbar-track,
+.prose-compact .table-wrapper::-webkit-scrollbar-track {
   background: rgba(139, 92, 46, 0.1);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
-.prose-compact table::-webkit-scrollbar-thumb {
+.prose .table-wrapper::-webkit-scrollbar-thumb,
+.prose-compact .table-wrapper::-webkit-scrollbar-thumb {
   background: rgba(139, 92, 46, 0.3);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
-.prose-compact table::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 46, 0.5);
+html.dark .prose .table-wrapper::-webkit-scrollbar-track,
+html.dark .prose-compact .table-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark .prose .table-wrapper::-webkit-scrollbar-thumb,
+html.dark .prose-compact .table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* Beautiful horizontal rule styling */
@@ -391,13 +423,13 @@ html {
 }
 
 :root {
-  --code-line-number-color: rgba(139, 92, 46, 0.55);
-  --code-line-number-border: rgba(139, 92, 46, 0.25);
+  --code-bg: #1e1e2e;
+  --code-header-bg: #181825;
 }
 
 html.dark {
-  --code-line-number-color: rgba(226, 196, 165, 0.65);
-  --code-line-number-border: rgba(226, 196, 165, 0.25);
+  --code-bg: #0d0d14;
+  --code-header-bg: #08080c;
 }
 
 .code-block pre {
@@ -412,24 +444,16 @@ html.dark {
   display: flex;
   align-items: flex-start;
   position: relative;
+  min-height: 1.6em;
 }
 
 .code-block .line-number {
-  width: 2.25rem;
-  text-align: right;
-  padding-right: 0.625rem;
-  color: var(--code-line-number-color);
-  font-size: 0.688rem;
-  user-select: none;
-  border-right: 1px solid var(--code-line-number-border);
-  margin-right: 0.625rem;
-  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
 }
 
 .code-block .line-content {
   flex: 1;
   display: block;
-  min-height: 1.25rem;
   white-space: pre;
 }
 
