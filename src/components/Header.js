@@ -117,7 +117,7 @@ const Header = () => {
                 key={label}
                 href={href}
                 className={`flex items-center justify-center transition-all duration-500 text-sm rounded-lg border ${
-                  collapsed ? "w-10 h-10 p-0" : "px-3 py-2"
+                  collapsed ? "w-11 h-11 p-0" : "px-3 py-2"
                 } ${
                   isActive(href)
                     ? "bg-coffee-300 dark:bg-neutral-800/50 text-coffee-900 dark:text-white font-medium shadow-sm border-coffee-400 dark:border-neutral-700"
@@ -125,7 +125,7 @@ const Header = () => {
                 }`}
               >
                 <i
-                  className={`${isActive(href) ? active : icon} text-base ${
+                  className={`${isActive(href) ? active : icon} ${collapsed ? "text-lg" : "text-base"} ${
                     collapsed ? "" : "mr-2"
                   }`}
                 />
@@ -154,12 +154,12 @@ const Header = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`flex items-center justify-center hover:bg-coffee-200 dark:hover:bg-neutral-800/30 rounded-xl transition-all duration-500 ${
-                    collapsed ? "w-10 h-10 p-0" : "p-2.5"
+                    collapsed ? "w-11 h-11 p-0" : "p-2.5"
                   }`}
                 >
                   <i
                     className={`${icon} text-coffee-600 dark:text-neutral-400 hover:text-coffee-800 dark:hover:text-white transition-all duration-500 ${
-                      collapsed ? "text-base" : "text-xl"
+                      collapsed ? "text-lg" : "text-xl"
                     }`}
                   />
                 </a>

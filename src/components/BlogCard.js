@@ -75,7 +75,7 @@ export default function BlogCard(props) {
           {blog.title}
         </h3>
         <p className="text-xs text-coffee-600 dark:text-gray-400 mb-2">
-          {blog.author} • {new Date(blog.date).toLocaleDateString()}
+          {blog.author} • {new Date(blog.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
         </p>
         {/* Tags */}
         {blog.tags && blog.tags.length > 0 && (

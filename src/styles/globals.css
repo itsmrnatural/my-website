@@ -327,16 +327,138 @@ html.dark .prose h2:hover a::before {
 .toc-child::before {
   content: "";
   position: absolute;
-  left: -0.75rem;
+  left: -0.625rem;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(139, 92, 46, 0.2), rgba(139, 92, 46, 0.1));
+  width: 1.5px;
+  background: rgba(139, 92, 46, 0.2);
   border-radius: 1px;
 }
 
 html.dark .toc-child::before {
-  background: linear-gradient(to bottom, rgba(160, 115, 70, 0.3), rgba(160, 115, 70, 0.15));
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Scrollbar for TOC */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 46, 0.2);
+  border-radius: 2px;
+}
+
+html.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Footnote styling */
+.prose .footnotes {
+  margin-top: 2rem;
+  font-size: 0.8125rem;
+  color: rgba(74, 54, 32, 0.7);
+}
+
+html.dark .prose .footnotes {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.prose .footnotes hr {
+  display: none;
+}
+
+.prose .footnotes h2 {
+  display: none;
+}
+
+.prose .footnotes ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.prose .footnotes li {
+  padding: 0.25rem 0;
+  margin: 0;
+  padding-left: 0.25rem;
+}
+
+.prose .footnotes li:target {
+  background: rgba(139, 92, 46, 0.1);
+  border-radius: 0.25rem;
+  padding-left: 0.5rem;
+  margin-left: -0.25rem;
+}
+
+html.dark .prose .footnotes li:target {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.prose .footnotes li p {
+  margin: 0;
+  display: inline;
+}
+
+/* Footnote back link */
+.prose .footnotes .data-footnote-backref,
+.prose .footnotes a[href^="#fnref"] {
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+  color: rgba(139, 92, 46, 0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+html.dark .prose .footnotes .data-footnote-backref,
+html.dark .prose .footnotes a[href^="#fnref"] {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.prose .footnotes .data-footnote-backref:hover,
+.prose .footnotes a[href^="#fnref"]:hover {
+  color: rgba(139, 92, 46, 0.8);
+}
+
+html.dark .prose .footnotes .data-footnote-backref:hover,
+html.dark .prose .footnotes a[href^="#fnref"]:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Footnote reference (superscript in text) */
+.prose sup a[href^="#fn"],
+.prose a[data-footnote-ref] {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8b5a2b;
+  background: rgba(139, 92, 46, 0.1);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  margin-left: 0.1rem;
+  transition: all 0.2s ease;
+}
+
+html.dark .prose sup a[href^="#fn"],
+html.dark .prose a[data-footnote-ref] {
+  color: #c9a66b;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.prose sup a[href^="#fn"]:hover,
+.prose a[data-footnote-ref]:hover {
+  background: rgba(139, 92, 46, 0.2);
+  color: #6b4423;
+}
+
+html.dark .prose sup a[href^="#fn"]:hover,
+html.dark .prose a[data-footnote-ref]:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #e2c090;
 }
 
 /* Stylish strikethrough */

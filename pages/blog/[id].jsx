@@ -176,7 +176,7 @@ export default function BlogPost({ post, mdxSource }) {
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-2 text-sm text-coffee-600 dark:text-white/50 mb-3">
-                  <time>{new Date(post.date).toLocaleDateString()}</time>
+                  <time>{new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
                   <span>•</span>
                   <span>{post.author}</span>
                   <span>•</span>
@@ -228,13 +228,14 @@ export default function BlogPost({ post, mdxSource }) {
 
           {/* Table of Contents Sidebar */}
           {headings.length > 0 && (
-            <aside className="hidden xl:block w-64 flex-shrink-0">
-              <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
-                <nav className="bg-coffee-100 dark:bg-white/5 rounded-lg p-4 border border-coffee-300 dark:border-white/10 shadow-sm">
-                  <h3 className="text-sm font-subheading font-semibold text-coffee-900 dark:text-white mb-3 pb-2 border-b border-coffee-300 dark:border-white/10">
+            <aside className="hidden xl:block w-60 flex-shrink-0">
+              <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-thin">
+                <nav className="bg-coffee-50/80 dark:bg-white/[0.03] backdrop-blur-sm rounded-lg p-3.5 border border-coffee-200 dark:border-white/10">
+                  <h3 className="text-[0.7rem] font-subheading font-semibold text-coffee-600 dark:text-white/60 uppercase tracking-wider mb-2.5 pb-2 border-b border-coffee-200 dark:border-white/10 flex items-center gap-1.5">
+                    <i className="fas fa-list-ul text-coffee-400 dark:text-white/40 text-[0.65rem]"></i>
                     On This Page
                   </h3>
-                  <ul className="space-y-1 toc-list">
+                  <ul className="space-y-0.5 toc-list">
                     {headings.map((heading) => {
                       // Calculate indentation based on heading level
                       const indentClass =
@@ -252,10 +253,10 @@ export default function BlogPost({ post, mdxSource }) {
                         <li key={heading.id} className={indentClass}>
                           <a
                             href={`#${heading.id}`}
-                            className={`text-xs block py-1.5 px-2 rounded transition-all break-words ${
+                            className={`text-[0.775rem] leading-snug block py-1 px-2 rounded transition-all break-words border-l-2 ${
                               activeId === heading.id
-                                ? "bg-coffee-200 dark:bg-white/10 text-coffee-900 dark:text-white font-medium"
-                                : "text-coffee-600 dark:text-gray-400 hover:text-coffee-800 dark:hover:text-gray-200 hover:bg-coffee-50 dark:hover:bg-white/5"
+                                ? "bg-coffee-200/60 dark:bg-white/10 text-coffee-900 dark:text-white font-medium border-coffee-500 dark:border-coffee-400"
+                                : "text-coffee-600 dark:text-white/50 hover:text-coffee-800 dark:hover:text-white/80 hover:bg-coffee-100/50 dark:hover:bg-white/5 border-transparent hover:border-coffee-300 dark:hover:border-white/20"
                             }`}
                             onClick={(e) => {
                               e.preventDefault();
