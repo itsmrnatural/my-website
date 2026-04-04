@@ -17,14 +17,14 @@
     "@tippyjs/react": "^4.2.6",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "compression-webpack-plugin": "^11.0.0",
+    "compression-webpack-plugin": "^12.0.0",
     "framer-motion": "^12.4.10",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "isomorphic-unfetch": "^3.1.0",
     "lodash-webpack-plugin": "^0.11.6",
-    "next": "15.2.8",
-    "next-mdx-remote": "^5.0.0",
+    "next": "15.5.14",
+    "next-mdx-remote": "^6.0.0",
     "node-fetch": "^2.6.1",
     "prettier": "^2.8.4",
     "react": "^18.3.1",
@@ -40,7 +40,7 @@
     "terser-webpack-plugin": "^5.3.7",
     "tippy.js": "^6.3.7",
     "use-lanyard": "^1.7.0",
-    "webpack": "^5.98.0"
+    "webpack": "^5.105.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
