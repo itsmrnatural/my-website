@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import CustomCursor from "@components/CustomCursor";
 import LanyardStatus from "@components/LanyardStatus";
+import { useTheme } from "@contexts/ThemeContext";
 
 /**
  * Home page component displaying personal introduction and information
@@ -15,6 +16,7 @@ import LanyardStatus from "@components/LanyardStatus";
 const Home = () => {
   const [gpgCopied, setGpgCopied] = useState(false);
   const [gpgKey, setGpgKey] = useState("");
+  const { theme, mounted } = useTheme();
 
   // Fetch GPG key on mount
   useEffect(() => {
@@ -40,6 +42,8 @@ const Home = () => {
     link.click();
     document.body.removeChild(link);
   };
+
+  const heatmapImageClass = mounted && theme === "dark" ? "invert-[0.88] hue-rotate-180 saturate-75 contrast-90" : "";
 
   return (
     <>
@@ -146,201 +150,6 @@ const Home = () => {
         </blockquote>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.5 }}
-        className="mt-11 md:mt-14 pb-5 border-b border-coffee-300 dark:border-white/10"
-      >
-        <h2 className="text-lg font-subheading font-semibold text-coffee-900 dark:text-white mb-5 flex items-center">
-          <i className="fas fa-code text-coffee-600 dark:text-coffee-400 mr-2.5 text-sm"></i>
-          Biscuits I enjoy with my Coffee
-        </h2>
-
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
-              Love these
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                {
-                  name: "Python",
-                  icon: "https://cdn.simpleicons.org/python/white",
-                  link: "https://www.python.org/",
-                  color: "from-coffee-600/90 to-coffee-700/90",
-                },
-                {
-                  name: "JavaScript",
-                  icon: "https://cdn.simpleicons.org/javascript/black",
-                  link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-                  color: "from-amber-500/90 to-amber-600/90",
-                },
-                {
-                  name: "HTML5",
-                  icon: "https://cdn.simpleicons.org/html5/white",
-                  link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-                  color: "from-orange-600/90 to-orange-700/90",
-                },
-                {
-                  name: "CSS3",
-                  icon: "https://cdn.simpleicons.org/css/white",
-                  link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-                  color: "from-amber-700/90 to-amber-800/90",
-                },
-              ].map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + index * 0.05, duration: 0.3 }}
-                  whileHover={{
-                    y: -4,
-                    scale: 1.05,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  <Tippy content={tech.name} placement="top" animation="scale-subtle">
-                    <a
-                      href={tech.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
-                      style={{
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
-                      }}
-                    >
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
-                      />
-                    </a>
-                  </Tippy>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
-              Currently trying
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                {
-                  name: "C",
-                  icon: "https://cdn.simpleicons.org/c/white",
-                  link: "https://en.cppreference.com/w/c/language",
-                  color: "from-stone-600/90 to-stone-700/90",
-                },
-                {
-                  name: "Haskell",
-                  icon: "https://cdn.simpleicons.org/haskell/white",
-                  link: "https://www.haskell.org/",
-                  color: "from-amber-600/90 to-amber-700/90",
-                },
-              ].map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.0 + index * 0.05, duration: 0.3 }}
-                  whileHover={{
-                    y: -4,
-                    scale: 1.05,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  <Tippy content={tech.name} placement="top" animation="scale-subtle">
-                    <a
-                      href={tech.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
-                      style={{
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
-                      }}
-                    >
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
-                      />
-                      <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full border border-white shadow-sm"></div>
-                    </a>
-                  </Tippy>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-subheading font-medium text-coffee-800 dark:text-gray-300 mb-4">
-              Special
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                {
-                  name: "Git",
-                  icon: "https://cdn.simpleicons.org/git/white",
-                  link: "https://git-scm.com/",
-                  color: "from-orange-600/90 to-orange-700/90",
-                },
-                {
-                  name: "GitHub",
-                  icon: "https://cdn.simpleicons.org/github/white",
-                  link: "https://github.com/",
-                  color: "from-stone-700/90 to-stone-800/90",
-                },
-                {
-                  name: "VS Code",
-                  icon: "https://cdn.simpleicons.org/visualstudiocode/white",
-                  link: "https://code.visualstudio.com/",
-                  color: "from-coffee-500/90 to-coffee-600/90",
-                },
-                {
-                  name: "Helix",
-                  icon: "https://cdn.simpleicons.org/helix/white",
-                  link: "https://helix-editor.com/",
-                  color: "from-amber-800/90 to-amber-900/90",
-                },
-              ].map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.1 + index * 0.05, duration: 0.3 }}
-                  whileHover={{
-                    y: -4,
-                    scale: 1.05,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  <Tippy content={tech.name} placement="top" animation="scale-subtle">
-                    <a
-                      href={tech.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group relative flex items-center justify-center w-16 h-16 bg-gradient-to-br ${tech.color} backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-200`}
-                      style={{
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
-                      }}
-                    >
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        className="w-9 h-9 relative z-10 brightness-0 invert dark:brightness-100 dark:invert-0"
-                      />
-                    </a>
-                  </Tippy>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
       {/* GPG Key Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -400,41 +209,36 @@ const Home = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9, duration: 0.5 }}
+        transition={{ delay: 0.85, duration: 0.5 }}
+        className="mt-11 md:mt-14 bg-coffee-50 dark:bg-white/[0.02] backdrop-blur-sm rounded-xl p-6 border border-coffee-200 dark:border-white/10"
+      >
+        <h2 className="text-xl font-subheading font-bold text-coffee-900 dark:text-white mb-2 flex items-center gap-2">
+          <i className="fab fa-github text-coffee-600 dark:text-coffee-400"></i>
+          GitHub Contributions
+        </h2>
+        <p className="text-sm text-coffee-600 dark:text-gray-400 mb-6">
+          A quick look at my recent contribution activity
+        </p>
+
+        <div className="overflow-hidden rounded-xl border border-coffee-200 dark:border-white/10 bg-white/60 dark:bg-black/20 p-3 sm:p-4">
+          <img
+            src="https://ghchart.rshah.org/itsmrnatural"
+            alt="GitHub contribution heatmap for itsmrnatural"
+            className={`w-full h-auto ${heatmapImageClass}`}
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
         className="mt-11 md:mt-14 pb-5 relative"
       >
-        <h2 className="text-lg font-subheading font-semibold text-coffee-900 dark:text-white mb-5 flex items-center">
+        {/* <h2 className="text-lg font-subheading font-semibold text-coffee-900 dark:text-white mb-5 flex items-center">
           <i className="fas fa-compass text-coffee-600 dark:text-coffee-400 mr-2.5 text-sm"></i>
           What I'm up to lately
-        </h2>
-
-        <div className="space-y-6">
-          <div className="group border-l-2 border-coffee-500/30 pl-3.5 hover:border-coffee-600/70 transition-all">
-            <div className="flex items-center">
-              <i className="fas fa-books text-coffee-600 dark:text-coffee-400 mr-2 text-xs"></i>
-              <h3 className="font-subheading font-medium text-sm text-coffee-900 dark:text-white">
-                Learning & Studying
-              </h3>
-            </div>
-            <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
-              This year I'll get into the best university my country offers, and I'm excited and
-              nervous at the same time. I'm studying hard to get into the university.
-            </p>
-          </div>
-
-          <div className="group border-l-2 border-coffee-500/30 pl-3.5 hover:border-coffee-600/70 transition-all">
-            <div className="flex items-center">
-              <i className="fas fa-headphones text-coffee-600 dark:text-coffee-400 mr-2 text-xs"></i>
-              <h3 className="font-subheading font-medium text-sm text-coffee-900 dark:text-white">
-                Music Interests
-              </h3>
-            </div>
-            <p className="text-coffee-700 dark:text-gray-400 mt-1.5 text-xs leading-relaxed">
-              You could view my music interest on my last.fm profile, that should be in the upper
-              right hand corner hopefully.
-            </p>
-          </div>
-        </div>
+        </h2> */}
 
         <div className="mt-6 text-right">
           <Link
