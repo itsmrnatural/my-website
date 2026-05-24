@@ -25,11 +25,11 @@ Special thanks to [umutxyp](https://github.com/umutxyp) for providing the initia
 
 ## Getting Started
 
-To get started with this website, you'll need to have Node.js and npm installed on your computer. Then, follow these steps:
+To get started with this website, you'll need to have Node.js and pnpm installed on your computer. Then, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/itsmrnatural/my-website.git`
-2. Install the dependencies: `npm install`
-3. Start the development server: `npm run dev`
+2. Install the dependencies: `pnpm install`
+3. Start the development server: `pnpm dev`
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 This will launch the website in your default browser and you can start customizing it to your liking.
