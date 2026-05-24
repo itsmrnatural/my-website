@@ -99,17 +99,17 @@ export default function Projects() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <div ref={containerRef} className="py-8 md:py-12">
+      <div ref={containerRef} className="py-6 md:py-8">
         <motion.div
           style={{
             transform: `translateY(${headerTransform.y}px)`,
             opacity: headerTransform.opacity,
           }}
         >
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-coffee-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-heading font-bold text-coffee-900 dark:text-white mb-3">
             My Projects
           </h1>
-          <p className="text-lg text-coffee-600 dark:text-gray-400 mb-8">
+          <p className="text-sm md:text-base text-coffee-600 dark:text-gray-400 mb-6">
             Explore my open source repositories and personal projects
           </p>
         </motion.div>
@@ -147,12 +147,12 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="mb-12"
+                className="mb-8"
               >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-2 mb-4">
                   <div className="flex items-center gap-2">
-                    <i className="fas fa-star text-yellow-500 dark:text-yellow-400 text-xl" />
-                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-coffee-900 dark:text-white">
+                    <i className="fas fa-star text-yellow-500 dark:text-yellow-400 text-base md:text-lg" />
+                    <h2 className="text-xl md:text-2xl font-heading font-bold text-coffee-900 dark:text-white">
                       Featured Projects
                     </h2>
                   </div>
@@ -171,8 +171,8 @@ export default function Projects() {
             {regularRepos.length > 0 && (
               <>
                 {featuredRepos.length > 0 && (
-                  <div className="flex items-center gap-3 mb-6">
-                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-coffee-900 dark:text-white">
+                  <div className="flex items-center gap-2 mb-4">
+                    <h2 className="text-xl md:text-2xl font-heading font-bold text-coffee-900 dark:text-white">
                       All Projects
                     </h2>
                     <div className="flex-1 h-px bg-gradient-to-r from-coffee-300 via-coffee-200 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent" />
